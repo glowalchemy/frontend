@@ -4,7 +4,7 @@ import { FiHeart, FiShoppingCart, FiTrash } from 'react-icons/fi';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
 import EmptyState from '../components/shared/EmptyState';
-import ImageWithFallback from '../components/shared/ImageWithFallback';
+import OptimizedImage from '../components/shared/OptimizedImage';
 import { toast } from 'react-toastify';
 
 const WishlistPage = () => {
@@ -93,11 +93,16 @@ const WishlistPage = () => {
                                     {/* Product Image */}
                                     <div className="relative">
                                         <Link to={`/product/${productId}`}>
-                                            <ImageWithFallback
+                                            <OptimizedImage
                                                 src={image}
+                                                variants={product.imageMedia?.variants || null}
+                                                width={product.imageMedia?.width || undefined}
+                                                height={product.imageMedia?.height || undefined}
                                                 alt={name}
-                                                className="w-full h-48 object-cover"
+                                                className="w-full h-full object-cover"
+                                                wrapperClassName="w-full h-48"
                                                 fallbackType="thumbnail"
+                                                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                                             />
                                         </Link>
 

@@ -122,10 +122,10 @@ const TermsOfService = () => {
                             Questions about the Terms of Service should be sent to us at:
                         </p>
                         <ul className="list-disc list-inside text-gray-600 mb-4">
-                            <li>Email: care.trozzi@gmail.com</li>
-                            <li>Phone: +91 90231 14886</li>
+                            <li>Email: glowalchemy67@gmail.com</li>
+                            <li>Phone: +91 73592 30538</li>
                             <li>
-                                Address: First floor, plot no 61, Bajarang industrial area, behind Lilavati party plot, Rajkot - 360002
+                                Address: Sarthana, Varachha, Surat, Gujarat
                             </li>
                         </ul>
 

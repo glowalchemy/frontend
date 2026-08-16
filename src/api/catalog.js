@@ -1,6 +1,6 @@
 import { api, getApiOrigin, toAbsoluteUrl } from "./client";
 
-function applyManagementToProduct(product) {
+export function applyManagementToProduct(product) {
     const management = product && product.management;
     if (!product || typeof product !== 'object') return product;
 
@@ -101,8 +101,23 @@ function normalizeProductsResponse(data) {
     return data;
 }
 
+// Short module-level TTL so multiple home sections calling fetchCategories on
+// the same mount share one network request (the server also caches 15s).
+let categoriesCache = { at: 0, data: null };
+const CATEGORIES_TTL_MS = 30000;
+
 export async function fetchCategories() {
+    const now = Date.now();
+    if (categoriesCache.data && now - categoriesCache.at < CATEGORIES_TTL_MS) {
+        return categoriesCache.data;
+    }
     const res = await api.get("/categories", { params: { mode: "public" } });
+    categoriesCache = { at: now, data: res.data };
+    return res.data;
+}
+
+export async function fetchSearchSuggest(q, { limit = 6 } = {}) {
+    const res = await api.get("/search/suggest", { params: { q, limit } });
     return res.data;
 }
 

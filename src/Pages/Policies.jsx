@@ -29,9 +29,9 @@ Technology (Intermediaries guidelines) Rules, 2011 that require publishing the r
 regulations, privacy policy and Terms of Use for access or usage of domain name https://trozzi.in/
 ('Website'), including the related mobile site and mobile application (hereinafter referred to as
 'Platform').
-The Platform is owned by 9023114886, a company incorporated under the Companies Act, 1956
-with its registered office at Plot no 61, Bajarang industrial area behind Lilavati party plot,
-kothariya, Rajkot (hereinafter referred to as ‘Platform Owner’, 'we', 'us', 'our')..
+The Platform is owned by 7359230538, a company incorporated under the Companies Act, 1956
+with its registered office at Sarthana, Varachha, Surat,
+Gujarat (hereinafter referred to as ‘Platform Owner’, 'we', 'us', 'our')..
 Your use of the Platform and services and tools are governed by the following terms and
 conditions (“Terms of Use”) as applicable to the Platform including the applicable policies which
 are incorporated herein by way of reference. If You transact on the Platform, You shall be subject
@@ -92,7 +92,7 @@ the contact information provided on this website
 
 Privacy Policy
 Introduction
-This Privacy Policy describes how 9023114886 and its affiliates (collectively "9023114886, we, our, us")
+This Privacy Policy describes how 7359230538 and its affiliates (collectively "7359230538, we, our, us")
 collect, use, share, protect or otherwise process your information/ personal data through our website
 https://trozzi.in/ (hereinafter referred to as Platform). Please note that you may be able to browse
 certain sections of the Platform without registering with us.We do not offer any product/service under
@@ -118,7 +118,7 @@ related to your transactions on Platform and such third-party business partner p
 third-party business partner collects your personal data directly from you, you will be governed by their
 privacy policies. We shall not be responsible for the third-party business partner’s privacy practices or
 the content of their privacy policies, and we request you to read their privacy policies prior to disclosing
-any information. If you receive an email, a call from a person/association claiming to be 9023114886
+any information. If you receive an email, a call from a person/association claiming to be 7359230538
 seeking any personal data like debit/credit card PIN, net-banking or mobile banking password, we
 request you to never provide such information. If you have already revealed such information, report it
 immediately to an appropriate law enforcement agency.
@@ -198,7 +198,7 @@ Cancellations will only be considered if the request is made 4 days of placing t
 cancellation requests may not be entertained if the orders have been communicated to such sellers /
 merchant(s) listed on the Platform and they have initiated the process of shipping them, or the
 product is out for delivery. In such an event, you may choose to reject the product at the doorstep.
-9023114886 does not accept cancellation requests for perishable items like flowers, eatables, etc.
+7359230538 does not accept cancellation requests for perishable items like flowers, eatables, etc.
 However, the refund / replacement can be made if the user establishes that the quality of the
 product delivered is not good.
 In case of receipt of damaged or defective items, please report to our customer service team. The
@@ -209,7 +209,7 @@ you must bring it to the notice of our customer service within 4 days of receivi
 customer service team after looking into your complaint will take an appropriate decision.
 In case of complaints regarding the products that come with a warranty from the manufacturers,
 please refer the issue to them.
-In case of any refunds approved by 9023114886, it will take 1 days for the refund to be processed
+In case of any refunds approved by 7359230538, it will take 1 days for the refund to be processed
 to you.
 
 Return Policy

@@ -136,12 +136,20 @@ const ScrollToTopButton = ({ show, mainScrollRef }) => {
         }
     };
 
+    // On product detail pages the sticky purchase bar (Add to Cart / Buy Now)
+    // is pinned to the very bottom of the mobile viewport — lift the FAB above
+    // it so it never overlaps the Buy Now button.
+    const isProductPage = /^\/product\/[^/]+/.test(pathname);
+    const mobileFabBottom = isProductPage
+        ? 'bottom-[calc(5.5rem+env(safe-area-inset-bottom))]'
+        : 'bottom-20';
+
     const button = (
         <>
             <button
                 type="button"
                 onClick={handleScrollTop}
-                className="fixed md:hidden bottom-20 right-4 z-toast h-12 w-12 rounded-full bg-trozzi-terracotta text-white shadow-lg ring-1 ring-black/10 flex items-center justify-center hover:shadow-xl transition"
+                className={`fixed md:hidden right-4 z-toast h-12 w-12 rounded-full bg-trozzi-terracotta text-white shadow-lg ring-1 ring-black/10 flex items-center justify-center hover:shadow-xl transition ${mobileFabBottom}`}
                 aria-label="Scroll to top"
             >
                 <FiArrowUp className="text-xl" />

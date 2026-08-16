@@ -13,16 +13,16 @@ const AboutUs = () => {
                 </Link>
 
                 {/* Hero Section */}
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">About {getBrandDisplayName()}</h1>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <div className="text-center mb-10 sm:mb-16">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">About {getBrandDisplayName()}</h1>
+                    <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
                         Your trusted online shopping destination for quality products, great prices, and exceptional service.
                     </p>
                 </div>
 
                 {/* Our Story */}
-                <div className="bg-white rounded-lg shadow p-8 mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+                <div className="bg-white rounded-lg shadow p-6 sm:p-8 mb-10 sm:mb-12">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Our Story</h2>
                     <div className="max-w-3xl">
                         <div>
                             <p className="text-gray-600 mb-4">
@@ -40,8 +40,8 @@ const AboutUs = () => {
 
                 {/* Our Values */}
                 <div className="mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Our Values</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-6 sm:mb-8">Our Values</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                         <div className="bg-white rounded-lg shadow p-6 text-center">
                             <div className="w-12 h-12 bg-brand-ivory rounded-full flex items-center justify-center mx-auto mb-4">
                                 <FaTruck className="h-6 w-6 text-action-primary" />
@@ -85,23 +85,23 @@ const AboutUs = () => {
                 </div>
 
                 {/* Mission */}
-                <div className="bg-white rounded-lg shadow p-8 mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+                <div className="bg-white rounded-lg shadow p-6 sm:p-8 mb-10 sm:mb-12">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Our Mission</h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Vision</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Our Vision</h3>
                             <p className="text-gray-600 mb-4">
                                 To become India's most trusted online shopping destination by providing exceptional customer experiences and quality products at affordable prices.
                             </p>
 
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Mission</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Our Mission</h3>
                             <p className="text-gray-600">
                                 To make quality products accessible to every Indian home through technology, innovation, and customer-centric approach.
                             </p>
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">What We Stand For</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">What We Stand For</h3>
                             <ul className="space-y-3">
                                 <li className="flex items-start">
                                     <span className="text-action-primary mr-2">✓</span>
@@ -129,21 +129,21 @@ const AboutUs = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="text-center bg-gray-100 rounded-lg p-8">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Join Our Journey</h2>
-                    <p className="text-lg text-gray-600 mb-6">
+                <div className="text-center bg-gray-100 rounded-lg p-6 sm:p-8">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Join Our Journey</h2>
+                    <p className="text-base sm:text-lg text-gray-600 mb-6">
                         Be part of our growing community of satisfied customers
                     </p>
-                    <div className="space-x-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <Link
                             to="/ProductListing"
-                            className="bg-action-primary text-white px-6 py-3 rounded-md hover:bg-action-primary-hover"
+                            className="w-full sm:w-auto bg-action-primary text-white px-6 py-3 rounded-md hover:bg-action-primary-hover"
                         >
                             Start Shopping
                         </Link>
                         <Link
                             to="/contact"
-                            className="border border-action-primary text-action-primary px-6 py-3 rounded-md hover:bg-brand-ivory"
+                            className="w-full sm:w-auto border border-action-primary text-action-primary px-6 py-3 rounded-md hover:bg-brand-ivory"
                         >
                             Contact Us
                         </Link>

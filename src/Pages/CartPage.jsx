@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { FaShoppingCart, FaTrash, FaPlus, FaMinus, FaArrowLeft } from 'react-icons/fa';
 import { FiShoppingCart as LineCart, FiUser, FiPackage } from 'react-icons/fi';
-import ImageWithFallback from '../components/shared/ImageWithFallback';
+import OptimizedImage from '../components/shared/OptimizedImage';
 
 const CartPage = () => {
     const {
@@ -139,11 +139,13 @@ const CartPage = () => {
                         <div key={`${item.product?._id || item.product}-${item.size || ''}-${item.color || ''}`} className="bg-trozzi-white rounded-xl border border-trozzi-sand shadow-sm p-3">
                             <div className="flex gap-3">
                                 <div className="w-20 h-20 rounded-lg bg-trozzi-ivory border border-trozzi-sand overflow-hidden">
-                                    <ImageWithFallback
+                                    <OptimizedImage
                                         src={item.image || item.product?.image || item.product?.galleryImages?.[0]}
                                         alt={item.product?.name || item.name}
                                         className="w-full h-full object-contain"
+                                        wrapperClassName="w-full h-full"
                                         fallbackType="thumbnail"
+                                        sizes="80px"
                                     />
                                 </div>
 
@@ -216,11 +218,13 @@ const CartPage = () => {
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                                     {/* Product Image */}
                                     <div className="flex-shrink-0 w-full sm:w-24 h-40 sm:h-24 bg-trozzi-ivory rounded-md overflow-hidden">
-                                        <ImageWithFallback
+                                        <OptimizedImage
                                             src={item.image || item.product?.image || item.product?.galleryImages?.[0]}
                                             alt={item.product?.name || item.name}
                                             className="w-full h-full object-contain"
+                                            wrapperClassName="w-full h-full"
                                             fallbackType="thumbnail"
+                                            sizes="96px"
                                         />
                                     </div>
 

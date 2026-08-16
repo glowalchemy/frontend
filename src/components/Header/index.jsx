@@ -224,9 +224,14 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
     <header ref={ref} className={headerClassName}>
       {/* MAIN HEADER */}
       <div className="header bg-trozzi-white">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="py-2 md:py-3">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">            <div className="py-2 md:py-3">
             <div className="flex items-center gap-2 md:gap-4">
+              {/* Mobile search mode: full-width field with back — replaces the brand row so the
+                  header height stays constant and nothing feels cramped or duplicated. */}
+              {!isDesktop && isMobileSearchOpen ? (
+                <GlobalSearch onBack={() => setIsMobileSearchOpen(false)} autoFocus />
+              ) : (
+                <>
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMobileMenu}
@@ -335,20 +340,12 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
                   </Link>
                 </Tooltip>
               </div>
+              </>
+            )}
             </div>
           </div>
         </div>
       </div>
-
-      {!isDesktop && isMobileSearchOpen && (
-        <div className="md:hidden">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-2">
-            <div className="rounded-xl bg-trozzi-white border border-trozzi-sand shadow-sm p-2">
-              <GlobalSearch />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Navigation - Desktop */}
       <div className="hidden md:block bg-trozzi-white border-t border-trozzi-sand relative z-dropdown">

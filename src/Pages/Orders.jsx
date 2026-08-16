@@ -1,341 +1,430 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useContentSettings } from '../context/ContentSettingsContext';
-import { apiClient } from '../api/client';
-import { useNotifications } from '../context/NotificationContext';
 import { useNavigate } from 'react-router-dom';
+import {
+    FiPackage, FiClock, FiTruck, FiCheck, FiCreditCard, FiXCircle,
+    FiArrowRight, FiChevronRight, FiAlertCircle, FiShoppingBag,
+} from 'react-icons/fi';
+import { useContentSettings } from '../context/ContentSettingsContext';
+import { useNotifications } from '../context/NotificationContext';
+import { apiClient } from '../api/client';
+import EmptyState from '../components/shared/EmptyState';
 
 const FALLBACK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
+const FILTERS = [
+    { key: 'all', label: 'All' },
+    { key: 'today', label: 'Today' },
+    { key: 'week', label: 'Week' },
+    { key: 'month', label: 'Month' },
+];
+
+const STATUS_META = {
+    new:        { label: 'Order Placed', icon: FiPackage },
+    processing: { label: 'Processing',   icon: FiClock },
+    paid:       { label: 'Paid',         icon: FiCreditCard },
+    shipped:    { label: 'Shipped',      icon: FiTruck },
+    delivered:  { label: 'Delivered',    icon: FiCheck },
+    cancelled:  { label: 'Cancelled',    icon: FiXCircle },
+};
+
+const STATUS_STYLES = {
+    new:        'bg-status-info/10 text-status-info border-status-info/20',
+    processing: 'bg-status-warning/15 text-[#8a6d1f] border-status-warning/40',
+    paid:       'bg-status-info/10 text-status-info border-status-info/20',
+    shipped:    'bg-status-info/10 text-status-info border-status-info/20',
+    delivered:  'bg-status-success/10 text-status-success border-status-success/20',
+    cancelled:  'bg-status-error/10 text-status-error border-status-error/20',
+};
+
 const Orders = () => {
-  const { settings } = useContentSettings();
-  const { socket } = useNotifications();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [orders, setOrders] = useState([]);
-  const [cancellingId, setCancellingId] = useState('');
-  const [dateFilter, setDateFilter] = useState('all'); // all, today, week, month
+    const { settings } = useContentSettings();
+    const { socket } = useNotifications();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [orders, setOrders] = useState([]);
+    const [cancellingId, setCancellingId] = useState('');
+    const [dateFilter, setDateFilter] = useState('all'); // all, today, week, month
 
-  const showOrderHistory = Boolean(settings?.showOrderHistory);
+    const showOrderHistory = Boolean(settings?.showOrderHistory);
 
-  useEffect(() => {
-    let cancelled = false;
+    useEffect(() => {
+        let cancelled = false;
 
-    const load = async () => {
-      if (!showOrderHistory) return;
-      setLoading(true);
-      setError('');
+        const load = async () => {
+            if (!showOrderHistory) return;
+            setLoading(true);
+            setError('');
 
-      try {
-        const res = await apiClient.get('/orders/my');
-        const data = Array.isArray(res?.data?.data) ? res.data.data : Array.isArray(res?.data) ? res.data : [];
-        if (!cancelled) setOrders(data);
-      } catch (e) {
-        const message = e?.response?.data?.message || e?.message || 'Failed to load orders';
-        if (!cancelled) {
-          setError(message);
-          setOrders([]);
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    };
-
-    void load();
-    return () => {
-      cancelled = true;
-    };
-  }, [showOrderHistory]);
-
-  useEffect(() => {
-    if (!showOrderHistory) return;
-    if (!socket) return;
-
-    const onStatusChanged = (evt) => {
-      const id = String(evt?.id || '');
-      const status = String(evt?.status || '').toLowerCase();
-      if (!id || !status) return;
-
-      setOrders((prev) => prev.map((o) => (String(o?.id) === id ? { ...o, status } : o)));
-    };
-
-    socket.on('order:status_changed', onStatusChanged);
-    return () => {
-      socket.off('order:status_changed', onStatusChanged);
-    };
-  }, [socket, showOrderHistory]);
-
-  const canCancel = (status) => {
-    const s = String(status || '').toLowerCase();
-    return ['new', 'processing', 'paid'].includes(s);
-  };
-
-  const formatStatusLabel = (status, adminStatus) => {
-    const s = String(adminStatus || status || '').trim();
-    if (!s) return 'New';
-    return s
-      .replace(/_/g, ' ')
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-  };
-
-  const handleCancelOrder = async (order) => {
-    const id = String(order?.id || '');
-    if (!id) return;
-    if (!canCancel(order?.status)) return;
-
-    const ok = window.confirm('Are you sure you want to cancel this order?');
-    if (!ok) return;
-
-    setCancellingId(id);
-    setError('');
-    try {
-      await apiClient.post(`/orders/${id}/cancel`);
-
-      const res = await apiClient.get('/orders/my');
-      const data = Array.isArray(res?.data?.data) ? res.data.data : [];
-      setOrders(data);
-    } catch (e) {
-      const message = e?.response?.data?.message || e?.message || 'Failed to cancel order';
-      setError(message);
-    } finally {
-      setCancellingId('');
-    }
-  };
-
-  const normalizedOrders = useMemo(() => {
-    const allOrders = (Array.isArray(orders) ? orders : []).map((o) => {
-      const items = Array.isArray(o?.itemsDetail) ? o.itemsDetail : [];
-      const rawStatus = String(o?.orderStatus || o?.status || 'new').toLowerCase();
-      // Hide paid_but_shipment_failed from users - show as processing
-      let status = rawStatus === 'returned' ? 'cancelled' : rawStatus;
-      if (status === 'paid_but_shipment_failed') {
-        status = 'processing'; // Show user-friendly status
-      }
-      return {
-        id: String(o?.id || ''),
-        orderNumber: String(o?.orderNumber || ''),
-        status,
-        createdAtIso: String(o?.createdAtIso || o?.date || ''),
-        total: Number(o?.total ?? 0) || 0,
-        items,
-      };
-    });
-
-    // Apply date filter
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const weekStart = new Date(today);
-    weekStart.setDate(today.getDate() - today.getDay());
-    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-
-    return allOrders.filter((order) => {
-      if (!order.createdAtIso) return true; // Show orders without date
-      
-      const orderDate = new Date(order.createdAtIso);
-      
-      switch (dateFilter) {
-        case 'today':
-          return orderDate >= today;
-        case 'week':
-          return orderDate >= weekStart;
-        case 'month':
-          return orderDate >= monthStart;
-        default:
-          return true; // 'all'
-      }
-    }).sort((a, b) => {
-      // Sort by date descending (newest first)
-      const dateA = a.createdAtIso ? new Date(a.createdAtIso) : new Date(0);
-      const dateB = b.createdAtIso ? new Date(b.createdAtIso) : new Date(0);
-      return dateB - dateA;
-    });
-  }, [orders, dateFilter]);
-
-  const formatCurrency = (value) => {
-    const n = Number(value ?? 0) || 0;
-    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
-  };
-
-  if (!showOrderHistory) {
-    return (
-      <div className="container mx-auto px-4 mt-72 py-8">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">My Orders</h1>
-          <p className="text-gray-600">Order history is currently disabled.</p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="container mx-auto px-4 mt-52 py-8">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">My Orders</h1>
-        
-        {/* Date Filter Buttons */}
-        <div className="flex gap-2">
-          <button
-            onClick={() => setDateFilter('all')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              dateFilter === 'all' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setDateFilter('today')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              dateFilter === 'today' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Today
-          </button>
-          <button
-            onClick={() => setDateFilter('week')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              dateFilter === 'week' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            This Week
-          </button>
-          <button
-            onClick={() => setDateFilter('month')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              dateFilter === 'month' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            This Month
-          </button>
-        </div>
-      </div>
-
-      {error ? (
-        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 mb-6">{error}</div>
-      ) : null}
-
-      {loading ? (
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="text-gray-600">Loading your orders...</div>
-        </div>
-      ) : normalizedOrders.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-sm p-6 mt-40">
-          <p className="text-gray-600">No orders found.</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {normalizedOrders.map((order) => (
-            <div
-              key={order.id}
-              className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden cursor-pointer"
-              role="button"
-              tabIndex={0}
-              onClick={() => navigate(`/order-tracking?id=${encodeURIComponent(order.id)}`)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  navigate(`/order-tracking?id=${encodeURIComponent(order.id)}`);
+            try {
+                const res = await apiClient.get('/orders/my');
+                const data = Array.isArray(res?.data?.data) ? res.data.data : Array.isArray(res?.data) ? res.data : [];
+                if (!cancelled) setOrders(data);
+            } catch (e) {
+                const message = e?.response?.data?.message || e?.message || 'Failed to load orders';
+                if (!cancelled) {
+                    setError(message);
+                    setOrders([]);
                 }
-              }}
-            >
-              <div className="p-4 border-b bg-gray-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <div>
-                  <div className="text-sm text-gray-500">Order</div>
-                  <div className="font-semibold text-gray-900">{order.orderNumber || order.id}</div>
-                  {order.createdAtIso ? (
-                    <div className="text-xs text-gray-500">{new Date(order.createdAtIso).toLocaleString()}</div>
-                  ) : null}
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        };
+
+        void load();
+        return () => {
+            cancelled = true;
+        };
+    }, [showOrderHistory]);
+
+    useEffect(() => {
+        if (!showOrderHistory) return;
+        if (!socket) return;
+
+        const onStatusChanged = (evt) => {
+            const id = String(evt?.id || '');
+            const status = String(evt?.status || '').toLowerCase();
+            if (!id || !status) return;
+
+            setOrders((prev) => prev.map((o) => (String(o?.id) === id ? { ...o, status } : o)));
+        };
+
+        socket.on('order:status_changed', onStatusChanged);
+        return () => {
+            socket.off('order:status_changed', onStatusChanged);
+        };
+    }, [socket, showOrderHistory]);
+
+    const canCancel = (status) => {
+        const s = String(status || '').toLowerCase();
+        return ['new', 'processing', 'paid'].includes(s);
+    };
+
+    const formatStatusLabel = (status) => {
+        const s = String(status || '').trim();
+        if (!s) return 'New';
+        return s
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, (char) => char.toUpperCase());
+    };
+
+    const handleCancelOrder = async (order) => {
+        const id = String(order?.id || '');
+        if (!id) return;
+        if (!canCancel(order?.status)) return;
+
+        const ok = window.confirm('Are you sure you want to cancel this order?');
+        if (!ok) return;
+
+        setCancellingId(id);
+        setError('');
+        try {
+            await apiClient.post(`/orders/${id}/cancel`);
+
+            const res = await apiClient.get('/orders/my');
+            const data = Array.isArray(res?.data?.data) ? res.data.data : [];
+            setOrders(data);
+        } catch (e) {
+            const message = e?.response?.data?.message || e?.message || 'Failed to cancel order';
+            setError(message);
+        } finally {
+            setCancellingId('');
+        }
+    };
+
+    const normalizedOrders = useMemo(() => {
+        const allOrders = (Array.isArray(orders) ? orders : []).map((o) => {
+            const items = Array.isArray(o?.itemsDetail) ? o.itemsDetail : [];
+            const rawStatus = String(o?.orderStatus || o?.status || 'new').toLowerCase();
+            // Hide paid_but_shipment_failed from users - show as processing
+            let status = rawStatus === 'returned' ? 'cancelled' : rawStatus;
+            if (status === 'paid_but_shipment_failed') {
+                status = 'processing'; // Show user-friendly status
+            }
+            return {
+                id: String(o?.id || ''),
+                orderNumber: String(o?.orderNumber || ''),
+                status,
+                createdAtIso: String(o?.createdAtIso || o?.date || ''),
+                total: Number(o?.total ?? 0) || 0,
+                items,
+            };
+        });
+
+        // Apply date filter
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const weekStart = new Date(today);
+        weekStart.setDate(today.getDate() - today.getDay());
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        return allOrders.filter((order) => {
+            if (!order.createdAtIso) return true; // Show orders without date
+
+            const orderDate = new Date(order.createdAtIso);
+
+            switch (dateFilter) {
+                case 'today':
+                    return orderDate >= today;
+                case 'week':
+                    return orderDate >= weekStart;
+                case 'month':
+                    return orderDate >= monthStart;
+                default:
+                    return true; // 'all'
+            }
+        }).sort((a, b) => {
+            // Sort by date descending (newest first)
+            const dateA = a.createdAtIso ? new Date(a.createdAtIso) : new Date(0);
+            const dateB = b.createdAtIso ? new Date(b.createdAtIso) : new Date(0);
+            return dateB - dateA;
+        });
+    }, [orders, dateFilter]);
+
+    const formatCurrency = (value) => {
+        const n = Number(value ?? 0) || 0;
+        return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+    };
+
+    const formatDate = (iso) => {
+        if (!iso) return '';
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return '';
+        return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    };
+
+    const openTracking = (id) => {
+        navigate(`/order-tracking?id=${encodeURIComponent(id)}`);
+    };
+
+    if (!showOrderHistory) {
+        return (
+            <div className="min-h-screen bg-trozzi-ivory py-8 md:py-12">
+                <div className="max-w-3xl mx-auto px-4 sm:px-6">
+                    <div className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi p-6">
+                        <h1 className="font-serif text-2xl font-bold text-trozzi-charcoal mb-2">My Orders</h1>
+                        <p className="text-sm text-trozzi-warm-gray">Order history is currently disabled.</p>
+                    </div>
                 </div>
-                <div className="text-left sm:text-right">
-                  <div className="text-sm text-gray-500">Status</div>
-                  <div className="font-medium text-gray-900">{formatStatusLabel(order.status, order.adminStatus)}</div>
-                  <div className="text-sm text-gray-500">Total: <span className="font-semibold text-gray-900">{formatCurrency(order.total)}</span></div>
-                  <div className="mt-2 flex flex-wrap items-center gap-2 justify-start sm:justify-end">
-                    <button
-                      type="button"
-                      className="px-3 py-1.5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/order-tracking?id=${encodeURIComponent(order.id)}`);
-                      }}
-                    >
-                      Track
-                    </button>
-                  {canCancel(order.status) ? (
-                    <button
-                      type="button"
-                      className="px-3 py-1.5 rounded-md bg-red-600 text-white text-sm hover:bg-red-700 disabled:opacity-60"
-                      disabled={cancellingId === order.id}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCancelOrder(order);
-                      }}
-                    >
-                      {cancellingId === order.id ? 'Cancelling...' : 'Cancel Order'}
-                    </button>
-                  ) : null}
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4">
-                <div className="space-y-3">
-                  {order.items.map((it, idx) => {
-                    const img = String(it?.selectedImage || '').trim() || FALLBACK_IMAGE;
-                    const name = String(it?.name || 'Product');
-                    const size = String(it?.selectedSize || '').trim();
-                    const color = String(it?.selectedColor || '').trim();
-                    const qty = Number(it?.quantity ?? 0) || 0;
-                    const price = Number(it?.price ?? 0) || 0;
-
-                    return (
-                      <div key={`${order.id}-${idx}`} className="flex gap-4 items-start">
-                        <div className="h-16 w-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
-                          <img
-                            src={img}
-                            alt={name}
-                            className="h-16 w-16 object-cover"
-                            onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
-                          />
-                        </div>
-
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-gray-900 truncate">{name}</div>
-                          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600">
-                            {size ? <div>Size: <span className="font-medium text-gray-900">{size}</span></div> : null}
-                            {color ? (
-                              <div className="flex items-center gap-2">
-                                <span>Color:</span>
-                                <span className="font-medium text-gray-900">{color}</span>
-                                <span className="h-3 w-3 rounded-full border border-gray-300" title={color} />
-                              </div>
-                            ) : null}
-                            <div>Qty: <span className="font-medium text-gray-900">{qty}</span></div>
-                          </div>
-                        </div>
-
-                        <div className="text-right">
-                          <div className="text-sm text-gray-500">Price</div>
-                          <div className="font-semibold text-gray-900">{formatCurrency(price)}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
-          ))}
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-trozzi-ivory py-8 md:py-12">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6">
+                {/* Header */}
+                <div className="mb-6">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                        <div className="flex items-center gap-3 min-w-0">
+                            <div className="h-11 w-11 rounded-full bg-white border border-trozzi-sand flex items-center justify-center flex-shrink-0">
+                                <FiShoppingBag className="w-5 h-5 text-action-primary" />
+                            </div>
+                            <div className="min-w-0">
+                                <h1 className="font-serif text-2xl md:text-3xl font-bold text-trozzi-charcoal leading-tight">
+                                    My Orders
+                                </h1>
+                                <p className="text-sm text-trozzi-warm-gray mt-0.5">
+                                    {loading
+                                        ? 'Loading your orders…'
+                                        : `${normalizedOrders.length} order${normalizedOrders.length === 1 ? '' : 's'}`
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Date filter — segmented control */}
+                    <div className="inline-flex items-center gap-1 bg-white border border-trozzi-sand rounded-full p-1 shadow-trozzi">
+                        {FILTERS.map((f) => {
+                            const active = dateFilter === f.key;
+                            return (
+                                <button
+                                    key={f.key}
+                                    type="button"
+                                    onClick={() => setDateFilter(f.key)}
+                                    aria-pressed={active}
+                                    className={`px-3.5 sm:px-4 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-accent ${
+                                        active
+                                            ? 'bg-action-primary text-white shadow-sm'
+                                            : 'text-trozzi-warm-gray hover:text-trozzi-charcoal hover:bg-trozzi-ivory'
+                                    }`}
+                                >
+                                    {f.label}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {error ? (
+                    <div className="flex items-start gap-2.5 bg-status-error/10 border border-status-error/30 text-status-error rounded-xl p-4 mb-6 text-sm">
+                        <FiAlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                        <span>{error}</span>
+                    </div>
+                ) : null}
+
+                {loading ? (
+                    /* Skeleton cards */
+                    <div className="space-y-4" aria-hidden="true">
+                        {[0, 1, 2].map((i) => (
+                            <div key={i} className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi p-5 animate-pulse">
+                                <div className="h-4 w-32 bg-trozzi-sand/60 rounded-md mb-2" />
+                                <div className="h-3 w-48 bg-trozzi-sand/40 rounded-md mb-4" />
+                                <div className="flex gap-3">
+                                    <div className="h-16 w-16 rounded-lg bg-trozzi-sand/40" />
+                                    <div className="flex-1 space-y-2 pt-1">
+                                        <div className="h-3 w-3/4 bg-trozzi-sand/40 rounded-md" />
+                                        <div className="h-3 w-1/2 bg-trozzi-sand/40 rounded-md" />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : normalizedOrders.length === 0 ? (
+                    <div className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi">
+                        <EmptyState
+                            icon="package"
+                            title={error ? 'Could not load orders' : 'No orders yet'}
+                            description={
+                                error
+                                    ? 'Something went wrong while fetching your orders. Please try again.'
+                                    : 'When you place an order, it will show up here with live status updates.'
+                            }
+                            actionText={error ? undefined : 'Start Shopping'}
+                            onAction={error ? undefined : () => navigate('/ProductListing')}
+                        />
+                    </div>
+                ) : (
+                    /* Order list */
+                    <div className="space-y-4">
+                        {normalizedOrders.map((order) => {
+                            const statusKey = STATUS_META[order.status] ? order.status : 'new';
+                            const StatusIcon = STATUS_META[statusKey]?.icon || FiPackage;
+                            const statusLabel = STATUS_META[statusKey]?.label || formatStatusLabel(order.status);
+                            const itemCount = order.items.length;
+
+                            return (
+                                <article
+                                    key={order.id}
+                                    className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi overflow-hidden"
+                                >
+                                    {/* Card header */}
+                                    <div className="px-4 sm:px-5 py-3.5 flex items-start justify-between gap-3 border-b border-trozzi-sand">
+                                        <div className="min-w-0">
+                                            <p className="text-[11px] uppercase tracking-wide text-trozzi-warm-gray font-medium">
+                                                Order
+                                            </p>
+                                            <p className="font-semibold text-trozzi-charcoal text-[15px] truncate mt-0.5">
+                                                {order.orderNumber || order.id}
+                                            </p>
+                                            {order.createdAtIso ? (
+                                                <p className="text-xs text-trozzi-warm-gray mt-1">
+                                                    {formatDate(order.createdAtIso)}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                        <span
+                                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-medium whitespace-nowrap ${STATUS_STYLES[statusKey] || STATUS_STYLES.new}`}
+                                        >
+                                            <StatusIcon className="w-3.5 h-3.5" />
+                                            {statusLabel}
+                                        </span>
+                                    </div>
+
+                                    {/* Items */}
+                                    <div className="px-4 sm:px-5 py-4 space-y-3.5">
+                                        {order.items.slice(0, 3).map((it, idx) => {
+                                            const img = String(it?.selectedImage || '').trim() || FALLBACK_IMAGE;
+                                            const name = String(it?.name || 'Product');
+                                            const size = String(it?.selectedSize || '').trim();
+                                            const color = String(it?.selectedColor || '').trim();
+                                            const qty = Number(it?.quantity ?? 0) || 0;
+                                            const price = Number(it?.price ?? 0) || 0;
+
+                                            return (
+                                                <div key={`${order.id}-${idx}`} className="flex gap-3 items-start">
+                                                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-trozzi-ivory border border-trozzi-sand flex-shrink-0">
+                                                        <img
+                                                            src={img}
+                                                            alt={name}
+                                                            className="h-full w-full object-cover"
+                                                            loading="lazy"
+                                                            onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
+                                                        />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="text-sm font-medium text-trozzi-charcoal truncate">
+                                                            {name}
+                                                        </p>
+                                                        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-trozzi-warm-gray">
+                                                            {size ? <span>Size: <span className="text-trozzi-charcoal font-medium">{size}</span></span> : null}
+                                                            {color ? (
+                                                                <span className="inline-flex items-center gap-1.5">
+                                                                    <span className="h-2.5 w-2.5 rounded-full border border-trozzi-sand" style={{ backgroundColor: color }} />
+                                                                    {color}
+                                                                </span>
+                                                            ) : null}
+                                                            <span>Qty: <span className="text-trozzi-charcoal font-medium">{qty}</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-sm font-semibold text-trozzi-charcoal flex-shrink-0">
+                                                        {formatCurrency(price * qty)}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                        {itemCount > 3 ? (
+                                            <button
+                                                type="button"
+                                                onClick={() => openTracking(order.id)}
+                                                className="inline-flex items-center gap-1 text-xs font-medium text-action-primary hover:underline"
+                                            >
+                                                +{itemCount - 3} more item{itemCount - 3 > 1 ? 's' : ''}
+                                                <FiChevronRight className="w-3.5 h-3.5" />
+                                            </button>
+                                        ) : null}
+                                    </div>
+
+                                    {/* Card footer */}
+                                    <div className="px-4 sm:px-5 py-3.5 bg-trozzi-ivory/60 border-t border-trozzi-sand flex items-center justify-between gap-3">
+                                        <div className="min-w-0">
+                                            <p className="text-[11px] uppercase tracking-wide text-trozzi-warm-gray font-medium">
+                                                Total · {itemCount} item{itemCount === 1 ? '' : 's'}
+                                            </p>
+                                            <p className="text-base font-bold text-trozzi-charcoal mt-0.5">
+                                                {formatCurrency(order.total)}
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center gap-2 flex-shrink-0">
+                                            {canCancel(order.status) ? (
+                                                <button
+                                                    type="button"
+                                                    disabled={cancellingId === order.id}
+                                                    onClick={() => handleCancelOrder(order)}
+                                                    className="px-3.5 py-2 rounded-lg border border-status-error/40 text-status-error text-sm font-medium hover:bg-status-error/10 transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-status-error/40"
+                                                >
+                                                    {cancellingId === order.id ? 'Cancelling…' : 'Cancel'}
+                                                </button>
+                                            ) : null}
+                                            <button
+                                                type="button"
+                                                onClick={() => openTracking(order.id)}
+                                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-action-primary text-white text-sm font-medium hover:bg-action-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-accent"
+                                            >
+                                                Track Order
+                                                <FiArrowRight className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default Orders;

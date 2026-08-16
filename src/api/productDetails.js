@@ -1,6 +1,6 @@
 import { api } from "./client";
 
-import { fetchProductById } from "./catalog";
+import { applyManagementToProduct } from "./catalog";
 
 // Questions & Answers API
 export async function fetchProductQuestions(productId, { page = 1, limit = 10 } = {}) {
@@ -30,69 +30,17 @@ export async function upvoteAnswer(answerId) {
 }
 
 // Product Details API
+//
+// Single request: /product-details/:id/details now returns everything the PDP
+// needs (media variants, management with real specs/shipping/returns, stock),
+// so the page no longer fires a second /products/:id catalog request. The
+// catalog normalizer is applied for consistent management-derived fields
+// (brand, descriptionHtml, sizes, price, stock precedence).
 export async function fetchProductDetails(productId) {
-    const [detailsRes, product] = await Promise.all([
-        api.get(`/product-details/${productId}/details`),
-        fetchProductById(productId, { mode: "public" }),
-    ]);
-
-    const details = detailsRes.data;
-    if (!product) return details;
-
-    const pickFirstNonEmptyString = (a, b) => {
-        const sa = typeof a === 'string' ? a.trim() : '';
-        if (sa) return a;
-        const sb = typeof b === 'string' ? b.trim() : '';
-        if (sb) return b;
-        return a ?? b;
-    };
-
-    const pickNonEmptyArray = (a, b) => {
-        const aa = Array.isArray(a) ? a.filter(Boolean) : [];
-        if (aa.length > 0) return aa;
-        const bb = Array.isArray(b) ? b.filter(Boolean) : [];
-        if (bb.length > 0) return bb;
-        return aa.length > 0 ? aa : bb;
-    };
-
-    const pickPrice = (catalogPrice, detailsPrice) => {
-        const c = Number(catalogPrice);
-        const d = Number(detailsPrice);
-
-        const cOk = Number.isFinite(c) && c > 1;
-        const dOk = Number.isFinite(d) && d > 1;
-
-        // If catalog price is obviously wrong (ex: 1) but details has valid price, prefer details.
-        if (!cOk && dOk) return d;
-        if (cOk) return c;
-        if (dOk) return d;
-        return Number.isFinite(c) ? c : (Number.isFinite(d) ? d : 0);
-    };
-
-    return {
-        ...details,
-        id: product.id ?? details?.id,
-        name: product.name ?? details?.name,
-        description: product.description ?? details?.description,
-        descriptionHtml: pickFirstNonEmptyString(product.descriptionHtml, details?.descriptionHtml),
-        price: pickPrice(product.price, details?.price),
-        originalPrice: pickPrice(product.originalPrice, details?.originalPrice),
-        image: pickFirstNonEmptyString(product.image, details?.image),
-        galleryImages: pickNonEmptyArray(product.galleryImages, details?.galleryImages),
-        sizes: pickNonEmptyArray(product.sizes, details?.sizes),
-        colors: pickNonEmptyArray(product.colors, details?.colors),
-        colorVariants: pickNonEmptyArray(product.colorVariants, details?.colorVariants),
-        brand: product.brand ?? details?.brand,
-        category: product.category ?? details?.category,
-        stock: product.stock ?? details?.stock,
-        sizeGuide: product.sizeGuide ?? details?.sizeGuide,
-        sizeGuideKey: product.sizeGuideKey ?? details?.sizeGuideKey,
-        sizeGuideImageUrl: pickFirstNonEmptyString(product.sizeGuideImageUrl, details?.sizeGuideImageUrl),
-        metaTitle: product.metaTitle ?? details?.metaTitle,
-        metaDescription: product.metaDescription ?? details?.metaDescription,
-        weight: product.weight ?? details?.weight,
-        dimensions: product.dimensions ?? details?.dimensions,
-    };
+    const res = await api.get(`/product-details/${productId}/details`);
+    const details = res.data;
+    if (!details) return details;
+    return applyManagementToProduct(details);
 }
 
 export async function fetchProductReviews(productId, { page = 1, limit = 10, sort = 'recent' } = {}) {

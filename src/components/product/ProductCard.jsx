@@ -26,7 +26,9 @@
 //     </div>
 import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaCheck, FaHeart, FaRegHeart, FaShareAlt, FaShoppingCart, FaStar, FaTruck } from "react-icons/fa";
+import { FaCheck, FaHeart, FaRegHeart, FaShareAlt, FaShoppingCart, FaStar, FaTruck, FaExclamationTriangle, FaBan } from "react-icons/fa";
+import OptimizedImage from "../shared/OptimizedImage";
+import { getStockStatus } from "../../utils/stockStatus";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useWishlist } from "../../context/WishlistContext";
@@ -59,6 +61,18 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
       // Get image from variant or fallback to product image
       const image = currentVariant?.images?.[0] || baseProduct.image || baseProduct.img || baseProduct.galleryImages?.[0] || "";
 
+      // Responsive metadata for the displayed image (only when it matches).
+      const primaryMedia =
+        baseProduct.imageMedia && baseProduct.imageMedia.url === image
+          ? baseProduct.imageMedia
+          : (Array.isArray(baseProduct.media)
+              ? baseProduct.media.find((m) => m && m.url === image && m.variants)
+              : null) || null;
+      const mediaByUrl = new Map();
+      for (const e of Array.isArray(baseProduct.media) ? baseProduct.media : []) {
+        if (e && e.url) mediaByUrl.set(e.url, e);
+      }
+
       // Get price from variant or fallback to product price
       const price = Number(currentVariant?.price ?? baseProduct.price ?? 0);
 
@@ -66,6 +80,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
       // Get stock from variant or fallback to product stock
       const stock = Number(currentVariant?.stock ?? baseProduct.stock ?? 0);
+      const stockStatus = getStockStatus(stock);
 
       // Get SKU from variant or fallback to product SKU
       const sku = currentVariant?.sku || baseProduct.sku || "";
@@ -120,6 +135,9 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
         price,
         originalPrice: displayMrp,
         image,
+        imageMedia: primaryMedia,
+        mediaByUrl,
+        stockStatus,
         galleryImages: currentVariant?.images ?? (Array.isArray(baseProduct.galleryImages) ? baseProduct.galleryImages : []),
         isSaleActive,
         saleDiscount,
@@ -147,6 +165,10 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
   if (!normalized) return null;
 
   const displayImage = hoveredImage || normalized.image;
+  const currentImageMedia =
+    (normalized.mediaByUrl && normalized.mediaByUrl.get(displayImage)) ||
+    (displayImage === normalized.image ? normalized.imageMedia : null) ||
+    null;
   const wishlisted = isInWishlist(normalized.id);
 
   const formatPrice = (value) => `₹${Number(value || 0).toLocaleString()}`;
@@ -253,20 +275,28 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
               : "aspect-square sm:aspect-[4/5] bg-trozzi-ivory overflow-hidden relative"
           }
         >
-          <div className={isList ? "relative overflow-hidden w-full h-full" : "relative overflow-hidden w-full h-full"}>
-            <img
+          <div className="relative overflow-hidden w-full h-full">
+            <OptimizedImage
               src={displayImage}
+              variants={currentImageMedia?.variants || null}
+              width={currentImageMedia?.width || undefined}
+              height={currentImageMedia?.height || undefined}
               alt={normalized.name}
-              width={480}
-              height={480}
-              className={
-                isList
-                  ? "w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
-                  : "w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
-              }
-              loading="lazy"
+              className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
+              wrapperClassName="w-full h-full"
+              fallbackType="card"
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
             />
           </div>
+
+          {/* Out of Stock Overlay — light gray, image stays visible underneath */}
+          {normalized.stockStatus?.state === "out" && (
+            <div className="absolute inset-0 bg-white/55 flex items-center justify-center z-[5]">
+              <span className="bg-white/90 text-trozzi-charcoal border border-trozzi-sand px-3 py-1.5 rounded-lg font-semibold text-xs shadow-sm">
+                Out of Stock
+              </span>
+            </div>
+          )}
 
           {/* Discount Badge */}
           {shouldShowDiscount && normalized.discountPercent > 0 && (
@@ -320,7 +350,15 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
                       : "h-6 w-6 sm:h-7 sm:w-7 rounded-full border border-trozzi-white/60 overflow-hidden"
                   }
                 >
-                  <img src={url} alt="" width={64} height={64} className="h-full w-full object-cover" />
+                  <OptimizedImage
+                    src={url}
+                    variants={(normalized.mediaByUrl && normalized.mediaByUrl.get(url)?.variants) || null}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    wrapperClassName="h-full w-full"
+                    fallbackType="thumbnail"
+                    sizes="56px"
+                  />
                 </button>
               ))}
             </div>
@@ -370,7 +408,22 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
             ) : null}
           </div>
 
-          {normalized.stock <= 0 ? <div className="text-xs font-semibold text-trozzi-terracotta">Out of stock</div> : null}
+          {/* Stock Status */}
+          {normalized.stockStatus?.state === "in" && (
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-green-700">
+              <FaCheck className="text-[11px]" /> In Stock
+            </div>
+          )}
+          {normalized.stockStatus?.state === "low" && (
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-trozzi-terracotta">
+              <FaExclamationTriangle className="text-[11px]" /> {normalized.stockStatus.label}
+            </div>
+          )}
+          {normalized.stockStatus?.state === "out" && (
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-red-600">
+              <FaBan className="text-[11px]" /> Out of Stock
+            </div>
+          )}
 
           <div className="flex items-center justify-between pt-1 sm:pt-2">
             {shouldShowRating ? (

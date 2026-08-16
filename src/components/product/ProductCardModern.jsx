@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiHeart, FiShoppingCart, FiStar, FiCheck, FiPackage } from "react-icons/fi";
-import ImageWithFallback from "../shared/ImageWithFallback";
+import { FiHeart, FiShoppingCart, FiStar, FiCheck, FiPackage, FiAlertTriangle } from "react-icons/fi";
+import OptimizedImage from "../shared/OptimizedImage";
+import { getStockStatus } from "../../utils/stockStatus";
 import Button from "../shared/Button";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
@@ -29,9 +30,20 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
       const currentVariant = selectedColorVariant || defaultVariant;
 
       const image = currentVariant?.images?.[0] || baseProduct.image || baseProduct.img || baseProduct.galleryImages?.[0] || "";
+
+      // Responsive metadata only when it matches the actually-displayed image
+      // (avoids attaching the wrong variants to color-variant images).
+      const primaryMedia =
+        baseProduct.imageMedia && baseProduct.imageMedia.url === image
+          ? baseProduct.imageMedia
+          : (Array.isArray(baseProduct.media)
+              ? baseProduct.media.find((m) => m && m.url === image && m.variants)
+              : null) || null;
+
       const price = Number(currentVariant?.price ?? baseProduct.price ?? 0);
       const originalPrice = Number(baseProduct?.originalPrice ?? baseProduct?.management?.pricing?.originalPrice ?? 0);
       const stock = Number(currentVariant?.stock ?? baseProduct.stock ?? 0);
+      const stockStatus = getStockStatus(stock);
       const sku = currentVariant?.sku || baseProduct.sku || "";
       const brand = baseProduct.brand || baseProduct.category || "";
 
@@ -58,9 +70,11 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
         id,
         name: baseProduct.name ?? baseProduct.title ?? "",
         image,
+        imageMedia: primaryMedia,
         price: displayPrice,
         originalPrice: displayMrp,
         stock,
+        stockStatus,
         sku,
         brand,
         rating,
@@ -132,12 +146,16 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
       className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-trozzi-sand/50 hover:border-trozzi-terracotta/50"
     >
       <div className="relative aspect-square bg-trozzi-ivory/50 overflow-hidden">
-        <ImageWithFallback
+        <OptimizedImage
           src={normalized.image}
+          variants={normalized.imageMedia?.variants || null}
+          width={normalized.imageMedia?.width || undefined}
+          height={normalized.imageMedia?.height || undefined}
           alt={normalized.name}
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+          wrapperClassName="w-full h-full"
           fallbackType="card"
-          aspectRatio="1/1"
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
         />
 
         {/* Wishlist Button */}
@@ -159,10 +177,10 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
           </div>
         )}
 
-        {/* Out of Stock Overlay */}
-        {normalized.stock <= 0 && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <span className="bg-white text-trozzi-charcoal px-4 py-2 rounded-lg font-semibold text-sm">
+        {/* Out of Stock Overlay — light gray, image stays visible underneath */}
+        {normalized.stockStatus?.state === "out" && (
+          <div className="absolute inset-0 bg-white/55 flex items-center justify-center z-[5]">
+            <span className="bg-white/90 text-trozzi-charcoal border border-trozzi-sand px-4 py-2 rounded-lg font-semibold text-sm shadow-sm">
               Out of Stock
             </span>
           </div>
@@ -211,6 +229,28 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
           {normalized.originalPrice > normalized.price && (
             <span className="text-sm text-trozzi-warm-gray line-through">
               {formatPrice(normalized.originalPrice)}
+            </span>
+          )}
+        </div>
+
+        {/* Stock Status */}
+        <div className="mb-3">
+          {normalized.stockStatus?.state === "in" && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-700">
+              <FiCheck className="w-3.5 h-3.5" />
+              In Stock
+            </span>
+          )}
+          {normalized.stockStatus?.state === "low" && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-trozzi-terracotta">
+              <FiAlertTriangle className="w-3.5 h-3.5" />
+              {normalized.stockStatus.label}
+            </span>
+          )}
+          {normalized.stockStatus?.state === "out" && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600">
+              <FiPackage className="w-3.5 h-3.5" />
+              Out of Stock
             </span>
           )}
         </div>
