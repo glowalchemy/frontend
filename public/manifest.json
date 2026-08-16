@@ -1,0 +1,20 @@
+{
+  "short_name": "GlowAlchemy",
+  "name": "GlowAlchemy",
+  "icons": [
+    {
+      "src": "favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#213D31",
+  "background_color": "#FBF9EC"
+}
