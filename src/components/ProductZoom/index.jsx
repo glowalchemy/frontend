@@ -5,7 +5,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
-// Install Swiper Navigation module
+// Install Swiper Navigation module (module-level side effect, not a React hook)
+// eslint-disable-next-line react-hooks/rules-of-hooks
 SwiperCore.use([Navigation]);
 
 const ProductZoom = ({ product, selectedColorVariant, useVariantImages = true }) => {
@@ -28,7 +29,7 @@ const ProductZoom = ({ product, selectedColorVariant, useVariantImages = true })
 
     useEffect(() => {
         goto(0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+         
     }, [useVariantImages, selectedColorVariant?.color, selectedColorVariant?.colorName, finalImages.length]);
 
     return (

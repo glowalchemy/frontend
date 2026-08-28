@@ -166,14 +166,14 @@ const Profile = () => {
         <h1 className="text-2xl font-bold text-gray-900 mb-4">My Profile</h1>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="h-16 w-16 rounded-full bg-gray-100 overflow-hidden">
+          <div className="h-16 w-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
             {resolvedAvatarUrl ? (
               <img src={resolvedAvatarUrl} alt="Avatar" className="h-full w-full object-cover" />
             ) : null}
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-sm text-gray-500">Signed in as</p>
-            <p className="text-base font-medium text-gray-900">{user?.email || '-'}</p>
+            <p className="text-base font-medium text-gray-900 break-words">{user?.email || '-'}</p>
           </div>
         </div>
 
@@ -196,9 +196,9 @@ const Profile = () => {
               className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60"
             />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-sm text-gray-500">Email</p>
-            <p className="text-base font-medium text-gray-900">{user?.email || '-'}</p>
+            <p className="text-base font-medium text-gray-900 break-words">{user?.email || '-'}</p>
           </div>
           <div>
             <p className="text-sm text-gray-500">Phone</p>
@@ -294,7 +294,7 @@ const Profile = () => {
             >
               {savingProfile ? 'Saving...' : 'Save Profile'}
             </button>
-            {profileMsg ? <p className="text-sm text-gray-600">{profileMsg}</p> : null}
+            {profileMsg ? <p className="text-sm text-gray-600 min-w-0 break-words">{profileMsg}</p> : null}
           </div>
         </div>
 
@@ -324,7 +324,7 @@ const Profile = () => {
             >
               {savingPassword ? 'Updating...' : 'Update Password'}
             </button>
-            {passwordMsg ? <p className="text-sm text-gray-600">{passwordMsg}</p> : null}
+            {passwordMsg ? <p className="text-sm text-gray-600 min-w-0 break-words">{passwordMsg}</p> : null}
           </div>
         </div>
       </div>

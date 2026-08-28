@@ -30,25 +30,30 @@ const RegisterPage = () => {
         setLoading(true);
         setError('');
 
-        const parts = String(formData.name || '').trim().split(/\s+/).filter(Boolean);
-        const firstName = parts[0] || '';
-        const lastName = parts.length > 1 ? parts.slice(1).join(' ') : 'User';
+        try {
+            const parts = String(formData.name || '').trim().split(/\s+/).filter(Boolean);
+            const firstName = parts[0] || '';
+            const lastName = parts.length > 1 ? parts.slice(1).join(' ') : 'User';
 
-        const result = await register({
-            firstName,
-            lastName,
-            email: formData.email,
-            phone: formData.phone,
-            password: formData.password,
-        });
+            const result = await register({
+                firstName,
+                lastName,
+                email: formData.email,
+                phone: formData.phone,
+                password: formData.password,
+            });
 
-        if (result.success) {
-            navigate('/profile');
-        } else {
-            setError(result.error);
+            if (result.success) {
+                navigate('/profile');
+            } else {
+                setError(result.error);
+            }
+        } catch (err) {
+            setError('An unexpected error occurred. Please try again.');
+            console.error('Registration error:', err);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (

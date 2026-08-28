@@ -49,6 +49,7 @@ const inferAlternateBaseUrl = (current) => {
 
 export const api = axios.create({
     baseURL: apiBaseUrl,
+    timeout: 10000,
     headers: {
         "Content-Type": "application/json",
     },
@@ -99,7 +100,7 @@ api.interceptors.response.use(
 
         if (!hasResponse && !hasLoggedNetworkError) {
             hasLoggedNetworkError = true;
-            // eslint-disable-next-line no-console
+             
             console.error('[api] Network error: API server unreachable. Check backend is running and proxy/REACT_APP_API_URL config.', {
                 baseURL: api.defaults.baseURL,
             });
@@ -117,8 +118,18 @@ api.interceptors.response.use(
 
         if (error.response?.status === 401) {
             // Token expired or invalid, remove it and redirect to login
-            localStorage.removeItem('token');
-            window.location.href = '/login';
+            // But don't redirect if this is a login/register request itself
+            const isAuthRequest = config?.url?.includes('/auth/login') || config?.url?.includes('/auth/register');
+            
+            if (!isAuthRequest) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                // Use React Router navigation instead of full page reload when possible
+                // For API client level, we'll use window.location but avoid reload if already on login
+                if (window.location.pathname !== '/login') {
+                    window.location.href = '/login';
+                }
+            }
         }
         return Promise.reject(error);
     }

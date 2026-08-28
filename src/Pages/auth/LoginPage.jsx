@@ -29,16 +29,21 @@ const LoginPage = () => {
         setLoading(true);
         setError('');
 
-        const result = await login({ identifier: formData.identifier, password: formData.password });
+        try {
+            const result = await login({ identifier: formData.identifier, password: formData.password });
 
-        if (result.success) {
-            const redirectTo = searchParams.get('redirect') || '/';
-            navigate(redirectTo);
-        } else {
-            setError(result.error);
+            if (result.success) {
+                const redirectTo = searchParams.get('redirect') || '/';
+                navigate(redirectTo);
+            } else {
+                setError(result.error);
+            }
+        } catch (err) {
+            setError('An unexpected error occurred. Please try again.');
+            console.error('Login error:', err);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (

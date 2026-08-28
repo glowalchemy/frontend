@@ -53,6 +53,8 @@ export const NotificationProvider = ({ children }) => {
       const metaUnread = Number(res?.data?.meta?.unreadCount ?? 0) || 0;
       setNotifications(items);
       setUnreadCount(metaUnread);
+    } catch (_e) {
+      // Notifications are optional and must not create unhandled rejections.
     } finally {
       setLoading(false);
     }
@@ -157,7 +159,7 @@ export const NotificationProvider = ({ children }) => {
       s.on('connect_error', (err) => {
         if (socketErrorLoggedRef.current) return;
         socketErrorLoggedRef.current = true;
-        // eslint-disable-next-line no-console
+         
         console.warn('[notifications] socket connection error:', err?.message || err);
       });
 

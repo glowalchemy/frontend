@@ -804,7 +804,9 @@ export const trackPageView = async (pagePath = null) => {
     if (window[GLOBAL_PAGE_VIEW_KEY]) {
         const timeSinceLastFire = now - window[GLOBAL_PAGE_VIEW_KEY];
         if (timeSinceLastFire < PAGE_VIEW_TIMEOUT) {
-            console.warn(`[Meta Pixel] BLOCKED - PageView already fired ${timeSinceLastFire}ms ago`);
+            if (DEBUG_MODE) {
+                console.debug(`[Meta Pixel] PageView deduplicated (${timeSinceLastFire}ms after previous event)`);
+            }
             return { success: false, eventId: null, reason: 'global_duplicate' };
         }
     }

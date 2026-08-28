@@ -46,10 +46,10 @@ const UserMenu = ({ onNavigate }) => {
             </button>
 
             {isOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-surface rounded-md shadow-lg py-2 z-dropdown">
+                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-page-primary rounded-md shadow-lg py-2 z-dropdown border border-default">
                     <div className="px-4 py-2 border-b border-default">
-                        <p className="text-sm font-medium text-charcoal">{user.firstName} {user.lastName}</p>
-                        <p className="text-xs text-muted">{user.email}</p>
+                        <p className="text-sm font-medium text-charcoal truncate">{user.firstName} {user.lastName}</p>
+                        <p className="text-xs text-muted truncate">{user.email}</p>
                     </div>
                     <Link
                         to="/profile"

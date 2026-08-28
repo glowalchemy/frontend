@@ -42,11 +42,24 @@ export const AuthProvider = ({ children }) => {
     }, [token, user]);
 
     useEffect(() => {
+        let cancelled = false;
+
         const initAuth = async () => {
             const storedToken = localStorage.getItem('token');
             const storedUser = localStorage.getItem('user');
 
             if (storedToken && storedUser) {
+                try {
+                    // Hydrate immediately so a slow auth check cannot blank the app.
+                    setUser(JSON.parse(storedUser));
+                    setToken(storedToken);
+                } catch (_error) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                }
+
+                setLoading(false);
+
                 try {
                     // Verify token is still valid by calling /api/auth/me
                     const response = await apiClient.get('/auth/me', {
@@ -55,21 +68,30 @@ export const AuthProvider = ({ children }) => {
                         },
                     });
 
-                    setUser(response.data.data);
-                    setToken(storedToken);
+                    if (!cancelled) {
+                        setUser(response.data.data);
+                        setToken(storedToken);
+                    }
                 } catch (error) {
                     // Token is invalid, clear storage
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
-                    setToken(null);
-                    setUser(null);
+                    if (!cancelled) {
+                        setToken(null);
+                        setUser(null);
+                    }
+                    // Don't redirect - let the user continue as guest
                 }
+            } else if (!cancelled) {
+                setLoading(false);
             }
-
-            setLoading(false);
         };
 
         initAuth();
+
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     const login = async ({ identifier, password }) => {

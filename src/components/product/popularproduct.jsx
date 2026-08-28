@@ -25,9 +25,16 @@ const PopularProducts = ({ hideAddToCart = false }) => {
 
         if (top.length > 0) {
           setActiveCategoryId((prev) => prev || top[0].id);
+        } else {
+          setProducts([]);
+          setError(null);
+          setLoading(false);
         }
       } catch (e) {
         if (cancelled) return;
+        setProducts([]);
+        setError(null);
+        setLoading(false);
       }
     }
 

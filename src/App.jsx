@@ -62,12 +62,14 @@ const MetaPixelRouteTracker = () => {
         initMetaPixel();
         
         // Track PageView after pixel loads (only once)
-        setTimeout(() => {
+        const pageViewTimer = window.setTimeout(() => {
             if (!initialPageViewFired) {
                 initialPageViewFired = true;
                 trackPageView(location.pathname);
             }
         }, 100);
+
+        return () => window.clearTimeout(pageViewTimer);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Track on route changes only (NOT initial render)

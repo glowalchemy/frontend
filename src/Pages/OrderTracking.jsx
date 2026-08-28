@@ -402,7 +402,7 @@ const OrderTracking = () => {
             setReviewError('');
             const urls = [];
             for (const f of files) {
-                // eslint-disable-next-line no-await-in-loop
+                 
                 const url = await uploadReviewImage(f);
                 urls.push(url);
             }
