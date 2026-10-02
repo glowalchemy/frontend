@@ -5,8 +5,7 @@ import Rating from '@mui/material/Rating';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import { FaCartShopping } from "react-icons/fa6";
-import { FaRegHeart, FaShareAlt } from "react-icons/fa";
+import { FaShoppingCart, FaRegHeart, FaShareAlt } from "react-icons/fa";
 import ColorPicker from '../product/ColorPicker';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
@@ -535,7 +534,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           onClick={handleAddToCart}
           className="!bg-trozzi-terracotta !text-white !px-6 !py-3 !rounded-md hover:!bg-trozzi-charcoal transition-all duration-300 flex items-center gap-2 shadow-md"
         >
-          <FaCartShopping className="text-[20px]" /> {isAdding ? 'Adding...' : 'Add To Cart'}
+          <FaShoppingCart className="text-[20px]" /> {isAdding ? 'Adding...' : 'Add To Cart'}
         </Button>
 
         <Button

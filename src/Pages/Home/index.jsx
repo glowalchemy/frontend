@@ -7,32 +7,14 @@ import PopularProducts from '../../components/product/popularproduct'
 import LatestProducts from '../../components/Latestproduct/latestproduct'
 import FeaturedSlider from '../../components/FeaturedSlider/FeaturedSlider'
 import AdBannerSection from '../../components/aBanner/Banner'
-import { fetchCategories } from '../../api/catalog'
+import { useCategories } from '../../context/CategoryContext'
 
 
 // Main Home component
 const Home = () => {
-  const [apiCategories, setApiCategories] = useState([])
+  const { categories: apiCategories } = useCategories()
   const categoryStripRef = useRef(null)
   const [canScrollCategories, setCanScrollCategories] = useState(false)
-
-  useEffect(() => {
-    let cancelled = false
-    const run = async () => {
-      try {
-        const data = await fetchCategories()
-        if (cancelled) return
-        setApiCategories(Array.isArray(data) ? data : [])
-      } catch (_e) {
-        if (!cancelled) setApiCategories([])
-      }
-    }
-
-    run()
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   useEffect(() => {
     const el = categoryStripRef.current

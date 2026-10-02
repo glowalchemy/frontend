@@ -14,7 +14,7 @@ const FeaturedSlider = ({ hideAddToCart = false }) => {
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchProducts({ mode: "public", page: 1, limit: 20, featured: true });
+        const data = await fetchProducts({ mode: "public", page: 1, limit: 12, featured: true, fields: "basic" });
         if (cancelled) return;
         const list = Array.isArray(data) ? data : (data.items || []);
         setItems(list);
@@ -34,10 +34,7 @@ const FeaturedSlider = ({ hideAddToCart = false }) => {
     };
   }, []);
 
-  // Until products are added to the store, show the loading skeleton
-  // placeholders (same treatment as Popular Products) instead of an error
-  // or an empty state.
-  if (loading || error || items.length === 0) {
+  if (loading) {
     return (
       <section className="py-4 sm:py-8 bg-trozzi-ivory">
         <div className="px-3 sm:px-6">
@@ -52,6 +49,38 @@ const FeaturedSlider = ({ hideAddToCart = false }) => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+        <div className="px-3 sm:px-6">
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Featured Products</h2>
+          <div className="bg-white rounded-2xl border border-trozzi-sand p-6 text-center">
+            <p className="text-trozzi-warm-gray mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-trozzi-terracotta text-white rounded-xl font-medium"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+        <div className="px-3 sm:px-6">
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Featured Products</h2>
+          <div className="bg-white rounded-2xl border border-trozzi-sand p-8 text-center">
+            <p className="text-trozzi-warm-gray">No featured products available right now.</p>
           </div>
         </div>
       </section>

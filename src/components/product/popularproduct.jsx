@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { FiPackage } from "react-icons/fi";
 
-import { fetchCategories, fetchProducts } from "../../api/catalog";
+import { fetchPopularProducts } from "../../api/catalog";
 
 const PopularProducts = ({ hideAddToCart = false }) => {
-  const [activeCategoryId, setActiveCategoryId] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,51 +13,16 @@ const PopularProducts = ({ hideAddToCart = false }) => {
     let cancelled = false;
 
     async function load() {
-      try {
-        const data = await fetchCategories();
-        if (cancelled) return;
-
-        const top = (Array.isArray(data) ? data : [])
-          .filter((c) => c && c.active)
-          .filter((c) => !c.parentId)
-          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-        if (top.length > 0) {
-          setActiveCategoryId((prev) => prev || top[0].id);
-        } else {
-          setProducts([]);
-          setError(null);
-          setLoading(false);
-        }
-      } catch (e) {
-        if (cancelled) return;
-        setProducts([]);
-        setError(null);
-        setLoading(false);
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      if (!activeCategoryId) return;
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchProducts({ mode: "public", page: 1, limit: 60, category: activeCategoryId });
+        const data = await fetchPopularProducts({ limit: 12 });
         if (cancelled) return;
         const items = Array.isArray(data) ? data : (data.items || []);
         setProducts(items);
       } catch (e) {
         if (cancelled) return;
-        setError("Failed to load products");
+        setError("Failed to load popular products");
         setProducts([]);
       } finally {
         if (!cancelled) setLoading(false);
@@ -70,7 +34,7 @@ const PopularProducts = ({ hideAddToCart = false }) => {
     return () => {
       cancelled = true;
     };
-  }, [activeCategoryId]);
+  }, []);
 
   if (loading) {
     return (

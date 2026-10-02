@@ -1,31 +1,12 @@
 // Navigation.js
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
-import { fetchCategories } from '../../../api/catalog';
+import { useCategories } from '../../../context/CategoryContext';
 import './style.css';
 
 const Navigation = () => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    let cancelled = false;
-    const run = async () => {
-      try {
-        const data = await fetchCategories();
-        if (cancelled) return;
-        const list = Array.isArray(data) ? data : [];
-        setCategories(list.filter((c) => c && c.name));
-      } catch (_e) {
-        if (!cancelled) setCategories([]);
-      }
-    };
-
-    run();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { categories } = useCategories();
 
   const topCategories = useMemo(() => {
     return categories.filter((c) => !c.parentId);

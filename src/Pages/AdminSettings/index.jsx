@@ -20,10 +20,8 @@ const AdminSettings = () => {
             setLoading(true);
             setError('');
             try {
-                const res = await apiClient.get('/admin/content-settings', {
-                    headers: token ? { Authorization: `Bearer ${token}` } : {},
-                });
-                const data = res?.data?.data;
+                const { fetchContentSettings } = await import('../../api/catalog');
+                const data = await fetchContentSettings();
                 if (!cancelled) {
                     setBrandLogoUrl(String(data?.brandLogoUrl || '').trim());
                     setEnableCod(data?.enableCod !== false);
@@ -83,6 +81,10 @@ const AdminSettings = () => {
             const data = res?.data?.data;
             setBrandLogoUrl(String(data?.brandLogoUrl || brandLogoUrl).trim());
             setEnableCod(data?.enableCod !== false);
+            
+            // Invalidate content settings cache after admin update
+            const { invalidateContentSettings } = await import('../../api/catalog');
+            invalidateContentSettings();
         } catch (e) {
             const msg = e?.response?.data?.message || e?.response?.data?.error || e?.message || 'Failed to save settings';
             setError(msg);

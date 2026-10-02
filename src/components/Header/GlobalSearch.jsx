@@ -306,9 +306,6 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                                                 <h4 className="text-sm font-semibold text-trozzi-charcoal truncate">
                                                     {product.name}
                                                 </h4>
-                                                <p className="text-xs text-trozzi-warm-gray truncate mt-0.5">
-                                                    {product.description}
-                                                </p>
                                                 <p className="text-sm font-bold text-trozzi-terracotta mt-1">
                                                     {formatInr(product.price)}
                                                 </p>

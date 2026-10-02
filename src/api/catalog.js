@@ -101,8 +101,7 @@ function normalizeProductsResponse(data) {
     return data;
 }
 
-// Short module-level TTL so multiple home sections calling fetchCategories on
-// the same mount share one network request (the server also caches 15s).
+// Categories are public (mode: "public") - application-level caching
 let categoriesCache = { at: 0, data: null };
 const CATEGORIES_TTL_MS = 30000;
 
@@ -132,6 +131,7 @@ export async function fetchProducts({
     minPrice,
     maxPrice,
     inStock,
+    outOfStock,
     onSale,
     freeShipping,
     rating,
@@ -139,7 +139,9 @@ export async function fetchProducts({
     colors,
     brands,
     sort,
-    order
+    order,
+    facets,
+    fields
 } = {}) {
     const params = {};
     if (mode) params.mode = mode;
@@ -152,6 +154,7 @@ export async function fetchProducts({
     if (minPrice !== undefined) params.minPrice = minPrice;
     if (maxPrice !== undefined) params.maxPrice = maxPrice;
     if (inStock !== undefined) params.inStock = inStock;
+    if (outOfStock !== undefined) params.outOfStock = outOfStock;
     if (onSale !== undefined) params.onSale = onSale;
     if (freeShipping !== undefined) params.freeShipping = freeShipping;
     if (rating !== undefined) params.rating = rating;
@@ -160,6 +163,8 @@ export async function fetchProducts({
     if (brands && brands.length > 0) params.brands = brands.join(',');
     if (sort) params.sort = sort;
     if (order) params.order = order;
+    if (facets) params.facets = facets;
+    if (fields) params.fields = fields;
 
     const res = await api.get("/products", { params });
     return normalizeProductsResponse(res.data);
@@ -175,16 +180,28 @@ export async function fetchProductBySlug(slug, { mode = "public" } = {}) {
     return applyManagementToProduct(res.data);
 }
 
+// Banners are public (position-based) - application-level caching
+let bannersCache = new Map();
+const BANNERS_TTL_MS = 60000;
+
 export async function fetchBanners({ position } = {}) {
     const params = {};
     if (position) params.position = position;
+    
+    const cacheKey = position || 'all';
+    const now = Date.now();
+    const cached = bannersCache.get(cacheKey);
+    if (cached && now - cached.at < BANNERS_TTL_MS) {
+        return cached.data;
+    }
+
     const res = await api.get("/banners", { params });
 
     const data = res.data;
     const banners = data && data.banners !== undefined ? data.banners : data;
     const list = Array.isArray(banners) ? banners : [];
 
-    return list.map((b) => {
+    const result = list.map((b) => {
         const id = b.id || b._id;
         const rawImage = b.imageUrl || b.image;
         const imageUrl =
@@ -199,4 +216,55 @@ export async function fetchBanners({ position } = {}) {
             linkUrl: b.linkUrl || b.link || "",
         };
     });
+
+    bannersCache.set(cacheKey, { at: now, data: result });
+    return result;
+}
+
+// Content settings are global - application-level caching
+let contentSettingsCache = { at: 0, data: null };
+const CONTENT_SETTINGS_TTL_MS = 300000;
+
+export async function fetchContentSettings() {
+    const now = Date.now();
+    if (contentSettingsCache.data && now - contentSettingsCache.at < CONTENT_SETTINGS_TTL_MS) {
+        return contentSettingsCache.data;
+    }
+    const res = await api.get("/content-settings");
+    contentSettingsCache = { at: now, data: res.data };
+    return res.data;
+}
+
+// Popular products are public - application-level caching
+let popularProductsCache = { at: 0, data: null };
+const POPULAR_PRODUCTS_TTL_MS = 120000;
+
+export async function fetchPopularProducts({ limit = 60 } = {}) {
+    const now = Date.now();
+    if (popularProductsCache.data && now - popularProductsCache.at < POPULAR_PRODUCTS_TTL_MS) {
+        return popularProductsCache.data;
+    }
+    const params = {};
+    if (limit) params.limit = limit;
+    const res = await api.get("/products/popular", { params });
+    const result = normalizeProductsResponse(res.data);
+    popularProductsCache = { at: now, data: result };
+    return result;
+}
+
+// Cache invalidation for admin mutations
+export function invalidateContentSettings() {
+    contentSettingsCache = { at: 0, data: null };
+}
+
+export function invalidateBanners() {
+    bannersCache.clear();
+}
+
+export function invalidateCategories() {
+    categoriesCache = { at: 0, data: null };
+}
+
+export function invalidatePopularProducts() {
+    popularProductsCache = { at: 0, data: null };
 }

@@ -2,13 +2,15 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import ProductCardModern from "../../components/product/ProductCardModern";
-import { fetchCategories, fetchProducts } from "../../api/catalog";
+import { fetchProducts } from "../../api/catalog";
+import { useCategories } from "../../context/CategoryContext";
 import { ProductCardSkeleton } from "../../components/shared/LoadingSkeleton";
 import EmptyState from "../../components/shared/EmptyState";
 import ErrorState from "../../components/shared/ErrorState";
 
 const ProductListing = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const { categories: apiCategories } = useCategories();
 
     const [page, setPage] = useState(1);
     const [limit] = useState(12);
@@ -27,15 +29,15 @@ const ProductListing = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [items, setItems] = useState([]);
-    const [categories, setCategories] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
+    const [facets, setFacets] = useState(null);
 
     const resolvedCategory = useMemo(() => {
         const raw = String(category || '').trim();
         if (!raw) return '';
 
         const rawLower = raw.toLowerCase();
-        const list = Array.isArray(categories) ? categories : [];
+        const list = Array.isArray(apiCategories) ? apiCategories : [];
 
         const match = list.find((c) => {
             if (!c || typeof c !== 'object') return false;
@@ -48,7 +50,7 @@ const ProductListing = () => {
         });
 
         return match ? String(match.name || raw) : raw;
-    }, [category, categories]);
+    }, [category, apiCategories]);
 
     useEffect(() => {
         const urlCategory = searchParams.get("category") || "";
@@ -59,22 +61,6 @@ const ProductListing = () => {
         setSearchQuery(urlSearch);
         setPage(1);
     }, [searchParams]);
-
-    useEffect(() => {
-        let cancelled = false;
-        const run = async () => {
-            try {
-                const data = await fetchCategories();
-                if (!cancelled) setCategories(Array.isArray(data) ? data : []);
-            } catch {
-                if (!cancelled) setCategories([]);
-            }
-        };
-        void run();
-        return () => {
-            cancelled = true;
-        };
-    }, []);
 
     const normalizeSizeToken = (value) => {
         const raw = String(value ?? '').trim();
@@ -131,6 +117,16 @@ const ProductListing = () => {
         setPage(1);
     }, []);
 
+    const handleClearFilters = useCallback(() => {
+        setSelectedFilters({
+            availability: 'all',
+            sizes: [],
+            rating: 0,
+        });
+        setPriceRange([0, 10000]);
+        setPage(1);
+    }, []);
+
     const sidebarInitialFilters = useMemo(() => {
         return {
             availability: selectedFilters.availability || 'all',
@@ -138,7 +134,7 @@ const ProductListing = () => {
             priceRange: priceRange,
             rating: selectedFilters.rating,
         };
-    }, [priceRange, selectedFilters.availability, selectedFilters.rating, selectedFilters.sizes]);
+    }, [priceRange, selectedFilters]);
 
     useEffect(() => {
         let cancelled = false;
@@ -150,6 +146,7 @@ const ProductListing = () => {
                 const minPrice = Array.isArray(priceRange) ? Number(priceRange[0]) : undefined;
                 const maxPrice = Array.isArray(priceRange) ? Number(priceRange[1]) : undefined;
                 const inStock = String(selectedFilters.availability || 'all') === 'in_stock' ? true : undefined;
+                const outOfStock = String(selectedFilters.availability || 'all') === 'not_available' ? true : undefined;
                 const rating = Number(selectedFilters.rating) > 0 ? Number(selectedFilters.rating) : undefined;
 
                 const data = await fetchProducts({
@@ -163,14 +160,17 @@ const ProductListing = () => {
                     minPrice: Number.isFinite(minPrice) ? minPrice : undefined,
                     maxPrice: Number.isFinite(maxPrice) ? maxPrice : undefined,
                     inStock,
+                    outOfStock,
                     rating,
                     sizes: normalizedSelectedSizes.length > 0 ? normalizedSelectedSizes : undefined,
+                    facets: page === 1, // Only fetch facets on first page
                 });
 
                 if (cancelled) return;
                 const list = Array.isArray(data) ? data : (data?.items || []);
                 setItems(Array.isArray(list) ? list : []);
                 setTotalPages(Number(data?.totalPages) > 0 ? Number(data.totalPages) : 1);
+                if (data?.facets) setFacets(data.facets);
             } catch {
                 if (!cancelled) {
                     setItems([]);
@@ -207,7 +207,7 @@ const ProductListing = () => {
                         <div className="bg-trozzi-white rounded-lg shadow-sm p-4 sticky z-sticky" style={{ top: 'calc(var(--app-header-height, 0px) + 1rem)' }}>
                             <Sidebar
                                 selectedCategory={category}
-                                categories={categories}
+                                categories={apiCategories}
                                 onChangeCategory={(next) => {
                                     setCategory(next);
 
@@ -218,7 +218,9 @@ const ProductListing = () => {
                                     setSearchParams(nextParams, { replace: true });
                                 }}
                                 onFiltersChange={handleFiltersChange}
+                                onClearFilters={handleClearFilters}
                                 initialFilters={sidebarInitialFilters}
+                                facets={facets}
                             />
                         </div>
                     </div>

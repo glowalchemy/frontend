@@ -57,8 +57,8 @@ const Orders = () => {
             setError('');
 
             try {
-                const res = await apiClient.get('/orders/my');
-                const data = Array.isArray(res?.data?.data) ? res.data.data : Array.isArray(res?.data) ? res.data : [];
+                const { fetchMyOrders } = await import('../api/orders');
+                const data = await fetchMyOrders();
                 if (!cancelled) setOrders(data);
             } catch (e) {
                 const message = e?.response?.data?.message || e?.message || 'Failed to load orders';
@@ -119,10 +119,9 @@ const Orders = () => {
         setCancellingId(id);
         setError('');
         try {
-            await apiClient.post(`/orders/${id}/cancel`);
-
-            const res = await apiClient.get('/orders/my');
-            const data = Array.isArray(res?.data?.data) ? res.data.data : [];
+            const { cancelOrder, fetchMyOrders } = await import('../api/orders');
+            await cancelOrder(id);
+            const data = await fetchMyOrders();
             setOrders(data);
         } catch (e) {
             const message = e?.response?.data?.message || e?.message || 'Failed to cancel order';

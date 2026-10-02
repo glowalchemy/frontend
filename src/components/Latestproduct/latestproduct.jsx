@@ -13,7 +13,7 @@ const FeaturedSlider = ({ title, hideAddToCart = false }) => {
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchProducts({ mode: "public", page: 1, limit: 12 });
+        const data = await fetchProducts({ mode: "public", page: 1, limit: 12, fields: "basic" });
         if (cancelled) return;
         const list = Array.isArray(data) ? data : (data.items || []);
         setItems(list);

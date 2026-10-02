@@ -66,6 +66,47 @@ const OrderTracking = () => {
         return baseStatusFlow;
     };
 
+    const buildStatusHistory = useCallback((createdAtIso, currentStatus) => {
+        const flow = getStatusFlow(currentStatus);
+        const currentIndex = flow.indexOf(currentStatus);
+        const cappedIndex = currentIndex === -1 ? 0 : currentIndex;
+
+        return flow.slice(0, cappedIndex + 1).map((s) => ({
+            status: s,
+            timestamp: createdAtIso,
+            note: orderStatuses[s]?.label || s,
+        }));
+    }, []);
+
+    const normalizeShipmentTimeline = useCallback((raw) => {
+        const data = raw?.data || raw;
+        const shipment = data?.shipment || null;
+        const timeline = Array.isArray(data?.timeline) ? data.timeline : [];
+
+        const normalizedTimeline = timeline
+            .map((t, idx) => ({
+                key: `${idx}_${String(t?.at || '')}_${String(t?.source || '')}`,
+                at: t?.at || '',
+                status: String(t?.status || ''),
+                location: String(t?.location || ''),
+                activity: String(t?.activity || ''),
+                source: String(t?.source || ''),
+            }))
+            .filter((t) => t.at || t.status || t.activity || t.location);
+
+        return {
+            shipment: shipment ? {
+                awbNumber: String(shipment?.awbNumber || ''),
+                courierName: String(shipment?.courierName || ''),
+                trackingUrl: String(shipment?.trackingUrl || ''),
+                status: String(shipment?.status || ''),
+                estimatedDelivery: shipment?.estimatedDelivery || null,
+                updatedAt: shipment?.updatedAt || null,
+            } : null,
+            timeline: normalizedTimeline,
+        };
+    }, []);
+
     useEffect(() => {
         selectedOrderRef.current = selectedOrder;
     }, [selectedOrder]);
@@ -83,9 +124,8 @@ const OrderTracking = () => {
                     return;
                 }
 
-                const response = await apiClient.get('/orders/my');
-                const payload = response?.data;
-                const dataRaw = Array.isArray(payload?.data) ? payload.data : [];
+                const { fetchMyOrders } = await import('../api/orders');
+                const dataRaw = await fetchMyOrders();
                 const data = dataRaw.map((o) => {
                     const rawStatus = String(o?.status || 'new').toLowerCase();
                     const status = rawStatus === 'returned' ? 'cancelled' : rawStatus;
@@ -118,8 +158,8 @@ const OrderTracking = () => {
                     }
                     return;
                 }
-                const response = await apiClient.get('/orders/stats');
-                const payload = response?.data;
+                const { fetchOrdersStats } = await import('../api/orders');
+                const payload = await fetchOrdersStats();
                 const next = payload?.data;
                 if (!cancelled && next) {
                     const safeNext = {
@@ -178,8 +218,8 @@ const OrderTracking = () => {
 
                 void (async () => {
                     try {
-                        const trackingRes = await apiClient.get(`/orders/${id}/shipment-timeline`);
-                        const trackingRaw = trackingRes?.data;
+                        const { fetchShipmentTimeline } = await import('../api/orders');
+                        const trackingRaw = await fetchShipmentTimeline(id);
                         setShipmentTimeline(normalizeShipmentTimeline(trackingRaw));
                     } catch (_e) {
                         // ignore
@@ -226,7 +266,7 @@ const OrderTracking = () => {
             socket.off('connect_error');
             socket.disconnect();
         };
-    }, [user, buildStatusHistory]);
+    }, [user, buildStatusHistory, normalizeShipmentTimeline]);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search || '');
@@ -258,18 +298,6 @@ const OrderTracking = () => {
         if (check === -1 || current === -1) return false;
         return current === check;
     };
-
-    const buildStatusHistory = useCallback((createdAtIso, currentStatus) => {
-        const flow = getStatusFlow(currentStatus);
-        const currentIndex = flow.indexOf(currentStatus);
-        const cappedIndex = currentIndex === -1 ? 0 : currentIndex;
-
-        return flow.slice(0, cappedIndex + 1).map((s) => ({
-            status: s,
-            timestamp: createdAtIso,
-            note: orderStatuses[s]?.label || s,
-        }));
-    }, []);
 
     const normalizeOrderDetail = useCallback((raw) => {
         const createdAtIso = raw?.createdAtIso || raw?.date || new Date().toISOString();
@@ -303,35 +331,6 @@ const OrderTracking = () => {
         };
     }, [buildStatusHistory]);
 
-    const normalizeShipmentTimeline = useCallback((raw) => {
-        const data = raw?.data || raw;
-        const shipment = data?.shipment || null;
-        const timeline = Array.isArray(data?.timeline) ? data.timeline : [];
-
-        const normalizedTimeline = timeline
-            .map((t, idx) => ({
-                key: `${idx}_${String(t?.at || '')}_${String(t?.source || '')}`,
-                at: t?.at || '',
-                status: String(t?.status || ''),
-                location: String(t?.location || ''),
-                activity: String(t?.activity || ''),
-                source: String(t?.source || ''),
-            }))
-            .filter((t) => t.at || t.status || t.activity || t.location);
-
-        return {
-            shipment: shipment ? {
-                awbNumber: String(shipment?.awbNumber || ''),
-                courierName: String(shipment?.courierName || ''),
-                trackingUrl: String(shipment?.trackingUrl || ''),
-                status: String(shipment?.status || ''),
-                estimatedDelivery: shipment?.estimatedDelivery || null,
-                updatedAt: shipment?.updatedAt || null,
-            } : null,
-            timeline: normalizedTimeline,
-        };
-    }, []);
-
     const formatCurrency = (value) => {
         const n = Number(value ?? 0) || 0;
         return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(n);
@@ -343,14 +342,13 @@ const OrderTracking = () => {
         setShipmentTimeline(null);
 
         try {
-            const response = await apiClient.get(`/orders/${orderSummary.id}`);
-            const raw = response?.data?.data ?? response?.data;
+            const { fetchOrderDetail, fetchShipmentTimeline } = await import('../api/orders');
+            const raw = await fetchOrderDetail(orderSummary.id);
             const normalized = normalizeOrderDetail(raw);
             setSelectedOrder(normalized);
 
             try {
-                const trackingRes = await apiClient.get(`/orders/${orderSummary.id}/shipment-timeline`);
-                const trackingRaw = trackingRes?.data;
+                const trackingRaw = await fetchShipmentTimeline(orderSummary.id);
                 setShipmentTimeline(normalizeShipmentTimeline(trackingRaw));
             } catch (_e) {
                 setShipmentTimeline(null);
@@ -463,7 +461,7 @@ const OrderTracking = () => {
     }
 
     return (
-        <div className="min-h-screen bg-surface-50 dark:bg-surface-900 mt-40 py-8">
+        <div className="min-h-screen bg-surface-50 dark:bg-surface-900 py-8">
             <div className="container mx-auto px-4 max-w-6xl">
                 {/* Header */}
                 <div className="text-center mb-10">

@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 import React from 'react'
-import { FaAngleUp } from "react-icons/fa6";
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 
 
 

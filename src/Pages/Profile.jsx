@@ -76,8 +76,9 @@ const Profile = () => {
 
       setLoadingOrders(true);
       try {
-        const res = await apiClient.get('/orders/stats');
-        const total = Number(res?.data?.data?.totalOrders ?? 0) || 0;
+        const { fetchOrdersStats } = await import('../api/orders');
+        const payload = await fetchOrdersStats();
+        const total = Number(payload?.data?.totalOrders ?? 0) || 0;
         if (!cancelled) setOrderCount(total);
       } catch (_e) {
         if (!cancelled) setOrderCount(0);

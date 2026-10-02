@@ -6,6 +6,7 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { ContentSettingsProvider } from './context/ContentSettingsContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { CategoryProvider } from './context/CategoryContext';
 import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
@@ -412,8 +413,9 @@ function App() {
                 <CartProvider>
                     <WishlistProvider>
                         <NotificationProvider>
-                            <MyContext.Provider value={myContextValue}>
-                                <Router
+                            <CategoryProvider>
+                                <MyContext.Provider value={myContextValue}>
+                                    <Router
                                     future={{
                                         v7_startTransition: true,
                                         v7_relativeSplatPath: true,
@@ -615,6 +617,7 @@ function App() {
                                     </div>
                                 </Router>
                             </MyContext.Provider>
+                        </CategoryProvider>
                         </NotificationProvider>
                     </WishlistProvider>
                 </CartProvider>

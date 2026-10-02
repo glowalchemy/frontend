@@ -3,18 +3,22 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import './Style.css'
 import { Collapse } from 'react-collapse';
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleDown } from "react-icons/fa";
 import Button from '@mui/material/Button';
-import { FaAngleUp } from "react-icons/fa6";
-import RangeSlider from 'react-range-slider-input';
+import { FaAngleUp } from "react-icons/fa";
+import RangeSliderModule from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
+
+const RangeSlider = RangeSliderModule.default;
 
 const Sidebar = ({
   selectedCategory = "",
   categories = [],
   onChangeCategory,
   onFiltersChange,
-  initialFilters = {}
+  onClearFilters,
+  initialFilters = {},
+  facets = null
 }) => {
   const [isOpenAvailfilter, setIsOpenAvailfilter] = useState(true);
   const [isOpenSizefilter, setIsOpenSizefilter] = useState(true);
@@ -23,7 +27,7 @@ const Sidebar = ({
   // Filter states
   const [availability, setAvailability] = useState(initialFilters.availability || 'all');
   const [selectedSizes, setSelectedSizes] = useState(initialFilters.sizes || []);
-  const [priceRange, setPriceRange] = useState(initialFilters.priceRange || [100, 5000]);
+  const [priceRange, setPriceRange] = useState(initialFilters.priceRange || [0, 10000]);
   const [rating, setRating] = useState(initialFilters.rating || 0);
 
   const onFiltersChangeRef = useRef(onFiltersChange);
@@ -54,6 +58,12 @@ const Sidebar = ({
     }
   };
 
+  const getSizeCount = (size) => {
+    const normalizedSize = size.toUpperCase();
+    const sizeFacet = facets?.sizes?.find(s => s.value === normalizedSize);
+    return sizeFacet?.count || 0;
+  };
+
   const handlePriceChange = (values) => {
     setPriceRange(values);
   };
@@ -61,8 +71,9 @@ const Sidebar = ({
   const clearAllFilters = () => {
     setAvailability('all');
     setSelectedSizes([]);
-    setPriceRange([100, 5000]);
+    setPriceRange([0, 10000]);
     setRating(0);
+    onClearFilters?.();
   };
 
   return (
@@ -92,12 +103,12 @@ const Sidebar = ({
                 .filter((c) => !c.parentId)
                 .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
                 .map((c) => {
-                  const isSelected = String(selectedCategory) === String(c.id);
+                  const isSelected = String(selectedCategory) === String(c.id) || String(selectedCategory) === String(c.name);
                   return (
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => onChangeCategory?.(String(c.id))}
+                      onClick={() => onChangeCategory?.(String(c.name))}
                       className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition ${
                         isSelected ? "border-trozzi-terracotta bg-trozzi-ivory" : "border-trozzi-sand hover:bg-trozzi-ivory"
                       }`}
@@ -137,7 +148,7 @@ const Sidebar = ({
                   onChange={() => handleAvailabilityChange('all')}
                 />
               }
-              label="Available (17)"
+              label={`Available (${facets?.availability?.inStock || 0})`}
               className='w-full'
             />
             <FormControlLabel
@@ -148,7 +159,7 @@ const Sidebar = ({
                   onChange={() => handleAvailabilityChange('in_stock')}
                 />
               }
-              label="In stock (10)"
+              label={`In stock (${facets?.availability?.inStock || 0})`}
               className='w-full'
             />
             <FormControlLabel
@@ -159,7 +170,7 @@ const Sidebar = ({
                   onChange={() => handleAvailabilityChange('not_available')}
                 />
               }
-              label="Not Available (1)"
+              label={`Not Available (${facets?.availability?.outOfStock || 0})`}
               className='w-full'
             />
           </div>
@@ -185,7 +196,7 @@ const Sidebar = ({
                   onChange={(e) => handleSizeChange('small', e.target.checked)}
                 />
               }
-              label="Small (6)"
+              label={`Small (${getSizeCount('small')})`}
               className='w-full'
             />
             <FormControlLabel
@@ -196,7 +207,7 @@ const Sidebar = ({
                   onChange={(e) => handleSizeChange('medium', e.target.checked)}
                 />
               }
-              label="Medium (5)"
+              label={`Medium (${getSizeCount('medium')})`}
               className='w-full'
             />
             <FormControlLabel
@@ -207,7 +218,7 @@ const Sidebar = ({
                   onChange={(e) => handleSizeChange('large', e.target.checked)}
                 />
               }
-              label="Large (7)"
+              label={`Large (${getSizeCount('large')})`}
               className='w-full'
             />
             <FormControlLabel
@@ -218,7 +229,7 @@ const Sidebar = ({
                   onChange={(e) => handleSizeChange('xl', e.target.checked)}
                 />
               }
-              label="XL (1)"
+              label={`XL (${getSizeCount('xl')})`}
               className='w-full'
             />
             <FormControlLabel
@@ -229,7 +240,7 @@ const Sidebar = ({
                   onChange={(e) => handleSizeChange('xxl', e.target.checked)}
                 />
               }
-              label="XXL (3)"
+              label={`XXL (${getSizeCount('xxl')})`}
               className='w-full'
             />
           </div>

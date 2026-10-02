@@ -26,8 +26,8 @@ export const ContentSettingsProvider = ({ children }) => {
   const refresh = async () => {
     setLoading(true);
     try {
-      const res = await apiClient.get('/content-settings');
-      const data = res?.data?.data;
+      const { fetchContentSettings } = await import('../api/catalog');
+      const data = await fetchContentSettings();
       if (data && typeof data === 'object') {
         setSettings({ ...DEFAULTS, ...data });
       } else {

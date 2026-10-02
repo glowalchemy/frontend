@@ -69,7 +69,8 @@ const SummaryPage = () => {
 
         setChecking(true);
         try {
-            const resp = await apiClient.get(`/payments/phonepe/status/${encodeURIComponent(merchantOrderId)}`);
+            const { fetchPaymentStatus } = await import('../api/payments');
+            const resp = await fetchPaymentStatus(merchantOrderId);
             const providerState = String(resp?.data?.data?.state || resp?.data?.data?.status || resp?.data?.data?.data?.state || '').toUpperCase();
 
             if (providerState === 'COMPLETED' || providerState === 'SUCCESS') {
@@ -81,7 +82,8 @@ const SummaryPage = () => {
                 try {
                     const paymentId = localStorage.getItem('lastPaymentId');
                     if (paymentId) {
-                        const verifyResp = await apiClient.post('/payments/verify', {
+                        const { verifyPayment } = await import('../api/payments');
+                        const verifyResp = await verifyPayment({
                             paymentId,
                             status: 'completed'
                             // orderData will be loaded by backend from payment.metadata
