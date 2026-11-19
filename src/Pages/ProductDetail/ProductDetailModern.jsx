@@ -945,6 +945,19 @@ const ProductDetailModern = () => {
                                         <span className="font-semibold text-glowalchemy-charcoal">{review.title}</span>
                                     </div>
                                     <p className="text-glowalchemy-warm-gray mb-2">{review.comment}</p>
+                                    {Array.isArray(review.images) && review.images.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 mb-2">
+                                            {review.images.map((img, i) => (
+                                                <img
+                                                    key={i}
+                                                    src={img}
+                                                    alt={`Review image ${i + 1}`}
+                                                    loading="lazy"
+                                                    className="h-16 w-16 rounded-lg object-cover border border-glowalchemy-sand"
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
                                     <p className="text-sm text-glowalchemy-warm-gray">By {review.customerName}</p>
                                 </article>
                             ))}
