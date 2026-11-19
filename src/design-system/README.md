@@ -17,7 +17,7 @@ One authoritative token source drives the entire visual identity.
 1. Open `src/design-system/tokens.json`.
 2. Change the raw hex value, e.g. `"deep-forest": "#213D31"` → `"#244A3A"`.
 3. Run `node src/design-system/generate.mjs`.
-4. Restart the dev server. Every surface that references `--color-*` or the Tailwind `brand-*` / `trozzi-*` utilities updates automatically.
+4. Restart the dev server. Every surface that references `--color-*` or the Tailwind `brand-*` / `glowalchemy-*` utilities updates automatically.
 
 ## How components consume tokens
 
@@ -57,7 +57,7 @@ brandColors.brand.primary; // "#213D31"
 - `border-*` → `default`, `strong`, `focus`
 - `action-*` → `primary`, `primary-hover`, `accent`, `accent-soft`, `secondary`
 - `status-*` → `success`, `warning`, `error`, `info`
-- Legacy `trozzi-*` names remain as aliases of the same values.
+- Legacy `glowalchemy-*` names remain as aliases of the same values.
 
 ## Adding a new semantic token
 

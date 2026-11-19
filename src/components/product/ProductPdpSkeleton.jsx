@@ -6,14 +6,14 @@ import React from 'react';
  * information region load independently of each other.
  */
 const Block = ({ className = '' }) => (
-  <div className={`animate-pulse bg-trozzi-sand/40 rounded-lg ${className}`} aria-hidden="true" />
+  <div className={`animate-pulse bg-glowalchemy-sand/40 rounded-lg ${className}`} aria-hidden="true" />
 );
 
 const ProductPdpSkeleton = () => (
   <div className="max-w-7xl mx-auto" aria-busy="true" aria-label="Loading product">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-2xl shadow-sm overflow-hidden mb-6">
       {/* Gallery skeleton */}
-      <div className="p-4 sm:p-6 lg:p-8 bg-trozzi-ivory/50">
+      <div className="p-4 sm:p-6 lg:p-8 bg-glowalchemy-ivory/50">
         <Block className="aspect-square w-full rounded-xl" />
         <div className="flex gap-2 mt-3">
           <Block className="w-16 h-16 rounded-lg" />

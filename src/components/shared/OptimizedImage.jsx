@@ -31,11 +31,11 @@ const FALLBACK_STYLES = {
 };
 
 const FALLBACK_ICON = {
-  product: <FiPackage className="text-3xl md:text-5xl text-trozzi-warm-gray" />,
-  card: <FiPackage className="text-3xl text-trozzi-warm-gray" />,
-  thumbnail: <FiImage className="text-xl text-trozzi-warm-gray" />,
-  logo: <span className="text-2xl font-bold text-trozzi-charcoal">{getBrandDisplayName()}</span>,
-  default: <FiImage className="text-3xl text-trozzi-warm-gray" />,
+  product: <FiPackage className="text-3xl md:text-5xl text-glowalchemy-warm-gray" />,
+  card: <FiPackage className="text-3xl text-glowalchemy-warm-gray" />,
+  thumbnail: <FiImage className="text-xl text-glowalchemy-warm-gray" />,
+  logo: <span className="text-2xl font-bold text-glowalchemy-charcoal">{getBrandDisplayName()}</span>,
+  default: <FiImage className="text-3xl text-glowalchemy-warm-gray" />,
 };
 
 const FALLBACK_TEXT = {
@@ -143,14 +143,14 @@ const OptimizedImage = ({
   if (status === 'error' || !src) {
     return (
       <div
-        className={`flex flex-col items-center justify-center bg-trozzi-sand/30 ${FALLBACK_STYLES[fallbackType] || FALLBACK_STYLES.default} ${wrapperClassName}`}
+        className={`flex flex-col items-center justify-center bg-glowalchemy-sand/30 ${FALLBACK_STYLES[fallbackType] || FALLBACK_STYLES.default} ${wrapperClassName}`}
         style={resolvedRatio ? { aspectRatio: resolvedRatio } : undefined}
         role="img"
         aria-label={alt || 'Image unavailable'}
       >
         {FALLBACK_ICON[fallbackType] || FALLBACK_ICON.default}
         {FALLBACK_TEXT[fallbackType] && (
-          <span className="mt-2 text-sm text-trozzi-warm-gray">{FALLBACK_TEXT[fallbackType]}</span>
+          <span className="mt-2 text-sm text-glowalchemy-warm-gray">{FALLBACK_TEXT[fallbackType]}</span>
         )}
       </div>
     );
@@ -166,7 +166,7 @@ const OptimizedImage = ({
       style={resolvedRatio ? { aspectRatio: resolvedRatio } : undefined}
     >
       {status === 'loading' && (
-        <div className="absolute inset-0 bg-trozzi-sand/40 animate-pulse" aria-hidden="true" />
+        <div className="absolute inset-0 bg-glowalchemy-sand/40 animate-pulse" aria-hidden="true" />
       )}
 
       <picture>

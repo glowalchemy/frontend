@@ -192,11 +192,11 @@ const ProductListing = () => {
         <section className="py-4 sm:py-6 min-h-screen">
             <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mb-4">
                 <nav className="hidden sm:flex mb-4 text-sm">
-                    <Link to="/" className="text-trozzi-warm-gray hover:text-trozzi-terracotta transition-colors">
+                    <Link to="/" className="text-glowalchemy-warm-gray hover:text-glowalchemy-terracotta transition-colors">
                         Home
                     </Link>
-                    <span className="mx-2 text-trozzi-sand">/</span>
-                    <span className="text-trozzi-charcoal">Products</span>
+                    <span className="mx-2 text-glowalchemy-sand">/</span>
+                    <span className="text-glowalchemy-charcoal">Products</span>
                 </nav>
             </div>
 
@@ -204,7 +204,7 @@ const ProductListing = () => {
                 <div className="flex gap-4 sm:gap-6">
 
                     <div className="hidden lg:block w-64 flex-shrink-0">
-                        <div className="bg-trozzi-white rounded-lg shadow-sm p-4 sticky z-sticky" style={{ top: 'calc(var(--app-header-height, 0px) + 1rem)' }}>
+                        <div className="bg-glowalchemy-white rounded-lg shadow-sm p-4 sticky z-sticky" style={{ top: 'calc(var(--app-header-height, 0px) + 1rem)' }}>
                             <Sidebar
                                 selectedCategory={category}
                                 categories={apiCategories}
@@ -267,11 +267,11 @@ const ProductListing = () => {
                                         }
                                     }}
                                     disabled={page === 1}
-                                    className="px-3 sm:px-4 py-2 rounded-lg border border-trozzi-sand bg-white text-trozzi-charcoal hover:bg-trozzi-ivory disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+                                    className="px-3 sm:px-4 py-2 rounded-lg border border-glowalchemy-sand bg-white text-glowalchemy-charcoal hover:bg-glowalchemy-ivory disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
                                 >
                                     Previous
                                 </button>
-                                <span className="px-3 sm:px-4 py-2 text-trozzi-charcoal text-sm">
+                                <span className="px-3 sm:px-4 py-2 text-glowalchemy-charcoal text-sm">
                                     Page {page} of {totalPages}
                                 </span>
                                 <button
@@ -282,7 +282,7 @@ const ProductListing = () => {
                                         }
                                     }}
                                     disabled={page === totalPages}
-                                    className="px-3 sm:px-4 py-2 rounded-lg border border-trozzi-sand bg-white text-trozzi-charcoal hover:bg-trozzi-ivory disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+                                    className="px-3 sm:px-4 py-2 rounded-lg border border-glowalchemy-sand bg-white text-glowalchemy-charcoal hover:bg-glowalchemy-ivory disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
                                 >
                                     Next
                                 </button>

@@ -43,11 +43,11 @@ const WishlistPage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory py-12">
+            <div className="min-h-screen bg-glowalchemy-ivory py-12">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-trozzi-terracotta"></div>
-                        <p className="mt-2 text-trozzi-warm-gray">Loading wishlist...</p>
+                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-glowalchemy-terracotta"></div>
+                        <p className="mt-2 text-glowalchemy-warm-gray">Loading wishlist...</p>
                     </div>
                 </div>
             </div>
@@ -55,12 +55,12 @@ const WishlistPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-trozzi-ivory py-12">
+        <div className="min-h-screen bg-glowalchemy-ivory py-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-3xl font-bold text-trozzi-charcoal mb-4">My Wishlist</h1>
-                    <p className="text-lg text-trozzi-warm-gray">
+                    <h1 className="text-3xl font-bold text-glowalchemy-charcoal mb-4">My Wishlist</h1>
+                    <p className="text-lg text-glowalchemy-warm-gray">
                         {items.length === 0
                             ? "Your wishlist is empty"
                             : `You have ${items.length} item${items.length !== 1 ? 's' : ''} in your wishlist`
@@ -89,7 +89,7 @@ const WishlistPage = () => {
                             const discount = product.discount || 0;
 
                             return (
-                                <div key={productId} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-trozzi-sand">
+                                <div key={productId} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-glowalchemy-sand">
                                     {/* Product Image */}
                                     <div className="relative">
                                         <Link to={`/product/${productId}`}>
@@ -108,7 +108,7 @@ const WishlistPage = () => {
 
                                         {/* Discount Badge */}
                                         {discount > 0 && (
-                                            <span className="absolute top-2 left-2 bg-trozzi-terracotta text-white text-xs font-bold px-2 py-1 rounded-lg">
+                                            <span className="absolute top-2 left-2 bg-glowalchemy-terracotta text-white text-xs font-bold px-2 py-1 rounded-lg">
                                                 -{discount}%
                                             </span>
                                         )}
@@ -116,16 +116,16 @@ const WishlistPage = () => {
                                         {/* Remove Button */}
                                         <button
                                             onClick={() => handleRemoveFromWishlist(productId)}
-                                            className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-sm hover:bg-trozzi-ivory transition-colors border border-trozzi-sand"
+                                            className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-sm hover:bg-glowalchemy-ivory transition-colors border border-glowalchemy-sand"
                                         >
-                                            <FiTrash className="h-4 w-4 text-trozzi-terracotta" />
+                                            <FiTrash className="h-4 w-4 text-glowalchemy-terracotta" />
                                         </button>
                                     </div>
 
                                     {/* Product Info */}
                                     <div className="p-4">
                                         <Link to={`/product/${productId}`}>
-                                            <h3 className="text-lg font-semibold text-trozzi-charcoal mb-2 hover:text-trozzi-terracotta line-clamp-2 transition-colors">
+                                            <h3 className="text-lg font-semibold text-glowalchemy-charcoal mb-2 hover:text-glowalchemy-terracotta line-clamp-2 transition-colors">
                                                 {name}
                                             </h3>
                                         </Link>
@@ -133,16 +133,16 @@ const WishlistPage = () => {
                                         {/* Price */}
                                         <div className="mb-4">
                                             {oldPrice && (
-                                                <span className="text-trozzi-warm-gray line-through mr-2">₹{oldPrice}</span>
+                                                <span className="text-glowalchemy-warm-gray line-through mr-2">₹{oldPrice}</span>
                                             )}
-                                            <span className="text-xl font-bold text-trozzi-terracotta">₹{price}</span>
+                                            <span className="text-xl font-bold text-glowalchemy-terracotta">₹{price}</span>
                                         </div>
 
                                         {/* Action Buttons */}
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => handleAddToCart(productId)}
-                                                className="flex-1 bg-trozzi-terracotta text-white py-2 px-4 rounded-xl hover:bg-trozzi-charcoal transition-colors flex items-center justify-center gap-2 font-medium"
+                                                className="flex-1 bg-glowalchemy-terracotta text-white py-2 px-4 rounded-xl hover:bg-glowalchemy-charcoal transition-colors flex items-center justify-center gap-2 font-medium"
                                             >
                                                 <FiShoppingCart className="h-4 w-4" />
                                                 Add to Cart
@@ -160,7 +160,7 @@ const WishlistPage = () => {
                     <div className="text-center mt-12">
                         <Link
                             to="/ProductListing"
-                            className="inline-flex items-center px-6 py-3 border border-trozzi-sand text-base font-medium rounded-xl text-trozzi-charcoal bg-white hover:bg-trozzi-ivory transition-colors"
+                            className="inline-flex items-center px-6 py-3 border border-glowalchemy-sand text-base font-medium rounded-xl text-glowalchemy-charcoal bg-white hover:bg-glowalchemy-ivory transition-colors"
                         >
                             Continue Shopping
                         </Link>

@@ -86,16 +86,16 @@ const Modal = ({
       >
         {/* Header */}
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-trozzi-sand">
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-glowalchemy-sand">
             {title && (
-              <h2 id="modal-title" className="text-lg sm:text-xl font-semibold text-trozzi-charcoal">
+              <h2 id="modal-title" className="text-lg sm:text-xl font-semibold text-glowalchemy-charcoal">
                 {title}
               </h2>
             )}
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg hover:bg-trozzi-ivory transition-colors text-trozzi-warm-gray hover:text-trozzi-charcoal"
+                className="p-2 rounded-lg hover:bg-glowalchemy-ivory transition-colors text-glowalchemy-warm-gray hover:text-glowalchemy-charcoal"
                 aria-label="Close modal"
               >
                 <FiX className="w-5 h-5" />

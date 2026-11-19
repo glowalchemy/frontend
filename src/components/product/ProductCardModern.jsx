@@ -143,9 +143,9 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
   return (
     <Link
       to={`/product/${normalized.id}`}
-      className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-trozzi-sand/50 hover:border-trozzi-terracotta/50"
+      className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-glowalchemy-sand/50 hover:border-glowalchemy-terracotta/50"
     >
-      <div className="relative aspect-square bg-trozzi-ivory/50 overflow-hidden">
+      <div className="relative aspect-square bg-glowalchemy-ivory/50 overflow-hidden">
         <OptimizedImage
           src={normalized.image}
           variants={normalized.imageMedia?.variants || null}
@@ -164,15 +164,15 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
           className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-colors z-10"
         >
           {isInWishlist(normalized.id) ? (
-            <FiHeart className="w-4 h-4 fill-current text-trozzi-terracotta" />
+            <FiHeart className="w-4 h-4 fill-current text-glowalchemy-terracotta" />
           ) : (
-            <FiHeart className="w-4 h-4 text-trozzi-charcoal" />
+            <FiHeart className="w-4 h-4 text-glowalchemy-charcoal" />
           )}
         </button>
 
         {/* Sale Badge */}
         {normalized.isSaleActive && normalized.saleDiscount > 0 && (
-          <div className="absolute top-3 left-3 bg-trozzi-terracotta text-white text-xs font-semibold px-2 py-1 rounded-full">
+          <div className="absolute top-3 left-3 bg-glowalchemy-terracotta text-white text-xs font-semibold px-2 py-1 rounded-full">
             -{normalized.saleDiscount}%
           </div>
         )}
@@ -180,7 +180,7 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
         {/* Out of Stock Overlay — light gray, image stays visible underneath */}
         {normalized.stockStatus?.state === "out" && (
           <div className="absolute inset-0 bg-white/55 flex items-center justify-center z-[5]">
-            <span className="bg-white/90 text-trozzi-charcoal border border-trozzi-sand px-4 py-2 rounded-lg font-semibold text-sm shadow-sm">
+            <span className="bg-white/90 text-glowalchemy-charcoal border border-glowalchemy-sand px-4 py-2 rounded-lg font-semibold text-sm shadow-sm">
               Out of Stock
             </span>
           </div>
@@ -190,13 +190,13 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
       <div className="p-4">
         {/* Brand */}
         {normalized.brand && (
-          <p className="text-xs text-trozzi-warm-gray uppercase tracking-wide mb-1 truncate">
+          <p className="text-xs text-glowalchemy-warm-gray uppercase tracking-wide mb-1 truncate">
             {normalized.brand}
           </p>
         )}
 
         {/* Product Name */}
-        <h3 className="text-sm font-semibold text-trozzi-charcoal mb-2 line-clamp-2 group-hover:text-trozzi-terracotta transition-colors">
+        <h3 className="text-sm font-semibold text-glowalchemy-charcoal mb-2 line-clamp-2 group-hover:text-glowalchemy-terracotta transition-colors">
           {normalized.name}
         </h3>
 
@@ -209,13 +209,13 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
                   key={i}
                   className={`w-3 h-3 ${
                     i < Math.floor(normalized.rating)
-                      ? "text-trozzi-terracotta fill-current"
-                      : "text-trozzi-sand"
+                      ? "text-glowalchemy-terracotta fill-current"
+                      : "text-glowalchemy-sand"
                   }`}
                 />
               ))}
             </div>
-            <span className="text-xs text-trozzi-warm-gray">
+            <span className="text-xs text-glowalchemy-warm-gray">
               ({normalized.reviewCount})
             </span>
           </div>
@@ -223,11 +223,11 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
 
         {/* Price */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-base font-bold text-trozzi-charcoal">
+          <span className="text-base font-bold text-glowalchemy-charcoal">
             {formatPrice(normalized.price)}
           </span>
           {normalized.originalPrice > normalized.price && (
-            <span className="text-sm text-trozzi-warm-gray line-through">
+            <span className="text-sm text-glowalchemy-warm-gray line-through">
               {formatPrice(normalized.originalPrice)}
             </span>
           )}
@@ -242,7 +242,7 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
             </span>
           )}
           {normalized.stockStatus?.state === "low" && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-trozzi-terracotta">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-glowalchemy-terracotta">
               <FiAlertTriangle className="w-3.5 h-3.5" />
               {normalized.stockStatus.label}
             </span>

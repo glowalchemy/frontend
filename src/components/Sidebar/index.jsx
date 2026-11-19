@@ -87,10 +87,10 @@ const Sidebar = ({
                 type="button"
                 onClick={() => onChangeCategory?.("")}
                 className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition ${
-                  !selectedCategory ? "border-trozzi-terracotta bg-trozzi-ivory" : "border-trozzi-sand hover:bg-trozzi-ivory"
+                  !selectedCategory ? "border-glowalchemy-terracotta bg-glowalchemy-ivory" : "border-glowalchemy-sand hover:bg-glowalchemy-ivory"
                 }`}
               >
-                <div className='w-9 h-9 rounded-md bg-trozzi-sand border border-trozzi-sand flex items-center justify-center text-xs font-semibold'>
+                <div className='w-9 h-9 rounded-md bg-glowalchemy-sand border border-glowalchemy-sand flex items-center justify-center text-xs font-semibold'>
                   All
                 </div>
                 <div className='min-w-0 flex-1'>
@@ -110,10 +110,10 @@ const Sidebar = ({
                       type="button"
                       onClick={() => onChangeCategory?.(String(c.name))}
                       className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition ${
-                        isSelected ? "border-trozzi-terracotta bg-trozzi-ivory" : "border-trozzi-sand hover:bg-trozzi-ivory"
+                        isSelected ? "border-glowalchemy-terracotta bg-glowalchemy-ivory" : "border-glowalchemy-sand hover:bg-glowalchemy-ivory"
                       }`}
                     >
-                      <div className='w-9 h-9 rounded-md overflow-hidden bg-trozzi-sand border border-trozzi-sand flex-shrink-0'>
+                      <div className='w-9 h-9 rounded-md overflow-hidden bg-glowalchemy-sand border border-glowalchemy-sand flex-shrink-0'>
                         {c.imageUrl ? (
                           <img src={c.imageUrl} alt={c.name} className='w-full h-full object-cover' />
                         ) : null}
@@ -131,7 +131,7 @@ const Sidebar = ({
 
       <div className='box'>
         <h3 className='w-fullmb-3 text-[16px] font-[500] flex items-center pr-5'>Availability
-          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-trozzi-charcoal" onClick={() => setIsOpenAvailfilter(!isOpenAvailfilter)}>
+          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-glowalchemy-charcoal" onClick={() => setIsOpenAvailfilter(!isOpenAvailfilter)}>
             {
               isOpenAvailfilter === true ? <FaAngleUp /> : <FaAngleDown />
             }
@@ -179,7 +179,7 @@ const Sidebar = ({
 
       <div className='box mt-3'>
         <h3 className='w-fullmb-3 text-[16px] font-[500] flex items-center pr-5'>Size
-          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-trozzi-charcoal" onClick={() => setIsOpenSizefilter(!isOpenSizefilter)}>
+          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-glowalchemy-charcoal" onClick={() => setIsOpenSizefilter(!isOpenSizefilter)}>
             {
               isOpenSizefilter === true ? <FaAngleUp /> : <FaAngleDown />
             }
@@ -249,7 +249,7 @@ const Sidebar = ({
 
       <div className='box mt-4'>
         <h3 className='w-fullmb-3 text-[16px] font-[500] flex items-center pr-5'>Filter By Price
-          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-trozzi-charcoal" onClick={() => setIsOpenPricefilter(!isOpenPricefilter)}>
+          <Button className="!w-[30px] !h-[30px] !min-w-[30px] !rounded-full !ml-auto !text-glowalchemy-charcoal" onClick={() => setIsOpenPricefilter(!isOpenPricefilter)}>
             {
               isOpenPricefilter === true ? <FaAngleUp /> : <FaAngleDown />
             }
@@ -267,11 +267,11 @@ const Sidebar = ({
 
           <div className='flex pt-4 pb-2 pricerange'>
             <span className='text-[14px]'>
-              From:<strong className='text-trozzi-charcoal'>Rs: {priceRange[0]}</strong>
+              From:<strong className='text-glowalchemy-charcoal'>Rs: {priceRange[0]}</strong>
             </span>
 
             <span className='ml-auto text-[14px]'>
-              From:<strong className='text-trozzi-charcoal'>Rs: {priceRange[1]}</strong>
+              From:<strong className='text-glowalchemy-charcoal'>Rs: {priceRange[1]}</strong>
             </span>
           </div>
         </Collapse>
@@ -281,7 +281,7 @@ const Sidebar = ({
       <div className='box mt-4'>
         <Button
           onClick={clearAllFilters}
-          className='!w-full !bg-trozzi-terracotta !text-white !py-2 !rounded-lg hover:!bg-trozzi-charcoal'
+          className='!w-full !bg-glowalchemy-terracotta !text-white !py-2 !rounded-lg hover:!bg-glowalchemy-charcoal'
         >
           Clear All Filters
         </Button>

@@ -42,7 +42,7 @@ const MobileBottomNav = () => {
   };
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-trozzi-sand z-mobile-nav pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-glowalchemy-sand z-mobile-nav pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
       <div className="flex items-center justify-around h-16 px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -59,21 +59,21 @@ const MobileBottomNav = () => {
                   <StyledBadge badgeContent={item.badge} color="secondary">
                     <Icon
                       className={`text-xl ${
-                        active ? 'text-trozzi-terracotta' : 'text-trozzi-warm-gray'
+                        active ? 'text-glowalchemy-terracotta' : 'text-glowalchemy-warm-gray'
                       }`}
                     />
                   </StyledBadge>
                 ) : (
                   <Icon
                     className={`text-xl ${
-                      active ? 'text-trozzi-terracotta' : 'text-trozzi-warm-gray'
+                      active ? 'text-glowalchemy-terracotta' : 'text-glowalchemy-warm-gray'
                     }`}
                   />
                 )}
               </div>
               <span
                 className={`text-[10px] mt-1 font-medium ${
-                  active ? 'text-trozzi-terracotta' : 'text-trozzi-warm-gray'
+                  active ? 'text-glowalchemy-terracotta' : 'text-glowalchemy-warm-gray'
                 }`}
               >
                 {item.label}

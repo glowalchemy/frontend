@@ -4,7 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const ShippingPolicy = () => {
     return (
-        <div className="min-h-screen bg-gray-50 mt-40 py-12">
+        <div className="min-h-screen bg-white py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-white rounded-lg shadow p-8">
                     <Link to="/" className="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6">
@@ -26,7 +26,7 @@ const ShippingPolicy = () => {
                         </p>
 
                         <h2 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Shipping Methods</h2>
-                        <p className="text-gray-600 mb-4">Trozzi offers standard and expedited shipping options. You can choose your preferred method at checkout.</p>
+                        <p className="text-gray-600 mb-4">GlowAlchemy offers standard and expedited shipping options. You can choose your preferred method at checkout.</p>
 
                         <h2 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Processing Times</h2>
                         <p className="text-gray-600 mb-4">Orders typically ship within approximately 15 business days of being placed, unless otherwise noted on the product page or at checkout.</p>

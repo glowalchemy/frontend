@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LoadingSkeleton = ({ className = '', variant = 'default' }) => {
-    const baseClasses = 'animate-pulse bg-trozzi-sand rounded';
+    const baseClasses = 'animate-pulse bg-glowalchemy-sand rounded';
     
     const variants = {
         default: 'h-4 w-full',
@@ -22,7 +22,7 @@ const LoadingSkeleton = ({ className = '', variant = 'default' }) => {
 };
 
 const CardSkeleton = () => (
-    <div className="bg-white rounded-2xl border border-trozzi-sand overflow-hidden">
+    <div className="bg-white rounded-2xl border border-glowalchemy-sand overflow-hidden">
         <LoadingSkeleton variant="image" className="h-48" />
         <div className="p-4 space-y-3">
             <LoadingSkeleton variant="title" />
@@ -36,7 +36,7 @@ const CardSkeleton = () => (
 );
 
 const ProductCardSkeleton = () => (
-    <div className="bg-white rounded-2xl border border-trozzi-sand overflow-hidden">
+    <div className="bg-white rounded-2xl border border-glowalchemy-sand overflow-hidden">
         <div className="aspect-[4/5] w-full">
             <LoadingSkeleton variant="image" className="h-full w-full" />
         </div>

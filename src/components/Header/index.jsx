@@ -50,7 +50,7 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
   const [totalHeaderHeight, setTotalHeaderHeight] = useState(0);
 
   const headerClassName = useMemo(() => {
-    const base = "bg-trozzi-white border-b border-trozzi-sand sticky top-0 left-0 right-0 z-header transition-shadow duration-300 ease-out";
+    const base = "bg-glowalchemy-white border-b border-glowalchemy-sand sticky top-0 left-0 right-0 z-header transition-shadow duration-300 ease-out";
     const shadow = elevated ? "shadow-md" : "shadow-none";
     return `${base} ${shadow}`;
   }, [elevated]);
@@ -223,7 +223,7 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
   return (
     <header ref={ref} className={headerClassName}>
       {/* MAIN HEADER */}
-      <div className="header bg-trozzi-white">
+      <div className="header bg-glowalchemy-white">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">            <div className="py-2 md:py-3">
             <div className="flex items-center gap-2 md:gap-4">
               {/* Mobile search mode: full-width field with back — replaces the brand row so the
@@ -285,12 +285,12 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
                     <IconButton
                       aria-label="search"
                       onClick={toggleMobileSearch}
-                      className="!w-9 !h-9 hover:bg-trozzi-ivory transition-colors rounded-xl"
+                      className="!w-9 !h-9 hover:bg-glowalchemy-ivory transition-colors rounded-xl"
                     >
                       {isMobileSearchOpen ? (
-                        <FiX className="text-lg text-trozzi-charcoal" />
+                        <FiX className="text-lg text-glowalchemy-charcoal" />
                       ) : (
-                        <FiSearch className="text-lg text-trozzi-charcoal" />
+                        <FiSearch className="text-lg text-glowalchemy-charcoal" />
                       )}
                     </IconButton>
                   </Tooltip>
@@ -308,10 +308,10 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
                   <IconButton
                     aria-label="cart"
                     onClick={toggleCart}
-                    className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-trozzi-ivory transition-colors rounded-xl"
+                    className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-glowalchemy-ivory transition-colors rounded-xl"
                   >
                     <StyledBadge badgeContent={itemCount} color="secondary">
-                      <FiShoppingCart className="text-lg sm:text-xl md:text-2xl text-trozzi-charcoal" />
+                      <FiShoppingCart className="text-lg sm:text-xl md:text-2xl text-glowalchemy-charcoal" />
                     </StyledBadge>
                   </IconButton>
                 </Tooltip>
@@ -320,10 +320,10 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
                   <Link to="/wishlist" className="hidden md:inline-flex">
                     <IconButton
                       aria-label="wishlist"
-                      className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-trozzi-ivory transition-colors rounded-xl"
+                      className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-glowalchemy-ivory transition-colors rounded-xl"
                     >
                       <StyledBadge badgeContent={wishlistBadgeCount} color="secondary">
-                        <FiHeart className="text-lg sm:text-xl md:text-2xl text-trozzi-charcoal" />
+                        <FiHeart className="text-lg sm:text-xl md:text-2xl text-glowalchemy-charcoal" />
                       </StyledBadge>
                     </IconButton>
                   </Link>
@@ -333,9 +333,9 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
                   <Link to="/orders" className="hidden md:inline-flex">
                     <IconButton
                       aria-label="orders"
-                      className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-trozzi-ivory transition-colors rounded-xl"
+                      className="!w-9 !h-9 sm:!w-11 sm:!h-11 hover:bg-glowalchemy-ivory transition-colors rounded-xl"
                     >
-                      <FiShoppingBag className="text-lg sm:text-xl md:text-2xl text-trozzi-charcoal" />
+                      <FiShoppingBag className="text-lg sm:text-xl md:text-2xl text-glowalchemy-charcoal" />
                     </IconButton>
                   </Link>
                 </Tooltip>
@@ -348,7 +348,7 @@ const Header = forwardRef(({ hidden = false, elevated = false }, ref) => {
       </div>
 
       {/* Navigation - Desktop */}
-      <div className="hidden md:block bg-trozzi-white border-t border-trozzi-sand relative z-dropdown">
+      <div className="hidden md:block bg-glowalchemy-white border-t border-glowalchemy-sand relative z-dropdown">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <Navigation />
         </div>

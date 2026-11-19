@@ -38,16 +38,16 @@ const PopularProducts = ({ hideAddToCart = false }) => {
 
   if (loading) {
     return (
-      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+      <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
         <div className="px-3 sm:px-6">
-          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Popular Products</h2>
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">Popular Products</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-trozzi-sand/50 overflow-hidden">
-                <div className="aspect-square bg-trozzi-ivory/50 animate-pulse" />
+              <div key={i} className="bg-white rounded-2xl border border-glowalchemy-sand/50 overflow-hidden">
+                <div className="aspect-square bg-glowalchemy-ivory/50 animate-pulse" />
                 <div className="p-3 space-y-2">
-                  <div className="h-3 bg-trozzi-sand/50 rounded animate-pulse" />
-                  <div className="h-4 bg-trozzi-sand/50 rounded w-2/3 animate-pulse" />
+                  <div className="h-3 bg-glowalchemy-sand/50 rounded animate-pulse" />
+                  <div className="h-4 bg-glowalchemy-sand/50 rounded w-2/3 animate-pulse" />
                 </div>
               </div>
             ))}
@@ -59,14 +59,14 @@ const PopularProducts = ({ hideAddToCart = false }) => {
 
   if (error) {
     return (
-      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+      <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
         <div className="px-3 sm:px-6">
-          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Popular Products</h2>
-          <div className="bg-white rounded-2xl border border-trozzi-sand p-6 text-center">
-            <p className="text-trozzi-warm-gray mb-4">{error}</p>
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">Popular Products</h2>
+          <div className="bg-white rounded-2xl border border-glowalchemy-sand p-6 text-center">
+            <p className="text-glowalchemy-warm-gray mb-4">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-trozzi-terracotta text-white rounded-xl font-medium"
+              className="px-4 py-2 bg-glowalchemy-terracotta text-white rounded-xl font-medium"
             >
               Try Again
             </button>
@@ -78,13 +78,13 @@ const PopularProducts = ({ hideAddToCart = false }) => {
 
   if (products.length === 0) {
     return (
-      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+      <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
         <div className="px-3 sm:px-6">
-          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Popular Products</h2>
-          <div className="bg-white rounded-2xl border border-trozzi-sand p-8 text-center">
-            <FiPackage className="w-12 h-12 text-trozzi-sand mx-auto mb-3" />
-            <p className="text-trozzi-warm-gray">No products available right now.</p>
-            <p className="text-sm text-trozzi-sand mt-1">Check back soon!</p>
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">Popular Products</h2>
+          <div className="bg-white rounded-2xl border border-glowalchemy-sand p-8 text-center">
+            <FiPackage className="w-12 h-12 text-glowalchemy-sand mx-auto mb-3" />
+            <p className="text-glowalchemy-warm-gray">No products available right now.</p>
+            <p className="text-sm text-glowalchemy-sand mt-1">Check back soon!</p>
           </div>
         </div>
       </section>
@@ -92,9 +92,9 @@ const PopularProducts = ({ hideAddToCart = false }) => {
   }
 
   return (
-    <section className="py-4 sm:py-8 bg-trozzi-ivory">
+    <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
       <div className="px-3 sm:px-6">
-        <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">Popular Products</h2>
+        <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">Popular Products</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4">
           {products.map((product, idx) => {

@@ -62,21 +62,21 @@ const ProductGallery = ({ images = [], alt = '', activeIndex = 0, onSelect, outO
             sizes="(min-width: 1024px) 50vw, 100vw"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-trozzi-sand/30">
-            <span className="text-trozzi-warm-gray">Image unavailable</span>
+          <div className="w-full h-full flex flex-col items-center justify-center bg-glowalchemy-sand/30">
+            <span className="text-glowalchemy-warm-gray">Image unavailable</span>
           </div>
         )}
 
         {outOfStock && (
           <div className="absolute inset-0 bg-white/55 flex items-center justify-center z-[5]">
-            <span className="bg-white/90 text-trozzi-charcoal border border-trozzi-sand px-4 py-2 rounded-lg font-semibold text-sm shadow-sm">
+            <span className="bg-white/90 text-glowalchemy-charcoal border border-glowalchemy-sand px-4 py-2 rounded-lg font-semibold text-sm shadow-sm">
               Out of Stock
             </span>
           </div>
         )}
 
         {images.length > 1 && (
-          <span className="absolute bottom-2 right-2 text-xs font-medium bg-white/85 text-trozzi-warm-gray px-2 py-1 rounded-md">
+          <span className="absolute bottom-2 right-2 text-xs font-medium bg-white/85 text-glowalchemy-warm-gray px-2 py-1 rounded-md">
             {Math.min(activeIndex, images.length - 1) + 1} / {images.length}
           </span>
         )}
@@ -93,10 +93,10 @@ const ProductGallery = ({ images = [], alt = '', activeIndex = 0, onSelect, outO
               aria-selected={index === Math.min(activeIndex, images.length - 1)}
               aria-label={`View image ${index + 1}`}
               onClick={() => typeof onSelect === 'function' && onSelect(index)}
-              className={`aspect-square bg-white rounded-lg overflow-hidden border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta ${
+              className={`aspect-square bg-white rounded-lg overflow-hidden border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta ${
                 index === Math.min(activeIndex, images.length - 1)
-                  ? 'border-trozzi-terracotta ring-2 ring-trozzi-terracotta/20'
-                  : 'border-trozzi-sand hover:border-trozzi-warm-gray'
+                  ? 'border-glowalchemy-terracotta ring-2 ring-glowalchemy-terracotta/20'
+                  : 'border-glowalchemy-sand hover:border-glowalchemy-warm-gray'
               }`}
             >
               <OptimizedImage

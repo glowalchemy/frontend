@@ -45,8 +45,8 @@ const CartPage = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-trozzi-terracotta mx-auto"></div>
-                    <p className="mt-4 text-trozzi-warm-gray">Loading your cart...</p>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-glowalchemy-terracotta mx-auto"></div>
+                    <p className="mt-4 text-glowalchemy-warm-gray">Loading your cart...</p>
                 </div>
             </div>
         );
@@ -54,18 +54,18 @@ const CartPage = () => {
 
     if (items.length === 0) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory">
+            <div className="min-h-screen bg-glowalchemy-ivory">
                 <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <FiPackage className="mx-auto h-24 w-24 text-trozzi-sand" />
-                        <h2 className="mt-4 text-3xl font-extrabold text-trozzi-charcoal">Your cart is empty</h2>
-                        <p className="mt-2 text-trozzi-warm-gray">
+                        <FiPackage className="mx-auto h-24 w-24 text-glowalchemy-sand" />
+                        <h2 className="mt-4 text-3xl font-extrabold text-glowalchemy-charcoal">Your cart is empty</h2>
+                        <p className="mt-2 text-glowalchemy-warm-gray">
                             Looks like you haven't added any items to your cart yet.
                         </p>
                         <div className="mt-6">
                             <Link
                                 to="/ProductListing"
-                                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-trozzi-terracotta hover:bg-trozzi-charcoal transition-colors"
+                                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-glowalchemy-terracotta hover:bg-glowalchemy-charcoal transition-colors"
                             >
                                 <FaArrowLeft className="mr-2" />
                                 Continue Shopping
@@ -78,20 +78,20 @@ const CartPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-trozzi-ivory pb-24 sm:pb-0">
+        <div className="min-h-screen bg-glowalchemy-ivory pb-24 sm:pb-0">
             <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 <div className="sm:hidden flex items-center justify-between mb-3">
-                    <Link to="/" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand">
-                        <FaArrowLeft className="text-trozzi-charcoal" />
+                    <Link to="/" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand">
+                        <FaArrowLeft className="text-glowalchemy-charcoal" />
                     </Link>
-                    <div className="text-[18px] font-bold text-trozzi-charcoal">Cart</div>
+                    <div className="text-[18px] font-bold text-glowalchemy-charcoal">Cart</div>
                     <div className="flex items-center gap-2">
-                        <Link to="/profile" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand">
-                            <FiUser className="text-trozzi-charcoal" />
+                        <Link to="/profile" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand">
+                            <FiUser className="text-glowalchemy-charcoal" />
                         </Link>
-                        <Link to="/cart" className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand">
-                            <LineCart className="text-trozzi-charcoal" />
-                            <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-trozzi-terracotta text-white text-[11px] font-bold flex items-center justify-center">
+                        <Link to="/cart" className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand">
+                            <LineCart className="text-glowalchemy-charcoal" />
+                            <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-glowalchemy-terracotta text-white text-[11px] font-bold flex items-center justify-center">
                                 {items.reduce((sum, item) => sum + (Number(item?.quantity ?? 0) || 0), 0)}
                             </span>
                         </Link>
@@ -99,25 +99,25 @@ const CartPage = () => {
                 </div>
 
                 <div className="sm:hidden mb-3">
-                    <div className="bg-trozzi-white border border-trozzi-sand rounded-lg px-3 py-2.5">
+                    <div className="bg-glowalchemy-white border border-glowalchemy-sand rounded-lg px-3 py-2.5">
                         <div className="flex items-center justify-between text-[10px]">
-                            <div className="flex items-center gap-2 text-trozzi-terracotta">
-                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-trozzi-terracotta text-white">1</div>
+                            <div className="flex items-center gap-2 text-glowalchemy-terracotta">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-terracotta text-white">1</div>
                                 <span className="font-semibold">Cart</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1.5 bg-trozzi-sand" />
-                            <div className="flex items-center gap-1.5 text-trozzi-warm-gray">
-                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-trozzi-sand">2</div>
+                            <div className="flex-1 h-[2px] mx-1.5 bg-glowalchemy-sand" />
+                            <div className="flex items-center gap-1.5 text-glowalchemy-warm-gray">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-sand">2</div>
                                 <span className="font-semibold">Address</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1.5 bg-trozzi-sand" />
-                            <div className="flex items-center gap-1.5 text-trozzi-warm-gray">
-                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-trozzi-sand">3</div>
+                            <div className="flex-1 h-[2px] mx-1.5 bg-glowalchemy-sand" />
+                            <div className="flex items-center gap-1.5 text-glowalchemy-warm-gray">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-sand">3</div>
                                 <span className="font-semibold">Payment</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1.5 bg-trozzi-sand" />
-                            <div className="flex items-center gap-1.5 text-trozzi-warm-gray">
-                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-trozzi-sand">4</div>
+                            <div className="flex-1 h-[2px] mx-1.5 bg-glowalchemy-sand" />
+                            <div className="flex items-center gap-1.5 text-glowalchemy-warm-gray">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-sand">4</div>
                                 <span className="font-semibold">Summary</span>
                             </div>
                         </div>
@@ -125,10 +125,10 @@ const CartPage = () => {
                 </div>
 
                 <div className="hidden sm:flex items-center justify-between mb-5 sm:mb-8">
-                    <h1 className="text-xl sm:text-3xl font-bold text-trozzi-charcoal">Shopping Cart</h1>
+                    <h1 className="text-xl sm:text-3xl font-bold text-glowalchemy-charcoal">Shopping Cart</h1>
                     <button
                         onClick={handleClearCart}
-                        className="text-trozzi-terracotta hover:text-trozzi-charcoal text-sm font-medium"
+                        className="text-glowalchemy-terracotta hover:text-glowalchemy-charcoal text-sm font-medium"
                     >
                         Clear Cart
                     </button>
@@ -136,9 +136,9 @@ const CartPage = () => {
 
                 <div className="sm:hidden space-y-3">
                     {items.map((item) => (
-                        <div key={`${item.product?._id || item.product}-${item.size || ''}-${item.color || ''}`} className="bg-trozzi-white rounded-xl border border-trozzi-sand shadow-sm p-3">
+                        <div key={`${item.product?._id || item.product}-${item.size || ''}-${item.color || ''}`} className="bg-glowalchemy-white rounded-xl border border-glowalchemy-sand shadow-sm p-3">
                             <div className="flex gap-3">
-                                <div className="w-20 h-20 rounded-lg bg-trozzi-ivory border border-trozzi-sand overflow-hidden">
+                                <div className="w-20 h-20 rounded-lg bg-glowalchemy-ivory border border-glowalchemy-sand overflow-hidden">
                                     <OptimizedImage
                                         src={item.image || item.product?.image || item.product?.galleryImages?.[0]}
                                         alt={item.product?.name || item.name}
@@ -150,15 +150,15 @@ const CartPage = () => {
                                 </div>
 
                                 <div className="min-w-0 flex-1">
-                                    <div className="text-[13px] font-semibold text-trozzi-charcoal line-clamp-2">
+                                    <div className="text-[13px] font-semibold text-glowalchemy-charcoal line-clamp-2">
                                         {item.product?.name || item.name}
                                     </div>
-                                    <div className="mt-1 text-[15px] font-bold text-trozzi-terracotta">₹{(Number(item.price ?? item.product?.price ?? 0) || 0).toFixed(0)}</div>
+                                    <div className="mt-1 text-[15px] font-bold text-glowalchemy-terracotta">₹{(Number(item.price ?? item.product?.price ?? 0) || 0).toFixed(0)}</div>
                                 </div>
 
                                 <button
                                     onClick={() => handleRemoveItem(item.product?._id || item.product, { size: item?.size || '', color: item?.color || '' })}
-                                    className="w-10 h-10 inline-flex items-center justify-center text-trozzi-terracotta"
+                                    className="w-10 h-10 inline-flex items-center justify-center text-glowalchemy-terracotta"
                                 >
                                     <FaTrash className="h-4 w-4" />
                                 </button>
@@ -168,14 +168,14 @@ const CartPage = () => {
                                 <div className="flex items-center gap-4">
                                     <button
                                         onClick={() => handleQuantityChange(item.product?._id || item.product, item.quantity - 1, { size: item?.size || '', color: item?.color || '' })}
-                                        className="w-9 h-9 rounded-full border border-trozzi-sand bg-trozzi-white text-trozzi-terracotta font-bold"
+                                        className="w-9 h-9 rounded-full border border-glowalchemy-sand bg-glowalchemy-white text-glowalchemy-terracotta font-bold"
                                     >
                                         −
                                     </button>
-                                    <div className="w-10 text-center text-[14px] font-bold text-trozzi-charcoal">{item.quantity}</div>
+                                    <div className="w-10 text-center text-[14px] font-bold text-glowalchemy-charcoal">{item.quantity}</div>
                                     <button
                                         onClick={() => handleQuantityChange(item.product?._id || item.product, item.quantity + 1, { size: item?.size || '', color: item?.color || '' })}
-                                        className="w-9 h-9 rounded-full border border-trozzi-sand bg-trozzi-white text-trozzi-terracotta font-bold"
+                                        className="w-9 h-9 rounded-full border border-glowalchemy-sand bg-glowalchemy-white text-glowalchemy-terracotta font-bold"
                                     >
                                         +
                                     </button>
@@ -184,40 +184,40 @@ const CartPage = () => {
                         </div>
                     ))}
 
-                    <div className="bg-trozzi-ivory border border-trozzi-sand rounded-xl p-3 flex gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-trozzi-white/60 border border-trozzi-white/50 flex items-center justify-center">
-                            <span className="text-trozzi-terracotta text-[12px] font-bold">i</span>
+                    <div className="bg-glowalchemy-ivory border border-glowalchemy-sand rounded-xl p-3 flex gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-glowalchemy-white/60 border border-glowalchemy-white/50 flex items-center justify-center">
+                            <span className="text-glowalchemy-terracotta text-[12px] font-bold">i</span>
                         </div>
                         <div className="min-w-0">
-                            <div className="text-[13px] font-bold text-trozzi-charcoal">Your Safety, Our Priority</div>
-                            <div className="text-[12px] text-trozzi-warm-gray mt-0.5">We make sure that your package is safe at every point of contact</div>
+                            <div className="text-[13px] font-bold text-glowalchemy-charcoal">Your Safety, Our Priority</div>
+                            <div className="text-[12px] text-glowalchemy-warm-gray mt-0.5">We make sure that your package is safe at every point of contact</div>
                         </div>
                     </div>
 
-                    <div className="bg-trozzi-white rounded-xl border border-trozzi-sand p-4">
-                        <div className="flex justify-between text-[13px] text-trozzi-charcoal">
+                    <div className="bg-glowalchemy-white rounded-xl border border-glowalchemy-sand p-4">
+                        <div className="flex justify-between text-[13px] text-glowalchemy-charcoal">
                             <span>Shipping:</span>
-                            <span className="font-bold text-trozzi-charcoal">FREE</span>
+                            <span className="font-bold text-glowalchemy-charcoal">FREE</span>
                         </div>
-                        <div className="flex justify-between text-[13px] text-trozzi-charcoal mt-2">
+                        <div className="flex justify-between text-[13px] text-glowalchemy-charcoal mt-2">
                             <span>Total Product Price:</span>
                             <span className="font-bold">₹{subtotal.toFixed(0)}</span>
                         </div>
-                        <div className="border-t border-trozzi-sand mt-3 pt-3 flex justify-between items-center">
-                            <span className="text-[14px] font-extrabold text-trozzi-charcoal">Order Total:</span>
-                            <span className="text-[14px] font-extrabold text-trozzi-terracotta">₹{total.toFixed(0)}</span>
+                        <div className="border-t border-glowalchemy-sand mt-3 pt-3 flex justify-between items-center">
+                            <span className="text-[14px] font-extrabold text-glowalchemy-charcoal">Order Total:</span>
+                            <span className="text-[14px] font-extrabold text-glowalchemy-terracotta">₹{total.toFixed(0)}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="hidden sm:block bg-white rounded-2xl shadow-sm overflow-hidden">
                     {/* Cart Items */}
-                    <div className="divide-y divide-trozzi-sand">
+                    <div className="divide-y divide-glowalchemy-sand">
                         {items.map((item) => (
                             <div key={`${item.product?._id || item.product}-${item.size || ''}-${item.color || ''}`} className="p-4 sm:p-6">
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                                     {/* Product Image */}
-                                    <div className="flex-shrink-0 w-full sm:w-24 h-40 sm:h-24 bg-trozzi-ivory rounded-md overflow-hidden">
+                                    <div className="flex-shrink-0 w-full sm:w-24 h-40 sm:h-24 bg-glowalchemy-ivory rounded-md overflow-hidden">
                                         <OptimizedImage
                                             src={item.image || item.product?.image || item.product?.galleryImages?.[0]}
                                             alt={item.product?.name || item.name}
@@ -232,37 +232,37 @@ const CartPage = () => {
                                     <div className="sm:ml-2 flex-1 min-w-0">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                                             <div className="min-w-0">
-                                                <h3 className="text-base sm:text-lg font-medium text-trozzi-charcoal truncate">
+                                                <h3 className="text-base sm:text-lg font-medium text-glowalchemy-charcoal truncate">
                                                     {item.product?.name || item.name}
                                                 </h3>
-                                                <p className="mt-1 text-sm text-trozzi-warm-gray">
+                                                <p className="mt-1 text-sm text-glowalchemy-warm-gray">
                                                     {item.product?.category}
                                                 </p>
                                                 {(item?.size || item?.color) ? (
-                                                    <p className="mt-1 text-sm text-trozzi-warm-gray">
+                                                    <p className="mt-1 text-sm text-glowalchemy-warm-gray">
                                                         {item?.size ? `Size: ${item.size}` : ''}{item?.size && item?.color ? ' | ' : ''}{item?.color ? `Color: ${item.color}` : ''}
                                                     </p>
                                                 ) : null}
-                                                <p className="mt-2 text-base sm:text-lg font-semibold text-trozzi-charcoal">
+                                                <p className="mt-2 text-base sm:text-lg font-semibold text-glowalchemy-charcoal">
                                                     ₹{(item.price ?? item.product?.price ?? 0).toFixed(2)}
                                                 </p>
                                             </div>
 
                                             {/* Quantity Controls */}
                                             <div className="flex items-center justify-between sm:justify-end gap-3">
-                                                <div className="flex items-center border border-trozzi-sand rounded-md overflow-hidden">
+                                                <div className="flex items-center border border-glowalchemy-sand rounded-md overflow-hidden">
                                                     <button
                                                         onClick={() => handleQuantityChange(item.product?._id || item.product, item.quantity - 1, { size: item?.size || '', color: item?.color || '' })}
-                                                        className="w-10 h-10 flex items-center justify-center text-trozzi-charcoal hover:text-trozzi-terracotta"
+                                                        className="w-10 h-10 flex items-center justify-center text-glowalchemy-charcoal hover:text-glowalchemy-terracotta"
                                                     >
                                                         <FaMinus className="h-3 w-3" />
                                                     </button>
-                                                    <span className="min-w-[44px] text-center px-3 py-1 text-trozzi-charcoal font-semibold">
+                                                    <span className="min-w-[44px] text-center px-3 py-1 text-glowalchemy-charcoal font-semibold">
                                                         {item.quantity}
                                                     </span>
                                                     <button
                                                         onClick={() => handleQuantityChange(item.product?._id || item.product, item.quantity + 1, { size: item?.size || '', color: item?.color || '' })}
-                                                        className="w-10 h-10 flex items-center justify-center text-trozzi-charcoal hover:text-trozzi-terracotta"
+                                                        className="w-10 h-10 flex items-center justify-center text-glowalchemy-charcoal hover:text-glowalchemy-terracotta"
                                                     >
                                                         <FaPlus className="h-3 w-3" />
                                                     </button>
@@ -270,7 +270,7 @@ const CartPage = () => {
 
                                                 <button
                                                     onClick={() => handleRemoveItem(item.product?._id || item.product, { size: item?.size || '', color: item?.color || '' })}
-                                                    className="w-10 h-10 inline-flex items-center justify-center text-trozzi-terracotta hover:text-trozzi-charcoal"
+                                                    className="w-10 h-10 inline-flex items-center justify-center text-glowalchemy-terracotta hover:text-glowalchemy-charcoal"
                                                 >
                                                     <FaTrash className="h-4 w-4" />
                                                 </button>
@@ -279,10 +279,10 @@ const CartPage = () => {
 
                                         {/* Item Total */}
                                         <div className="mt-3 flex items-center justify-between">
-                                            <span className="text-sm text-trozzi-warm-gray">
+                                            <span className="text-sm text-glowalchemy-warm-gray">
                                                 Subtotal ({item.quantity} items)
                                             </span>
-                                            <span className="text-base sm:text-lg font-semibold text-trozzi-charcoal">
+                                            <span className="text-base sm:text-lg font-semibold text-glowalchemy-charcoal">
                                                 ₹{((item.price ?? item.product?.price ?? 0) * item.quantity).toFixed(2)}
                                             </span>
                                         </div>
@@ -293,12 +293,12 @@ const CartPage = () => {
                     </div>
 
                     {/* Cart Summary */}
-                    <div className="border-t border-trozzi-sand p-6">
+                    <div className="border-t border-glowalchemy-sand p-6">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                             <div>
-                                <p className="text-sm text-trozzi-warm-gray">Total ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</p>
-                                <p className="text-2xl sm:text-3xl font-bold text-trozzi-charcoal">₹{total.toFixed(2)}</p>
-                                <div className="mt-2 space-y-1 text-sm text-trozzi-warm-gray">
+                                <p className="text-sm text-glowalchemy-warm-gray">Total ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</p>
+                                <p className="text-2xl sm:text-3xl font-bold text-glowalchemy-charcoal">₹{total.toFixed(2)}</p>
+                                <div className="mt-2 space-y-1 text-sm text-glowalchemy-warm-gray">
                                     <div className="flex justify-between gap-6">
                                         <span>Subtotal</span>
                                         <span>₹{subtotal.toFixed(2)}</span>
@@ -313,14 +313,14 @@ const CartPage = () => {
                             <div className="hidden sm:flex items-center gap-4">
                                 <Link
                                     to="/"
-                                    className="inline-flex items-center px-4 py-2 border border-trozzi-sand rounded-md shadow-sm text-sm font-medium text-trozzi-charcoal bg-trozzi-white hover:bg-trozzi-ivory"
+                                    className="inline-flex items-center px-4 py-2 border border-glowalchemy-sand rounded-md shadow-sm text-sm font-medium text-glowalchemy-charcoal bg-glowalchemy-white hover:bg-glowalchemy-ivory"
                                 >
                                     <FaArrowLeft className="mr-2" />
                                     Continue Shopping
                                 </Link>
                                 <Link
                                     to="/checkout"
-                                    className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-trozzi-terracotta hover:bg-trozzi-charcoal"
+                                    className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-glowalchemy-terracotta hover:bg-glowalchemy-charcoal"
                                 >
                                     Proceed to Checkout
                                 </Link>
@@ -329,15 +329,15 @@ const CartPage = () => {
                     </div>
                 </div>
 
-                <div className="sm:hidden fixed bottom-0 left-0 right-0 z-sticky bg-trozzi-white border-t border-trozzi-sand px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+                <div className="sm:hidden fixed bottom-0 left-0 right-0 z-sticky bg-glowalchemy-white border-t border-glowalchemy-sand px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
                     <div className="flex items-center justify-between gap-3">
                         <div className="min-w-0">
-                            <div className="text-[16px] font-extrabold text-trozzi-terracotta truncate">₹{total.toFixed(0)}</div>
-                            <div className="text-[12px] text-trozzi-warm-gray">Inclusive of all taxes</div>
+                            <div className="text-[16px] font-extrabold text-glowalchemy-terracotta truncate">₹{total.toFixed(0)}</div>
+                            <div className="text-[12px] text-glowalchemy-warm-gray">Inclusive of all taxes</div>
                         </div>
                         <Link
                             to="/checkout"
-                            className="h-12 px-6 inline-flex items-center justify-center rounded-xl bg-trozzi-terracotta text-white text-sm font-extrabold shadow-sm flex-1"
+                            className="h-12 px-6 inline-flex items-center justify-center rounded-xl bg-glowalchemy-terracotta text-white text-sm font-extrabold shadow-sm flex-1"
                         >
                             Continue to Address
                         </Link>

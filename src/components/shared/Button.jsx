@@ -15,10 +15,10 @@ const Button = ({
   const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-trozzi-terracotta text-white hover:bg-trozzi-charcoal focus:ring-trozzi-terracotta/50',
-    secondary: 'bg-trozzi-charcoal text-white hover:bg-trozzi-warm-gray focus:ring-trozzi-charcoal/50',
-    outline: 'border-2 border-trozzi-terracotta text-trozzi-terracotta hover:bg-trozzi-terracotta hover:text-white focus:ring-trozzi-terracotta/50',
-    ghost: 'text-trozzi-charcoal hover:bg-trozzi-ivory focus:ring-trozzi-sand/50',
+    primary: 'bg-glowalchemy-terracotta text-white hover:bg-glowalchemy-charcoal focus:ring-glowalchemy-terracotta/50',
+    secondary: 'bg-glowalchemy-charcoal text-white hover:bg-glowalchemy-warm-gray focus:ring-glowalchemy-charcoal/50',
+    outline: 'border-2 border-glowalchemy-terracotta text-glowalchemy-terracotta hover:bg-glowalchemy-terracotta hover:text-white focus:ring-glowalchemy-terracotta/50',
+    ghost: 'text-glowalchemy-charcoal hover:bg-glowalchemy-ivory focus:ring-glowalchemy-sand/50',
   };
   
   const sizes = {

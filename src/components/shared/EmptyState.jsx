@@ -21,19 +21,19 @@ const EmptyState = ({
 
     return (
         <div className={`flex flex-col items-center justify-center py-8 sm:py-12 px-4 ${className}`}>
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-trozzi-ivory flex items-center justify-center mb-4">
-                <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-trozzi-sand" />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-glowalchemy-ivory flex items-center justify-center mb-4">
+                <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-glowalchemy-sand" />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-trozzi-charcoal mb-2 text-center">
+            <h3 className="text-lg sm:text-xl font-semibold text-glowalchemy-charcoal mb-2 text-center">
                 {title}
             </h3>
-            <p className="text-sm sm:text-base text-trozzi-warm-gray text-center max-w-sm mb-6">
+            <p className="text-sm sm:text-base text-glowalchemy-warm-gray text-center max-w-sm mb-6">
                 {description}
             </p>
             {actionText && onAction && (
                 <button
                     onClick={onAction}
-                    className="bg-trozzi-terracotta text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-trozzi-charcoal transition-colors font-medium text-sm sm:text-base min-w-[120px] sm:min-w-[140px]"
+                    className="bg-glowalchemy-terracotta text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-glowalchemy-charcoal transition-colors font-medium text-sm sm:text-base min-w-[120px] sm:min-w-[140px]"
                 >
                     {actionText}
                 </button>

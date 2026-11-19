@@ -185,7 +185,7 @@ const Profile = () => {
               value={profileForm.firstName}
               onChange={(e) => onProfileChange('firstName', e.target.value)}
               disabled={!canEdit}
-              className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60"
+              className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60"
             />
           </div>
           <div>
@@ -194,7 +194,7 @@ const Profile = () => {
               value={profileForm.lastName}
               onChange={(e) => onProfileChange('lastName', e.target.value)}
               disabled={!canEdit}
-              className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60"
+              className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60"
             />
           </div>
           <div className="min-w-0">
@@ -207,7 +207,7 @@ const Profile = () => {
               value={profileForm.phone}
               onChange={(e) => onProfileChange('phone', e.target.value)}
               disabled={!canEdit}
-              className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60"
+              className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60"
             />
           </div>
         </div>
@@ -234,35 +234,35 @@ const Profile = () => {
               onProfileChange('bio', next.length > bioMax ? next.slice(0, bioMax) : next);
             }}
             disabled={!canEdit}
-            className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal min-h-[90px] focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60"
+            className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal min-h-[90px] focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60"
           />
         </div>
 
         {showOrderHistory || showWishlistCount ? (
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
             {showOrderHistory ? (
-              <div className="bg-white border border-trozzi-sand rounded-xl p-4 shadow-sm">
-                <p className="text-sm text-trozzi-warm-gray">Order History</p>
-                <p className="text-base font-semibold text-trozzi-charcoal">
+              <div className="bg-white border border-glowalchemy-sand rounded-xl p-4 shadow-sm">
+                <p className="text-sm text-glowalchemy-warm-gray">Order History</p>
+                <p className="text-base font-semibold text-glowalchemy-charcoal">
                   {loadingOrders ? 'Loading...' : `${orderCount} orders`}
                 </p>
               </div>
             ) : null}
             {showWishlistCount ? (
-              <div className="bg-white border border-trozzi-sand rounded-xl p-4 shadow-sm">
-                <p className="text-sm text-trozzi-warm-gray">Wishlist</p>
-                <p className="text-base font-semibold text-trozzi-charcoal">{wishlistCount} items</p>
+              <div className="bg-white border border-glowalchemy-sand rounded-xl p-4 shadow-sm">
+                <p className="text-sm text-glowalchemy-warm-gray">Wishlist</p>
+                <p className="text-base font-semibold text-glowalchemy-charcoal">{wishlistCount} items</p>
               </div>
             ) : null}
           </div>
         ) : null}
 
         <div className="mt-8">
-          <h2 className="text-lg font-semibold text-trozzi-charcoal mb-3">Address</h2>
+          <h2 className="text-lg font-semibold text-glowalchemy-charcoal mb-3">Address</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-500">Address Line 1</p>
-              <input value={profileForm.address.line1} onChange={(e) => onAddressChange('line1', e.target.value)} disabled={!canEdit} className="mt-1 w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm text-trozzi-charcoal focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta disabled:opacity-60" />
+              <input value={profileForm.address.line1} onChange={(e) => onAddressChange('line1', e.target.value)} disabled={!canEdit} className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60" />
             </div>
             <div>
               <p className="text-sm text-gray-500">Address Line 2</p>
@@ -291,7 +291,7 @@ const Profile = () => {
               type="button"
               onClick={saveProfile}
               disabled={savingProfile || !canEdit}
-              className="bg-trozzi-terracotta text-white px-6 py-3 rounded-xl hover:bg-trozzi-charcoal disabled:opacity-50 transition-colors font-medium"
+              className="bg-glowalchemy-terracotta text-white px-6 py-3 rounded-xl hover:bg-glowalchemy-charcoal disabled:opacity-50 transition-colors font-medium"
             >
               {savingProfile ? 'Saving...' : 'Save Profile'}
             </button>

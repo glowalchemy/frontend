@@ -262,8 +262,8 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
       }}
       className={
         isList
-          ? "group cursor-pointer overflow-hidden rounded-lg bg-trozzi-white border border-trozzi-sand hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex h-[280px]"
-          : "group cursor-pointer overflow-hidden rounded-lg bg-trozzi-white border border-trozzi-sand hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
+          ? "group cursor-pointer overflow-hidden rounded-lg bg-glowalchemy-white border border-glowalchemy-sand hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex h-[280px]"
+          : "group cursor-pointer overflow-hidden rounded-lg bg-glowalchemy-white border border-glowalchemy-sand hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
       }
     >
       <div className={isList ? "transition-transform duration-300 flex flex-row h-full" : "transition-transform duration-300 flex flex-col"}>
@@ -271,8 +271,8 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
         <div
           className={
             isList
-              ? "aspect-[4/5] bg-trozzi-ivory overflow-hidden relative w-[220px] min-w-[220px]"
-              : "aspect-square sm:aspect-[4/5] bg-trozzi-ivory overflow-hidden relative"
+              ? "aspect-[4/5] bg-glowalchemy-ivory overflow-hidden relative w-[220px] min-w-[220px]"
+              : "aspect-square sm:aspect-[4/5] bg-glowalchemy-ivory overflow-hidden relative"
           }
         >
           <div className="relative overflow-hidden w-full h-full">
@@ -292,7 +292,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
           {/* Out of Stock Overlay — light gray, image stays visible underneath */}
           {normalized.stockStatus?.state === "out" && (
             <div className="absolute inset-0 bg-white/55 flex items-center justify-center z-[5]">
-              <span className="bg-white/90 text-trozzi-charcoal border border-trozzi-sand px-3 py-1.5 rounded-lg font-semibold text-xs shadow-sm">
+              <span className="bg-white/90 text-glowalchemy-charcoal border border-glowalchemy-sand px-3 py-1.5 rounded-lg font-semibold text-xs shadow-sm">
                 Out of Stock
               </span>
             </div>
@@ -300,7 +300,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
           {/* Discount Badge */}
           {shouldShowDiscount && normalized.discountPercent > 0 && (
-            <div className="absolute top-2 left-2 bg-trozzi-terracotta text-white text-xs px-2 py-1 rounded-md font-bold shadow-md animate-bounce-in">
+            <div className="absolute top-2 left-2 bg-glowalchemy-terracotta text-white text-xs px-2 py-1 rounded-md font-bold shadow-md animate-bounce-in">
               {normalized.discountPercent}% OFF
             </div>
           )}
@@ -309,23 +309,23 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
           <button
             type="button"
             onClick={handleWishlistToggle}
-            className="absolute top-2 right-2 h-9 w-9 rounded-full bg-trozzi-white/95 backdrop-blur flex items-center justify-center shadow-sm hover:bg-trozzi-white transition-all"
+            className="absolute top-2 right-2 h-9 w-9 rounded-full bg-glowalchemy-white/95 backdrop-blur flex items-center justify-center shadow-sm hover:bg-glowalchemy-white transition-all"
             aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           >
             {wishlisted ? (
-              <FaHeart className="text-trozzi-terracotta" />
+              <FaHeart className="text-glowalchemy-terracotta" />
             ) : (
-              <FaRegHeart className="text-trozzi-charcoal" />
+              <FaRegHeart className="text-glowalchemy-charcoal" />
             )}
           </button>
 
           <button
             type="button"
             onClick={handleShare}
-            className="absolute top-2 right-12 h-9 w-9 rounded-full bg-trozzi-white/95 backdrop-blur flex items-center justify-center shadow-sm hover:bg-trozzi-white transition-all"
+            className="absolute top-2 right-12 h-9 w-9 rounded-full bg-glowalchemy-white/95 backdrop-blur flex items-center justify-center shadow-sm hover:bg-glowalchemy-white transition-all"
             aria-label="Share product"
           >
-            <FaShareAlt className="text-trozzi-charcoal" />
+            <FaShareAlt className="text-glowalchemy-charcoal" />
           </button>
 
           {/* Gallery Thumbnails */}
@@ -346,8 +346,8 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
                   }}
                   className={
                     hoveredImage === url
-                      ? "h-6 w-6 sm:h-7 sm:w-7 rounded-full border-2 border-trozzi-terracotta overflow-hidden"
-                      : "h-6 w-6 sm:h-7 sm:w-7 rounded-full border border-trozzi-white/60 overflow-hidden"
+                      ? "h-6 w-6 sm:h-7 sm:w-7 rounded-full border-2 border-glowalchemy-terracotta overflow-hidden"
+                      : "h-6 w-6 sm:h-7 sm:w-7 rounded-full border border-glowalchemy-white/60 overflow-hidden"
                   }
                 >
                   <OptimizedImage
@@ -374,24 +374,24 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
           }
         >
           {/* Product Title */}
-          <h3 className="font-semibold text-xs sm:text-[15px] text-trozzi-charcoal line-clamp-2 leading-snug">
+          <h3 className="font-semibold text-xs sm:text-[15px] text-glowalchemy-charcoal line-clamp-2 leading-snug">
             {normalized.name}
           </h3>
 
           {/* Price Section */}
           <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="text-sm sm:text-[20px] font-extrabold text-trozzi-charcoal">{formatPrice(displaySelling)}</span>
+            <span className="text-sm sm:text-[20px] font-extrabold text-glowalchemy-charcoal">{formatPrice(displaySelling)}</span>
             {displayMrp > displaySelling ? (
-              <span className="text-xs sm:text-sm text-trozzi-warm-gray line-through">{formatPrice(displayMrp)}</span>
+              <span className="text-xs sm:text-sm text-glowalchemy-warm-gray line-through">{formatPrice(displayMrp)}</span>
             ) : null}
             {normalized.discountPercent > 0 ? (
-              <span className="text-xs sm:text-sm text-trozzi-terracotta font-semibold">{normalized.discountPercent}% off</span>
+              <span className="text-xs sm:text-sm text-glowalchemy-terracotta font-semibold">{normalized.discountPercent}% off</span>
             ) : null}
           </div>
 
           <div className="mt-1 hidden sm:block">
             {shouldShowOffers ? (
-              <div className="inline-flex items-center rounded-md border border-trozzi-sand bg-trozzi-ivory text-trozzi-charcoal px-2 py-1 text-[10px] sm:text-[12px] font-semibold">
+              <div className="inline-flex items-center rounded-md border border-glowalchemy-sand bg-glowalchemy-ivory text-glowalchemy-charcoal px-2 py-1 text-[10px] sm:text-[12px] font-semibold">
                 ₹{Math.max(1, Math.round(displaySelling * 0.055))} with 2 Special Offers
               </div>
             ) : null}
@@ -399,9 +399,9 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
           <div className="mt-1 hidden sm:block">
             {shouldShowFreeDelivery ? (
-              <div className="flex items-center gap-2 text-[12px] text-trozzi-warm-gray">
+              <div className="flex items-center gap-2 text-[12px] text-glowalchemy-warm-gray">
                 <span className="inline-flex items-center gap-1">
-                  <FaTruck className="text-[14px] text-trozzi-charcoal" />
+                  <FaTruck className="text-[14px] text-glowalchemy-charcoal" />
                   Free Delivery
                 </span>
               </div>
@@ -415,7 +415,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
             </div>
           )}
           {normalized.stockStatus?.state === "low" && (
-            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-trozzi-terracotta">
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-glowalchemy-terracotta">
               <FaExclamationTriangle className="text-[11px]" /> {normalized.stockStatus.label}
             </div>
           )}
@@ -427,7 +427,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
           <div className="flex items-center justify-between pt-1 sm:pt-2">
             {shouldShowRating ? (
-              <div className="inline-flex items-center gap-1 bg-trozzi-terracotta text-white px-2 py-1 rounded-md text-[10px] sm:text-[12px] font-semibold">
+              <div className="inline-flex items-center gap-1 bg-glowalchemy-terracotta text-white px-2 py-1 rounded-md text-[10px] sm:text-[12px] font-semibold">
                 <span>{safeRating.toFixed(1)}</span>
                 <FaStar className="h-2.5 w-2.5 sm:h-3 sm:w-3 fill-current" />
                 <span className="text-white/90">({Number(normalized.reviews || 0)})</span>
@@ -442,7 +442,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
               type="button"
               onClick={handleAddToCart}
               disabled={isAddingToCart || normalized.stock <= 0}
-              className="mt-1.5 sm:mt-2 w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-[13px] font-semibold bg-trozzi-terracotta text-white hover:bg-trozzi-charcoal disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="mt-1.5 sm:mt-2 w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-[13px] font-semibold bg-glowalchemy-terracotta text-white hover:bg-glowalchemy-charcoal disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
               {justAdded ? (
                 <>

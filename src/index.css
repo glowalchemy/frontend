@@ -21,8 +21,8 @@
   input,
   select,
   textarea {
-    @apply rounded-xl border border-trozzi-sand bg-white text-trozzi-charcoal placeholder-trozzi-warm-gray;
-    @apply focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta;
+    @apply rounded-xl border border-glowalchemy-sand bg-white text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray;
+    @apply focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta;
   }
 
   input[type='checkbox'],
@@ -230,7 +230,7 @@ nav ul .submenu{visibility: hidden; z-index: 1000;}
   background: var(--surface-primary);
   border-radius: var(--radius-md);
   padding: var(--spacing-lg);
-  box-shadow: var(--shadow-trozzi);
+  box-shadow: var(--shadow-glowalchemy);
   position: relative;
 }
 

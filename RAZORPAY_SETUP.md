@@ -30,7 +30,7 @@ After verification, you'll get your API keys from the Razorpay dashboard:
 
 ## Step 4: Configure Environment Variables
 
-### Backend Configuration (`trozzy-admin-suite-main/server/.env`):
+### Backend Configuration (`glowalchemy-admin-suite-main/server/.env`):
 ```env
 # Razorpay Configuration
 RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXX

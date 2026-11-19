@@ -198,11 +198,11 @@ const Orders = () => {
 
     if (!showOrderHistory) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory py-8 md:py-12">
+            <div className="min-h-screen bg-glowalchemy-ivory py-8 md:py-12">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6">
-                    <div className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi p-6">
-                        <h1 className="font-serif text-2xl font-bold text-trozzi-charcoal mb-2">My Orders</h1>
-                        <p className="text-sm text-trozzi-warm-gray">Order history is currently disabled.</p>
+                    <div className="bg-white rounded-xl border border-glowalchemy-sand shadow-glowalchemy p-6">
+                        <h1 className="font-serif text-2xl font-bold text-glowalchemy-charcoal mb-2">My Orders</h1>
+                        <p className="text-sm text-glowalchemy-warm-gray">Order history is currently disabled.</p>
                     </div>
                 </div>
             </div>
@@ -210,20 +210,20 @@ const Orders = () => {
     }
 
     return (
-        <div className="min-h-screen bg-trozzi-ivory py-8 md:py-12">
+        <div className="min-h-screen bg-glowalchemy-ivory py-8 md:py-12">
             <div className="max-w-3xl mx-auto px-4 sm:px-6">
                 {/* Header */}
                 <div className="mb-6">
                     <div className="flex items-center justify-between gap-3 mb-4">
                         <div className="flex items-center gap-3 min-w-0">
-                            <div className="h-11 w-11 rounded-full bg-white border border-trozzi-sand flex items-center justify-center flex-shrink-0">
+                            <div className="h-11 w-11 rounded-full bg-white border border-glowalchemy-sand flex items-center justify-center flex-shrink-0">
                                 <FiShoppingBag className="w-5 h-5 text-action-primary" />
                             </div>
                             <div className="min-w-0">
-                                <h1 className="font-serif text-2xl md:text-3xl font-bold text-trozzi-charcoal leading-tight">
+                                <h1 className="font-serif text-2xl md:text-3xl font-bold text-glowalchemy-charcoal leading-tight">
                                     My Orders
                                 </h1>
-                                <p className="text-sm text-trozzi-warm-gray mt-0.5">
+                                <p className="text-sm text-glowalchemy-warm-gray mt-0.5">
                                     {loading
                                         ? 'Loading your orders…'
                                         : `${normalizedOrders.length} order${normalizedOrders.length === 1 ? '' : 's'}`
@@ -234,7 +234,7 @@ const Orders = () => {
                     </div>
 
                     {/* Date filter — segmented control */}
-                    <div className="inline-flex items-center gap-1 bg-white border border-trozzi-sand rounded-full p-1 shadow-trozzi">
+                    <div className="inline-flex items-center gap-1 bg-white border border-glowalchemy-sand rounded-full p-1 shadow-glowalchemy">
                         {FILTERS.map((f) => {
                             const active = dateFilter === f.key;
                             return (
@@ -246,7 +246,7 @@ const Orders = () => {
                                     className={`px-3.5 sm:px-4 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action-accent ${
                                         active
                                             ? 'bg-action-primary text-white shadow-sm'
-                                            : 'text-trozzi-warm-gray hover:text-trozzi-charcoal hover:bg-trozzi-ivory'
+                                            : 'text-glowalchemy-warm-gray hover:text-glowalchemy-charcoal hover:bg-glowalchemy-ivory'
                                     }`}
                                 >
                                     {f.label}
@@ -267,21 +267,21 @@ const Orders = () => {
                     /* Skeleton cards */
                     <div className="space-y-4" aria-hidden="true">
                         {[0, 1, 2].map((i) => (
-                            <div key={i} className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi p-5 animate-pulse">
-                                <div className="h-4 w-32 bg-trozzi-sand/60 rounded-md mb-2" />
-                                <div className="h-3 w-48 bg-trozzi-sand/40 rounded-md mb-4" />
+                            <div key={i} className="bg-white rounded-xl border border-glowalchemy-sand shadow-glowalchemy p-5 animate-pulse">
+                                <div className="h-4 w-32 bg-glowalchemy-sand/60 rounded-md mb-2" />
+                                <div className="h-3 w-48 bg-glowalchemy-sand/40 rounded-md mb-4" />
                                 <div className="flex gap-3">
-                                    <div className="h-16 w-16 rounded-lg bg-trozzi-sand/40" />
+                                    <div className="h-16 w-16 rounded-lg bg-glowalchemy-sand/40" />
                                     <div className="flex-1 space-y-2 pt-1">
-                                        <div className="h-3 w-3/4 bg-trozzi-sand/40 rounded-md" />
-                                        <div className="h-3 w-1/2 bg-trozzi-sand/40 rounded-md" />
+                                        <div className="h-3 w-3/4 bg-glowalchemy-sand/40 rounded-md" />
+                                        <div className="h-3 w-1/2 bg-glowalchemy-sand/40 rounded-md" />
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : normalizedOrders.length === 0 ? (
-                    <div className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi">
+                    <div className="bg-white rounded-xl border border-glowalchemy-sand shadow-glowalchemy">
                         <EmptyState
                             icon="package"
                             title={error ? 'Could not load orders' : 'No orders yet'}
@@ -306,19 +306,19 @@ const Orders = () => {
                             return (
                                 <article
                                     key={order.id}
-                                    className="bg-white rounded-xl border border-trozzi-sand shadow-trozzi overflow-hidden"
+                                    className="bg-white rounded-xl border border-glowalchemy-sand shadow-glowalchemy overflow-hidden"
                                 >
                                     {/* Card header */}
-                                    <div className="px-4 sm:px-5 py-3.5 flex items-start justify-between gap-3 border-b border-trozzi-sand">
+                                    <div className="px-4 sm:px-5 py-3.5 flex items-start justify-between gap-3 border-b border-glowalchemy-sand">
                                         <div className="min-w-0">
-                                            <p className="text-[11px] uppercase tracking-wide text-trozzi-warm-gray font-medium">
+                                            <p className="text-[11px] uppercase tracking-wide text-glowalchemy-warm-gray font-medium">
                                                 Order
                                             </p>
-                                            <p className="font-semibold text-trozzi-charcoal text-[15px] truncate mt-0.5">
+                                            <p className="font-semibold text-glowalchemy-charcoal text-[15px] truncate mt-0.5">
                                                 {order.orderNumber || order.id}
                                             </p>
                                             {order.createdAtIso ? (
-                                                <p className="text-xs text-trozzi-warm-gray mt-1">
+                                                <p className="text-xs text-glowalchemy-warm-gray mt-1">
                                                     {formatDate(order.createdAtIso)}
                                                 </p>
                                             ) : null}
@@ -343,7 +343,7 @@ const Orders = () => {
 
                                             return (
                                                 <div key={`${order.id}-${idx}`} className="flex gap-3 items-start">
-                                                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-trozzi-ivory border border-trozzi-sand flex-shrink-0">
+                                                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-glowalchemy-ivory border border-glowalchemy-sand flex-shrink-0">
                                                         <img
                                                             src={img}
                                                             alt={name}
@@ -353,21 +353,21 @@ const Orders = () => {
                                                         />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <p className="text-sm font-medium text-trozzi-charcoal truncate">
+                                                        <p className="text-sm font-medium text-glowalchemy-charcoal truncate">
                                                             {name}
                                                         </p>
-                                                        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-trozzi-warm-gray">
-                                                            {size ? <span>Size: <span className="text-trozzi-charcoal font-medium">{size}</span></span> : null}
+                                                        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-glowalchemy-warm-gray">
+                                                            {size ? <span>Size: <span className="text-glowalchemy-charcoal font-medium">{size}</span></span> : null}
                                                             {color ? (
                                                                 <span className="inline-flex items-center gap-1.5">
-                                                                    <span className="h-2.5 w-2.5 rounded-full border border-trozzi-sand" style={{ backgroundColor: color }} />
+                                                                    <span className="h-2.5 w-2.5 rounded-full border border-glowalchemy-sand" style={{ backgroundColor: color }} />
                                                                     {color}
                                                                 </span>
                                                             ) : null}
-                                                            <span>Qty: <span className="text-trozzi-charcoal font-medium">{qty}</span></span>
+                                                            <span>Qty: <span className="text-glowalchemy-charcoal font-medium">{qty}</span></span>
                                                         </div>
                                                     </div>
-                                                    <div className="text-sm font-semibold text-trozzi-charcoal flex-shrink-0">
+                                                    <div className="text-sm font-semibold text-glowalchemy-charcoal flex-shrink-0">
                                                         {formatCurrency(price * qty)}
                                                     </div>
                                                 </div>
@@ -386,12 +386,12 @@ const Orders = () => {
                                     </div>
 
                                     {/* Card footer */}
-                                    <div className="px-4 sm:px-5 py-3.5 bg-trozzi-ivory/60 border-t border-trozzi-sand flex items-center justify-between gap-3">
+                                    <div className="px-4 sm:px-5 py-3.5 bg-glowalchemy-ivory/60 border-t border-glowalchemy-sand flex items-center justify-between gap-3">
                                         <div className="min-w-0">
-                                            <p className="text-[11px] uppercase tracking-wide text-trozzi-warm-gray font-medium">
+                                            <p className="text-[11px] uppercase tracking-wide text-glowalchemy-warm-gray font-medium">
                                                 Total · {itemCount} item{itemCount === 1 ? '' : 's'}
                                             </p>
-                                            <p className="text-base font-bold text-trozzi-charcoal mt-0.5">
+                                            <p className="text-base font-bold text-glowalchemy-charcoal mt-0.5">
                                                 {formatCurrency(order.total)}
                                             </p>
                                         </div>

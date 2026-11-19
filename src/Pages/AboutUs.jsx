@@ -5,7 +5,7 @@ import { getBrandDisplayName } from '../config/brand';
 
 const AboutUs = () => {
     return (
-        <div className="min-h-screen bg-gray-50 py-8 md:py-12">
+        <div className="min-h-screen bg-white py-8 md:py-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/" className="inline-flex items-center text-action-primary hover:text-action-primary-hover mb-6">
                     <FaArrowLeft className="mr-2" />

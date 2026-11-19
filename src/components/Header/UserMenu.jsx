@@ -21,13 +21,13 @@ const UserMenu = ({ onNavigate }) => {
             <div className="flex items-center space-x-4">
                 <Link
                     to="/login"
-                    className="text-charcoal hover:text-action-primary px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-charcoal hover:text-action-primary px-3 py-2 rounded-md text-sm font-medium border border-green-900"
                 >
                     Sign In
                 </Link>
                 <Link
                     to="/register"
-                    className="bg-action-primary text-white hover:bg-action-primary-hover px-4 py-2 rounded-md text-sm font-medium"
+                    className="bg-action-primary text-white hover:bg-action-primary-hover px-4 py-2 rounded-md text-sm font-medium border border-green-900"
                 >
                     Sign Up
                 </Link>

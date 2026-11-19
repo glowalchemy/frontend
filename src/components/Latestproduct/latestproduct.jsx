@@ -37,16 +37,16 @@ const FeaturedSlider = ({ title, hideAddToCart = false }) => {
   // or an empty state.
   if (loading || error || items.length === 0) {
     return (
-      <section className="py-4 sm:py-8 bg-trozzi-ivory">
+      <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
         <div className="px-3 sm:px-6">
-          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">{title}</h2>
+          <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">{title}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-trozzi-sand/50 overflow-hidden">
-                <div className="aspect-square bg-trozzi-ivory/50 animate-pulse" />
+              <div key={i} className="bg-white rounded-2xl border border-glowalchemy-sand/50 overflow-hidden">
+                <div className="aspect-square bg-glowalchemy-ivory/50 animate-pulse" />
                 <div className="p-3 space-y-2">
-                  <div className="h-3 bg-trozzi-sand/50 rounded animate-pulse" />
-                  <div className="h-4 bg-trozzi-sand/50 rounded w-2/3 animate-pulse" />
+                  <div className="h-3 bg-glowalchemy-sand/50 rounded animate-pulse" />
+                  <div className="h-4 bg-glowalchemy-sand/50 rounded w-2/3 animate-pulse" />
                 </div>
               </div>
             ))}
@@ -57,9 +57,9 @@ const FeaturedSlider = ({ title, hideAddToCart = false }) => {
   }
 
   return (
-    <section className="py-4 sm:py-8 bg-trozzi-ivory">
+    <section className="py-4 sm:py-8 bg-glowalchemy-ivory">
       <div className="px-3 sm:px-6">
-        <h2 className="text-base sm:text-xl md:text-2xl font-bold text-trozzi-charcoal mb-4">{title}</h2>
+        <h2 className="text-base sm:text-xl md:text-2xl font-bold text-glowalchemy-charcoal mb-4">{title}</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4">
           {items.map((item, idx) => {

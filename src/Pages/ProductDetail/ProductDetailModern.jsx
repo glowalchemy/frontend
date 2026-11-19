@@ -38,13 +38,13 @@ const InfoSection = ({ id, title, children, startOpen = true }) => {
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpen((o) => !o)}
-                className="w-full flex items-center justify-between px-5 sm:px-6 py-4 text-left hover:bg-trozzi-ivory/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                className="w-full flex items-center justify-between px-5 sm:px-6 py-4 text-left hover:bg-glowalchemy-ivory/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
             >
-                <span className="text-base sm:text-lg font-semibold text-trozzi-charcoal">{title}</span>
+                <span className="text-base sm:text-lg font-semibold text-glowalchemy-charcoal">{title}</span>
                 {open ? (
-                    <FiChevronUp className="w-4 h-4 text-trozzi-warm-gray" />
+                    <FiChevronUp className="w-4 h-4 text-glowalchemy-warm-gray" />
                 ) : (
-                    <FiChevronDown className="w-4 h-4 text-trozzi-warm-gray" />
+                    <FiChevronDown className="w-4 h-4 text-glowalchemy-warm-gray" />
                 )}
             </button>
             {open && (
@@ -499,7 +499,7 @@ const ProductDetailModern = () => {
     // ---- Render ----
     if (loading) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory pt-6 sm:pt-8 px-4 sm:px-6 lg:px-8 pb-40 lg:pb-10">
+            <div className="min-h-screen bg-glowalchemy-ivory pt-6 sm:pt-8 px-4 sm:px-6 lg:px-8 pb-40 lg:pb-10">
                 <ProductPdpSkeleton />
             </div>
         );
@@ -507,15 +507,15 @@ const ProductDetailModern = () => {
 
     if (error || !product) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory flex items-center justify-center pt-20">
+            <div className="min-h-screen bg-glowalchemy-ivory flex items-center justify-center pt-20">
                 <div className="text-center max-w-md px-4">
-                    <FiPackage className="w-16 h-16 text-trozzi-sand mx-auto mb-4" />
-                    <h2 className="text-2xl font-bold text-trozzi-charcoal mb-2">Product Not Found</h2>
-                    <p className="text-trozzi-warm-gray mb-6">{error || 'We couldn\'t find the product you\'re looking for.'}</p>
+                    <FiPackage className="w-16 h-16 text-glowalchemy-sand mx-auto mb-4" />
+                    <h2 className="text-2xl font-bold text-glowalchemy-charcoal mb-2">Product Not Found</h2>
+                    <p className="text-glowalchemy-warm-gray mb-6">{error || 'We couldn\'t find the product you\'re looking for.'}</p>
                     <button
                         type="button"
                         onClick={() => navigate('/ProductListing')}
-                        className="bg-trozzi-terracotta text-white px-6 py-3 rounded-xl hover:bg-trozzi-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                        className="bg-glowalchemy-terracotta text-white px-6 py-3 rounded-xl hover:bg-glowalchemy-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                     >
                         Browse Products
                     </button>
@@ -536,16 +536,16 @@ const ProductDetailModern = () => {
     const actionDisabled = stockStatus.state === 'out';
 
     return (
-        <div className="min-h-screen bg-trozzi-ivory">
+        <div className="min-h-screen bg-glowalchemy-ivory">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 pb-48 lg:pb-10">
                 {/* Breadcrumb */}
                 <nav aria-label="Breadcrumb" className="mb-5">
-                    <ol className="flex items-center text-sm text-trozzi-warm-gray gap-1.5 flex-wrap">
-                        <li><Link to="/" className="hover:text-trozzi-terracotta transition-colors">Home</Link></li>
+                    <ol className="flex items-center text-sm text-glowalchemy-warm-gray gap-1.5 flex-wrap">
+                        <li><Link to="/" className="hover:text-glowalchemy-terracotta transition-colors">Home</Link></li>
                         <li aria-hidden="true">/</li>
-                        <li><Link to="/ProductListing" className="hover:text-trozzi-terracotta transition-colors">Shop</Link></li>
+                        <li><Link to="/ProductListing" className="hover:text-glowalchemy-terracotta transition-colors">Shop</Link></li>
                         <li aria-hidden="true">/</li>
-                        <li className="text-trozzi-charcoal truncate max-w-[16rem] sm:max-w-xs" title={product.name}>
+                        <li className="text-glowalchemy-charcoal truncate max-w-[16rem] sm:max-w-xs" title={product.name}>
                             {product.name}
                         </li>
                     </ol>
@@ -555,7 +555,7 @@ const ProductDetailModern = () => {
                 <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                         {/* Gallery */}
-                        <div className="p-4 sm:p-6 lg:p-8 bg-trozzi-ivory/50">
+                        <div className="p-4 sm:p-6 lg:p-8 bg-glowalchemy-ivory/50">
                             <ProductGallery
                                 images={galleryItems}
                                 alt={product.name}
@@ -568,13 +568,13 @@ const ProductDetailModern = () => {
                         {/* Purchase column */}
                         <div className="p-5 sm:p-6 lg:p-8 flex flex-col">
                             {sellerName && (
-                                <p className="text-xs text-trozzi-warm-gray uppercase tracking-wide mb-2">
+                                <p className="text-xs text-glowalchemy-warm-gray uppercase tracking-wide mb-2">
                                     Sold by {sellerName}
                                 </p>
                             )}
 
                             {/* Title — clamped so the purchase area stays near the top */}
-                            <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold text-trozzi-charcoal leading-snug mb-3 line-clamp-3">
+                            <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold text-glowalchemy-charcoal leading-snug mb-3 line-clamp-3">
                                 {product.name}
                             </h1>
 
@@ -587,27 +587,27 @@ const ProductDetailModern = () => {
                                                 <FiStar
                                                     key={i}
                                                     aria-hidden="true"
-                                                    className={`w-4 h-4 ${i < Math.floor(averageRating) ? 'text-trozzi-terracotta fill-current' : 'text-trozzi-sand'}`}
+                                                    className={`w-4 h-4 ${i < Math.floor(averageRating) ? 'text-glowalchemy-terracotta fill-current' : 'text-glowalchemy-sand'}`}
                                                 />
                                             ))}
                                         </div>
-                                        <span className="text-sm font-semibold text-trozzi-charcoal">{averageRating.toFixed(1)}</span>
-                                        <span className="text-sm text-trozzi-warm-gray">({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})</span>
+                                        <span className="text-sm font-semibold text-glowalchemy-charcoal">{averageRating.toFixed(1)}</span>
+                                        <span className="text-sm text-glowalchemy-warm-gray">({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})</span>
                                     </>
                                 ) : (
-                                    <span className="text-sm text-trozzi-warm-gray">No ratings yet</span>
+                                    <span className="text-sm text-glowalchemy-warm-gray">No ratings yet</span>
                                 )}
                             </div>
 
                             {/* Price */}
                             <div className="flex items-baseline gap-2.5 mb-3 flex-wrap">
-                                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-trozzi-charcoal">
+                                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-glowalchemy-charcoal">
                                     {formatPrice(pricing.displaySelling)}
                                 </span>
                                 {Number(pricing.displayMrp ?? 0) > Number(pricing.displaySelling ?? 0) && (
                                     <>
-                                        <span className="text-lg text-trozzi-warm-gray line-through">{formatPrice(pricing.displayMrp)}</span>
-                                        <span className="text-sm font-semibold text-trozzi-terracotta">
+                                        <span className="text-lg text-glowalchemy-warm-gray line-through">{formatPrice(pricing.displayMrp)}</span>
+                                        <span className="text-sm font-semibold text-glowalchemy-terracotta">
                                             {Math.round(((pricing.displayMrp - pricing.displaySelling) / pricing.displayMrp) * 100)}% off
                                         </span>
                                     </>
@@ -622,7 +622,7 @@ const ProductDetailModern = () => {
                                     </span>
                                 )}
                                 {stockStatus.state === 'low' && (
-                                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-trozzi-terracotta">
+                                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-glowalchemy-terracotta">
                                         <FiAlertTriangle className="w-4 h-4" /> {stockStatus.label}
                                     </span>
                                 )}
@@ -636,7 +636,7 @@ const ProductDetailModern = () => {
                             {/* Size — chips only when there are real choices */}
                             {sizeOptions.length > 1 && (
                                 <div className="mb-5">
-                                    <label className="block text-sm font-medium text-trozzi-charcoal mb-2">Size</label>
+                                    <label className="block text-sm font-medium text-glowalchemy-charcoal mb-2">Size</label>
                                     <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Select size">
                                         {sizeOptions.map((size) => (
                                             <button
@@ -646,10 +646,10 @@ const ProductDetailModern = () => {
                                                 aria-checked={selectedSize === size}
                                                 onClick={() => setSelectedSize(size)}
                                                 disabled={actionDisabled}
-                                                className={`px-5 py-2.5 rounded-xl border-2 font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50 ${
+                                                className={`px-5 py-2.5 rounded-xl border-2 font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50 ${
                                                     selectedSize === size
-                                                        ? 'border-trozzi-charcoal bg-trozzi-charcoal text-white'
-                                                        : 'border-trozzi-sand text-trozzi-charcoal hover:border-trozzi-warm-gray hover:bg-trozzi-ivory'
+                                                        ? 'border-glowalchemy-charcoal bg-glowalchemy-charcoal text-white'
+                                                        : 'border-glowalchemy-sand text-glowalchemy-charcoal hover:border-glowalchemy-warm-gray hover:bg-glowalchemy-ivory'
                                                 } disabled:opacity-50 disabled:cursor-not-allowed`}
                                             >
                                                 {size}
@@ -659,15 +659,15 @@ const ProductDetailModern = () => {
                                 </div>
                             )}
                             {sizeOptions.length === 1 && (
-                                <p className="text-sm text-trozzi-warm-gray mb-5">
-                                    <span className="font-medium text-trozzi-charcoal">Size:</span> {sizeOptions[0]}
+                                <p className="text-sm text-glowalchemy-warm-gray mb-5">
+                                    <span className="font-medium text-glowalchemy-charcoal">Size:</span> {sizeOptions[0]}
                                 </p>
                             )}
 
                             {/* Color variants */}
                             {variants.length > 0 && (
                                 <div className="mb-5">
-                                    <label className="block text-sm font-medium text-trozzi-charcoal mb-2">Color</label>
+                                    <label className="block text-sm font-medium text-glowalchemy-charcoal mb-2">Color</label>
                                     <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Select color">
                                         {variants.map((v, idx) => (
                                             <button
@@ -677,10 +677,10 @@ const ProductDetailModern = () => {
                                                 aria-checked={selectedColor === v.colorName}
                                                 onClick={() => { setHasUserSelectedColor(true); setSelectedColor(v?.colorName || v?.color || ''); }}
                                                 disabled={actionDisabled}
-                                                className={`px-5 py-2.5 rounded-xl border-2 font-medium capitalize transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50 ${
+                                                className={`px-5 py-2.5 rounded-xl border-2 font-medium capitalize transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50 ${
                                                     selectedColor === v.colorName
-                                                        ? 'border-trozzi-charcoal bg-trozzi-charcoal text-white'
-                                                        : 'border-trozzi-sand text-trozzi-charcoal hover:border-trozzi-warm-gray hover:bg-trozzi-ivory'
+                                                        ? 'border-glowalchemy-charcoal bg-glowalchemy-charcoal text-white'
+                                                        : 'border-glowalchemy-sand text-glowalchemy-charcoal hover:border-glowalchemy-warm-gray hover:bg-glowalchemy-ivory'
                                                 } disabled:opacity-50 disabled:cursor-not-allowed`}
                                             >
                                                 {v.colorName}
@@ -692,20 +692,20 @@ const ProductDetailModern = () => {
 
                             {/* Quantity */}
                             <div className="mb-6">
-                                <label className="block text-sm font-medium text-trozzi-charcoal mb-2" htmlFor="pdp-quantity">Quantity</label>
+                                <label className="block text-sm font-medium text-glowalchemy-charcoal mb-2" htmlFor="pdp-quantity">Quantity</label>
                                 <div className="flex items-center gap-4">
                                     <button
                                         type="button"
                                         aria-label="Decrease quantity"
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                         disabled={quantity <= 1 || actionDisabled}
-                                        className="w-12 h-12 rounded-xl border-2 border-trozzi-sand flex items-center justify-center text-trozzi-charcoal hover:border-trozzi-charcoal hover:bg-trozzi-ivory transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                        className="w-12 h-12 rounded-xl border-2 border-glowalchemy-sand flex items-center justify-center text-glowalchemy-charcoal hover:border-glowalchemy-charcoal hover:bg-glowalchemy-ivory transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                     >
                                         <FiMinus className="w-5 h-5" aria-hidden="true" />
                                     </button>
                                     <span
                                         id="pdp-quantity"
-                                        className="text-xl font-semibold text-trozzi-charcoal w-16 text-center"
+                                        className="text-xl font-semibold text-glowalchemy-charcoal w-16 text-center"
                                         aria-live="polite"
                                     >
                                         {quantity}
@@ -715,7 +715,7 @@ const ProductDetailModern = () => {
                                         aria-label="Increase quantity"
                                         onClick={() => setQuantity(Math.min((stockStatus.stock || 99), quantity + 1))}
                                         disabled={actionDisabled || quantity >= (stockStatus.stock || 99)}
-                                        className="w-12 h-12 rounded-xl border-2 border-trozzi-sand flex items-center justify-center text-trozzi-charcoal hover:border-trozzi-charcoal hover:bg-trozzi-ivory transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                        className="w-12 h-12 rounded-xl border-2 border-glowalchemy-sand flex items-center justify-center text-glowalchemy-charcoal hover:border-glowalchemy-charcoal hover:bg-glowalchemy-ivory transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                     >
                                         <FiPlus className="w-5 h-5" aria-hidden="true" />
                                     </button>
@@ -729,10 +729,10 @@ const ProductDetailModern = () => {
                                     onClick={handleAddToCart}
                                     disabled={actionDisabled || isAddingToCart}
                                     aria-label={actionDisabled ? 'Add to Cart — out of stock' : 'Add to Cart'}
-                                    className="flex-1 h-14 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-trozzi-terracotta text-trozzi-terracotta font-semibold transition-colors hover:bg-trozzi-terracotta/5 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                    className="flex-1 h-14 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-glowalchemy-terracotta text-glowalchemy-terracotta font-semibold transition-colors hover:bg-glowalchemy-terracotta/5 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                 >
                                     {justAdded ? (<><FiCheck className="w-5 h-5" /> Added!</>) : isAddingToCart ? (
-                                        <><span className="w-5 h-5 border-2 border-trozzi-terracotta border-t-transparent rounded-full animate-spin" /> Adding…</>
+                                        <><span className="w-5 h-5 border-2 border-glowalchemy-terracotta border-t-transparent rounded-full animate-spin" /> Adding…</>
                                     ) : (<><FiShoppingCart className="w-5 h-5" /> Add to Cart</>)}
                                 </button>
 
@@ -741,7 +741,7 @@ const ProductDetailModern = () => {
                                     onClick={handleBuyNow}
                                     disabled={actionDisabled || isBuying}
                                     aria-label={actionDisabled ? 'Buy Now — out of stock' : 'Buy Now'}
-                                    className="flex-1 h-14 inline-flex items-center justify-center gap-2 rounded-xl bg-trozzi-terracotta text-white font-semibold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                    className="flex-1 h-14 inline-flex items-center justify-center gap-2 rounded-xl bg-glowalchemy-terracotta text-white font-semibold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                 >
                                     {isBuying ? (
                                         <><span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> Processing…</>
@@ -756,16 +756,16 @@ const ProductDetailModern = () => {
                                     onClick={handleWishlistToggle}
                                     aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
                                     aria-pressed={isWishlisted}
-                                    className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-trozzi-sand text-trozzi-charcoal font-medium hover:border-trozzi-terracotta hover:text-trozzi-terracotta transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                    className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-glowalchemy-sand text-glowalchemy-charcoal font-medium hover:border-glowalchemy-terracotta hover:text-glowalchemy-terracotta transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                 >
-                                    <FiHeart className={`w-5 h-5 ${isWishlisted ? 'fill-current text-trozzi-terracotta' : ''}`} />
+                                    <FiHeart className={`w-5 h-5 ${isWishlisted ? 'fill-current text-glowalchemy-terracotta' : ''}`} />
                                     {isWishlisted ? 'Wishlisted' : 'Wishlist'}
                                 </button>
                                 <button
                                     type="button"
                                     onClick={handleShare}
                                     aria-label="Share product"
-                                    className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-trozzi-sand text-trozzi-charcoal font-medium hover:border-trozzi-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                    className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-glowalchemy-sand text-glowalchemy-charcoal font-medium hover:border-glowalchemy-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                 >
                                     <FiShare2 className="w-5 h-5" /> Share
                                 </button>
@@ -775,8 +775,8 @@ const ProductDetailModern = () => {
                             {trustItems.length > 0 && (
                                 <ul className="grid gap-3 mt-auto pt-2">
                                     {trustItems.map((item, idx) => (
-                                        <li key={idx} className="flex items-center gap-2.5 text-sm text-trozzi-charcoal">
-                                            <item.icon className="w-4 h-4 text-trozzi-terracotta shrink-0" aria-hidden="true" />
+                                        <li key={idx} className="flex items-center gap-2.5 text-sm text-glowalchemy-charcoal">
+                                            <item.icon className="w-4 h-4 text-glowalchemy-terracotta shrink-0" aria-hidden="true" />
                                             <span>{item.label}</span>
                                         </li>
                                     ))}
@@ -797,24 +797,24 @@ const ProductDetailModern = () => {
                     {renderedDescription && (
                         <InfoSection id="pdp-details" title="Product Details">
                             <div
-                                className="text-sm leading-relaxed text-trozzi-charcoal space-y-2"
+                                className="text-sm leading-relaxed text-glowalchemy-charcoal space-y-2"
                                 dangerouslySetInnerHTML={{ __html: product.descriptionHtml ? sanitizeHtml(product.descriptionHtml) : '' }}
                             />
-                            {!product.descriptionHtml && <p className="text-sm leading-relaxed text-trozzi-charcoal">{product.description}</p>}
+                            {!product.descriptionHtml && <p className="text-sm leading-relaxed text-glowalchemy-charcoal">{product.description}</p>}
                         </InfoSection>
                     )}
 
                     <InfoSection id="pdp-delivery" title="Delivery & Returns">
-                        <ul className="space-y-2.5 text-sm text-trozzi-charcoal">
+                        <ul className="space-y-2.5 text-sm text-glowalchemy-charcoal">
                             {trustItems.map((item, idx) => (
                                 <li key={idx} className="flex items-center gap-2.5">
-                                    <item.icon className="w-4 h-4 text-trozzi-terracotta shrink-0" aria-hidden="true" />
+                                    <item.icon className="w-4 h-4 text-glowalchemy-terracotta shrink-0" aria-hidden="true" />
                                     <span>{item.label}</span>
                                 </li>
                             ))}
                             {sellerName && (
                                 <li className="flex items-center gap-2.5">
-                                    <FiPackage className="w-4 h-4 text-trozzi-terracotta shrink-0" aria-hidden="true" />
+                                    <FiPackage className="w-4 h-4 text-glowalchemy-terracotta shrink-0" aria-hidden="true" />
                                     <span>Sold by {sellerName}</span>
                                 </li>
                             )}
@@ -825,40 +825,40 @@ const ProductDetailModern = () => {
                 {/* Reviews */}
                 <section className="bg-white rounded-2xl shadow-sm p-6 lg:p-8" aria-label="Customer Reviews">
                     <div className="flex items-center justify-between mb-5">
-                        <h2 className="text-xl font-bold text-trozzi-charcoal">Customer Reviews</h2>
+                        <h2 className="text-xl font-bold text-glowalchemy-charcoal">Customer Reviews</h2>
                         <button
                             type="button"
                             onClick={() => setShowReviewForm(true)}
-                            className="bg-trozzi-charcoal text-white px-5 py-2.5 rounded-xl hover:bg-trozzi-terracotta transition-colors font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-charcoal/50"
+                            className="bg-glowalchemy-charcoal text-white px-5 py-2.5 rounded-xl hover:bg-glowalchemy-terracotta transition-colors font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-charcoal/50"
                         >
                             Write a Review
                         </button>
                     </div>
 
                     {/* Rating summary */}
-                    <div className="flex items-center gap-4 mb-6 p-4 bg-trozzi-ivory rounded-xl">
+                    <div className="flex items-center gap-4 mb-6 p-4 bg-glowalchemy-ivory rounded-xl">
                         {hasRatings ? (
                             <>
-                                <span className="text-4xl font-extrabold text-trozzi-charcoal">{averageRating.toFixed(1)}</span>
+                                <span className="text-4xl font-extrabold text-glowalchemy-charcoal">{averageRating.toFixed(1)}</span>
                                 <div>
                                     <div className="flex items-center gap-0.5" aria-label={`Rated ${averageRating} out of 5`}>
                                         {[...Array(5)].map((_, i) => (
-                                            <FiStar key={i} aria-hidden="true" className={`w-5 h-5 ${i < Math.floor(averageRating) ? 'text-trozzi-terracotta fill-current' : 'text-trozzi-sand'}`} />
+                                            <FiStar key={i} aria-hidden="true" className={`w-5 h-5 ${i < Math.floor(averageRating) ? 'text-glowalchemy-terracotta fill-current' : 'text-glowalchemy-sand'}`} />
                                         ))}
                                     </div>
-                                    <p className="text-sm text-trozzi-warm-gray mt-1">
+                                    <p className="text-sm text-glowalchemy-warm-gray mt-1">
                                         Based on {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
                                     </p>
                                 </div>
                             </>
                         ) : (
-                            <p className="text-sm text-trozzi-warm-gray">No ratings yet. Be the first to review this product!</p>
+                            <p className="text-sm text-glowalchemy-warm-gray">No ratings yet. Be the first to review this product!</p>
                         )}
                     </div>
 
                     {showReviewForm && (
-                        <div className="bg-trozzi-ivory p-6 rounded-xl mb-8">
-                            <h3 className="font-semibold text-trozzi-charcoal mb-4">Write a Review</h3>
+                        <div className="bg-glowalchemy-ivory p-6 rounded-xl mb-8">
+                            <h3 className="font-semibold text-glowalchemy-charcoal mb-4">Write a Review</h3>
                             {reviewSuccess && (
                                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4" role="status">
                                     <strong>Success!</strong> Your review has been submitted successfully.
@@ -876,7 +876,7 @@ const ProductDetailModern = () => {
                                         placeholder="Your Name"
                                         value={reviewForm.customerName}
                                         onChange={(e) => setReviewForm((prev) => ({ ...prev, customerName: e.target.value }))}
-                                        className="w-full px-4 py-3 rounded-xl border border-trozzi-sand bg-white text-trozzi-charcoal placeholder-trozzi-warm-gray focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                        className="w-full px-4 py-3 rounded-xl border border-glowalchemy-sand bg-white text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                         required
                                     />
                                     <input
@@ -884,7 +884,7 @@ const ProductDetailModern = () => {
                                         placeholder="Your Email"
                                         value={reviewForm.customerEmail}
                                         onChange={(e) => setReviewForm((prev) => ({ ...prev, customerEmail: e.target.value }))}
-                                        className="w-full px-4 py-3 rounded-xl border border-trozzi-sand bg-white text-trozzi-charcoal placeholder-trozzi-warm-gray focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                        className="w-full px-4 py-3 rounded-xl border border-glowalchemy-sand bg-white text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                         required
                                     />
                                 </div>
@@ -893,7 +893,7 @@ const ProductDetailModern = () => {
                                     placeholder="Review Title"
                                     value={reviewForm.title}
                                     onChange={(e) => setReviewForm((prev) => ({ ...prev, title: e.target.value }))}
-                                    className="w-full px-4 py-3 rounded-xl border border-trozzi-sand bg-white text-trozzi-charcoal placeholder-trozzi-warm-gray focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta mb-4"
+                                    className="w-full px-4 py-3 rounded-xl border border-glowalchemy-sand bg-white text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta mb-4"
                                     required
                                 />
                                 <textarea
@@ -901,21 +901,21 @@ const ProductDetailModern = () => {
                                     value={reviewForm.comment}
                                     onChange={(e) => setReviewForm((prev) => ({ ...prev, comment: e.target.value }))}
                                     rows={4}
-                                    className="w-full px-4 py-3 rounded-xl border border-trozzi-sand bg-white text-trozzi-charcoal placeholder-trozzi-warm-gray focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta mb-4 resize-none"
+                                    className="w-full px-4 py-3 rounded-xl border border-glowalchemy-sand bg-white text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta mb-4 resize-none"
                                     required
                                 />
                                 <div className="flex gap-4">
                                     <button
                                         type="submit"
                                         disabled={isSubmittingReview}
-                                        className="bg-trozzi-terracotta text-white px-6 py-3 rounded-xl hover:bg-trozzi-charcoal disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                        className="bg-glowalchemy-terracotta text-white px-6 py-3 rounded-xl hover:bg-glowalchemy-charcoal disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                     >
                                         {isSubmittingReview ? 'Submitting...' : 'Submit Review'}
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setShowReviewForm(false)}
-                                        className="px-6 py-3 rounded-xl border border-trozzi-sand text-trozzi-charcoal hover:bg-trozzi-ivory transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-sand"
+                                        className="px-6 py-3 rounded-xl border border-glowalchemy-sand text-glowalchemy-charcoal hover:bg-glowalchemy-ivory transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-sand"
                                     >
                                         Cancel
                                     </button>
@@ -927,25 +927,25 @@ const ProductDetailModern = () => {
                     {reviewsLoading ? (
                         <div className="space-y-4" aria-busy="true" aria-label="Loading reviews">
                             {[0, 1, 2].map((i) => (
-                                <div key={i} className="animate-pulse bg-trozzi-sand/40 rounded-lg h-16" aria-hidden="true" />
+                                <div key={i} className="animate-pulse bg-glowalchemy-sand/40 rounded-lg h-16" aria-hidden="true" />
                             ))}
                         </div>
                     ) : reviews.length === 0 ? (
-                        <p className="text-center py-6 text-trozzi-warm-gray">No reviews yet. Be the first to review this product!</p>
+                        <p className="text-center py-6 text-glowalchemy-warm-gray">No reviews yet. Be the first to review this product!</p>
                     ) : (
                         <div className="space-y-6">
                             {reviews.map((review, index) => (
-                                <article key={index} className="border-b border-trozzi-sand pb-6 last:border-0 last:pb-0">
+                                <article key={index} className="border-b border-glowalchemy-sand pb-6 last:border-0 last:pb-0">
                                     <div className="flex items-center gap-3 mb-2">
                                         <div className="flex items-center gap-0.5">
                                             {[...Array(5)].map((_, i) => (
-                                                <FiStar key={i} aria-hidden="true" className={`w-4 h-4 ${i < review.rating ? 'text-trozzi-terracotta fill-current' : 'text-trozzi-sand'}`} />
+                                                <FiStar key={i} aria-hidden="true" className={`w-4 h-4 ${i < review.rating ? 'text-glowalchemy-terracotta fill-current' : 'text-glowalchemy-sand'}`} />
                                             ))}
                                         </div>
-                                        <span className="font-semibold text-trozzi-charcoal">{review.title}</span>
+                                        <span className="font-semibold text-glowalchemy-charcoal">{review.title}</span>
                                     </div>
-                                    <p className="text-trozzi-warm-gray mb-2">{review.comment}</p>
-                                    <p className="text-sm text-trozzi-warm-gray">By {review.customerName}</p>
+                                    <p className="text-glowalchemy-warm-gray mb-2">{review.comment}</p>
+                                    <p className="text-sm text-glowalchemy-warm-gray">By {review.customerName}</p>
                                 </article>
                             ))}
                         </div>

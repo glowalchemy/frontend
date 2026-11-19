@@ -18,7 +18,7 @@ const PurchaseBar = ({
   const out = stockStatus?.state === 'out';
 
   return (
-    <div className="fixed inset-x-0 lg:hidden z-50 bg-white border-t border-trozzi-sand px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(0,0,0,0.06)]"
+    <div className="fixed inset-x-0 lg:hidden z-50 bg-white border-t border-glowalchemy-sand px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(0,0,0,0.06)]"
       style={{ bottom: 0 }}
     >
       <div className="flex gap-3 max-w-3xl mx-auto">
@@ -28,7 +28,7 @@ const PurchaseBar = ({
           disabled={out || addToCartLoading}
           aria-label={out ? 'Add to Cart — out of stock' : 'Add to Cart'}
           aria-live="polite"
-          className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-trozzi-terracotta text-trozzi-terracotta font-semibold text-sm transition-colors active:bg-trozzi-terracotta/10 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+          className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl border-2 border-glowalchemy-terracotta text-glowalchemy-terracotta font-semibold text-sm transition-colors active:bg-glowalchemy-terracotta/10 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
         >
           {justAdded ? (
             <>
@@ -36,7 +36,7 @@ const PurchaseBar = ({
             </>
           ) : addToCartLoading ? (
             <>
-              <span className="w-4 h-4 border-2 border-trozzi-terracotta border-t-transparent rounded-full animate-spin" /> Adding…
+              <span className="w-4 h-4 border-2 border-glowalchemy-terracotta border-t-transparent rounded-full animate-spin" /> Adding…
             </>
           ) : (
             <>
@@ -51,7 +51,7 @@ const PurchaseBar = ({
           disabled={out || buying}
           aria-label={out ? 'Buy Now — out of stock' : 'Buy Now'}
           aria-live="polite"
-          className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl bg-trozzi-terracotta text-white font-semibold text-sm shadow-sm transition-opacity active:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+          className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl bg-glowalchemy-terracotta text-white font-semibold text-sm shadow-sm transition-opacity active:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
         >
           {buying ? (
             <>

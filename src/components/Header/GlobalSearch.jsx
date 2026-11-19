@@ -196,13 +196,13 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                             type="button"
                             onClick={onBack}
                             aria-label="Close search"
-                            className="flex items-center justify-center w-11 h-11 shrink-0 mr-1 rounded-xl text-trozzi-charcoal hover:bg-trozzi-ivory transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                            className="flex items-center justify-center w-11 h-11 shrink-0 mr-1 rounded-xl text-glowalchemy-charcoal hover:bg-glowalchemy-ivory transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                         >
                             <FiArrowLeft className="text-xl" />
                         </button>
                     )}
-                    <div className={`flex items-center bg-trozzi-white rounded-xl border transition-all duration-200 flex-1 min-w-0 ${isSearchOpen ? 'shadow-sm ring-2 ring-trozzi-terracotta/20 border-trozzi-terracotta/50' : 'border-trozzi-sand hover:border-trozzi-charcoal/30'}`}>
-                        <div className="pl-3 pr-1 sm:pr-2 text-trozzi-warm-gray shrink-0">
+                    <div className={`flex items-center bg-glowalchemy-white rounded-xl border transition-all duration-200 flex-1 min-w-0 ${isSearchOpen ? 'shadow-sm ring-2 ring-glowalchemy-terracotta/20 border-glowalchemy-terracotta/50' : 'border-glowalchemy-sand hover:border-glowalchemy-charcoal/30'}`}>
+                        <div className="pl-2 pr-1 sm:pr-2 text-glowalchemy-warm-gray shrink-0">
                             <FiSearch className="text-[16px]" />
                         </div>
                         <input
@@ -218,14 +218,14 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                             aria-expanded={isSearchOpen}
                             aria-controls="global-search-suggestions"
                             autoComplete="off"
-                            className="flex-1 min-w-0 pr-2 py-2.5 sm:py-3 bg-transparent outline-none text-[13px] sm:text-[14px] text-trozzi-charcoal placeholder-trozzi-warm-gray"
+                            className="flex-1 min-w-0 pr-2 py-2.5 sm:py-3 pl-1 bg-transparent outline-none text-[13px] sm:text-[14px] text-glowalchemy-charcoal placeholder-glowalchemy-warm-gray"
                         />
                         {searchQuery ? (
                             <button
                                 type="button"
                                 onClick={handleClear}
                                 aria-label="Clear search"
-                                className="p-2.5 shrink-0 text-trozzi-warm-gray hover:text-trozzi-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50 rounded-xl"
+                                className="p-2.5 shrink-0 text-glowalchemy-warm-gray hover:text-glowalchemy-charcoal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50 rounded-xl"
                             >
                                 <FiX className="text-lg" />
                             </button>
@@ -237,23 +237,23 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                 {isSearchOpen && (
                     <div
                         id="global-search-suggestions"
-                        className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg border border-trozzi-sand max-h-96 overflow-y-auto z-50 animate-in slide-in-from-top-1 duration-200"
+                        className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg border border-glowalchemy-sand max-h-96 overflow-y-auto z-[9999] animate-in slide-in-from-top-1 duration-200"
                     >
                         {/* Loading State */}
                         {isLoading && (
                             <div className="p-4 space-y-3" role="status" aria-live="polite">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-lg bg-trozzi-sand/60 animate-pulse" />
+                                    <div className="w-12 h-12 rounded-lg bg-glowalchemy-sand/60 animate-pulse" />
                                     <div className="flex-1 space-y-2">
-                                        <div className="h-3.5 bg-trozzi-sand/60 rounded w-3/4 animate-pulse" />
-                                        <div className="h-3 bg-trozzi-sand/50 rounded w-1/2 animate-pulse" />
+                                        <div className="h-3.5 bg-glowalchemy-sand/60 rounded w-3/4 animate-pulse" />
+                                        <div className="h-3 bg-glowalchemy-sand/50 rounded w-1/2 animate-pulse" />
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-lg bg-trozzi-sand/60 animate-pulse" />
+                                    <div className="w-12 h-12 rounded-lg bg-glowalchemy-sand/60 animate-pulse" />
                                     <div className="flex-1 space-y-2">
-                                        <div className="h-3.5 bg-trozzi-sand/60 rounded w-2/3 animate-pulse" />
-                                        <div className="h-3 bg-trozzi-sand/50 rounded w-1/3 animate-pulse" />
+                                        <div className="h-3.5 bg-glowalchemy-sand/60 rounded w-2/3 animate-pulse" />
+                                        <div className="h-3 bg-glowalchemy-sand/50 rounded w-1/3 animate-pulse" />
                                     </div>
                                 </div>
                             </div>
@@ -262,13 +262,13 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                         {/* Error State */}
                         {!isLoading && searchError && (
                             <div className="p-5 text-center">
-                                <FiAlertCircle className="text-2xl text-trozzi-terracotta mx-auto mb-2" />
-                                <p className="text-sm font-medium text-trozzi-charcoal">Something went wrong while searching</p>
-                                <p className="text-xs text-trozzi-warm-gray mt-1">Check your connection and try again.</p>
+                                <FiAlertCircle className="text-2xl text-glowalchemy-terracotta mx-auto mb-2" />
+                                <p className="text-sm font-medium text-glowalchemy-charcoal">Something went wrong while searching</p>
+                                <p className="text-xs text-glowalchemy-warm-gray mt-1">Check your connection and try again.</p>
                                 <button
                                     type="button"
                                     onClick={() => searchProducts(String(searchQuery || '').trim())}
-                                    className="mt-3 px-4 py-2 text-xs font-semibold rounded-lg border border-trozzi-terracotta text-trozzi-terracotta hover:bg-trozzi-terracotta/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50"
+                                    className="mt-3 px-4 py-2 text-xs font-semibold rounded-lg border border-glowalchemy-terracotta text-glowalchemy-terracotta hover:bg-glowalchemy-terracotta/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50"
                                 >
                                     Try again
                                 </button>
@@ -278,8 +278,8 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                         {/* Product Results */}
                         {!isLoading && !searchError && searchResults.length > 0 && (
                             <div>
-                                <div className="px-4 py-3 border-b border-trozzi-sand bg-trozzi-ivory">
-                                    <p className="text-xs font-semibold text-trozzi-charcoal uppercase tracking-wider">Products</p>
+                                <div className="px-4 py-3 border-b border-glowalchemy-sand bg-glowalchemy-ivory">
+                                    <p className="text-xs font-semibold text-glowalchemy-charcoal uppercase tracking-wider">Products</p>
                                 </div>
                                 <ul role="listbox" aria-label="Search results">
                                     {searchResults.map((product, index) => (
@@ -289,7 +289,7 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                                             aria-selected={activeIndex === index}
                                             onClick={() => handleProductClick(product)}
                                             onMouseEnter={() => setActiveIndex(index)}
-                                            className={`flex items-center p-4 cursor-pointer transition-colors duration-150 border-b border-trozzi-sand last:border-b-0 ${activeIndex === index ? 'bg-trozzi-ivory' : 'hover:bg-trozzi-ivory'}`}
+                                            className={`flex items-center p-4 cursor-pointer transition-colors duration-150 border-b border-glowalchemy-sand last:border-b-0 ${activeIndex === index ? 'bg-glowalchemy-ivory' : 'hover:bg-glowalchemy-ivory'}`}
                                         >
                                             <OptimizedImage
                                                 src={product.image}
@@ -298,25 +298,25 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                                                 height={product.imageMedia?.height || undefined}
                                                 alt={product.name}
                                                 className="w-full h-full object-cover rounded-lg"
-                                                wrapperClassName="w-12 h-12 rounded-lg mr-3 border border-trozzi-sand shrink-0"
+                                                wrapperClassName="w-12 h-12 rounded-lg mr-3 border border-glowalchemy-sand shrink-0"
                                                 fallbackType="thumbnail"
                                                 sizes="48px"
                                             />
                                             <div className="flex-1 min-w-0">
-                                                <h4 className="text-sm font-semibold text-trozzi-charcoal truncate">
+                                                <h4 className="text-sm font-semibold text-glowalchemy-charcoal truncate">
                                                     {product.name}
                                                 </h4>
-                                                <p className="text-sm font-bold text-trozzi-terracotta mt-1">
+                                                <p className="text-sm font-bold text-glowalchemy-terracotta mt-1">
                                                     {formatInr(product.price)}
                                                 </p>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
-                                <div className="p-3 border-t border-trozzi-sand bg-trozzi-ivory">
+                                <div className="p-3 border-t border-glowalchemy-sand bg-glowalchemy-ivory">
                                     <button
                                         onClick={() => handleSearch({ preventDefault: () => { } })}
-                                        className="w-full text-center text-sm text-trozzi-terracotta hover:text-trozzi-charcoal font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-trozzi-terracotta/50 rounded-lg py-1"
+                                        className="w-full text-center text-sm text-glowalchemy-terracotta hover:text-glowalchemy-charcoal font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-terracotta/50 rounded-lg py-1"
                                     >
                                         View all results for "{searchQuery}"
                                     </button>
@@ -327,8 +327,8 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                         {/* Recent Searches */}
                         {!isLoading && !searchError && searchResults.length === 0 && !String(searchQuery || '').trim() && recentSearches.length > 0 && (
                             <div>
-                                <div className="px-4 py-3 border-b border-trozzi-sand bg-trozzi-ivory">
-                                    <p className="text-xs font-semibold text-trozzi-charcoal uppercase tracking-wider">Recent Searches</p>
+                                <div className="px-4 py-3 border-b border-glowalchemy-sand bg-glowalchemy-ivory">
+                                    <p className="text-xs font-semibold text-glowalchemy-charcoal uppercase tracking-wider">Recent Searches</p>
                                 </div>
                                 <ul role="listbox" aria-label="Recent searches">
                                     {recentSearches.map((query, index) => (
@@ -338,10 +338,10 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
                                             aria-selected={activeIndex === index}
                                             onClick={() => handleRecentSearchClick(query)}
                                             onMouseEnter={() => setActiveIndex(index)}
-                                            className={`flex items-center p-3.5 cursor-pointer transition-colors duration-150 border-b border-trozzi-sand last:border-b-0 ${activeIndex === index ? 'bg-trozzi-ivory' : 'hover:bg-trozzi-ivory'}`}
+                                            className={`flex items-center p-3.5 cursor-pointer transition-colors duration-150 border-b border-glowalchemy-sand last:border-b-0 ${activeIndex === index ? 'bg-glowalchemy-ivory' : 'hover:bg-glowalchemy-ivory'}`}
                                         >
-                                            <FiSearch className="text-trozzi-warm-gray mr-3 shrink-0" />
-                                            <span className="text-sm text-trozzi-charcoal truncate">{query}</span>
+                                            <FiSearch className="text-glowalchemy-warm-gray mr-3 shrink-0" />
+                                            <span className="text-sm text-glowalchemy-charcoal truncate">{query}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -350,24 +350,24 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
 
                         {/* No Results */}
                         {!isLoading && !searchError && String(searchQuery || '').trim().length >= MIN_SUGGEST_CHARS && searchResults.length === 0 && (
-                            <div className="p-4 text-center text-trozzi-warm-gray">
-                                <FiSearch className="text-2xl text-trozzi-sand mx-auto mb-2" />
+                            <div className="p-4 text-center text-glowalchemy-warm-gray">
+                                <FiSearch className="text-2xl text-glowalchemy-sand mx-auto mb-2" />
                                 <p className="text-sm font-medium">No products found for "{searchQuery}"</p>
-                                <p className="text-xs text-trozzi-warm-gray mt-1">Try different keywords</p>
+                                <p className="text-xs text-glowalchemy-warm-gray mt-1">Try different keywords</p>
                             </div>
                         )}
 
                         {/* Popular Searches */}
                         {!isLoading && !searchError && searchResults.length === 0 && !String(searchQuery || '').trim() && recentSearches.length === 0 && (
                             <div className="p-4">
-                                <p className="text-xs font-semibold text-trozzi-charcoal uppercase tracking-wider mb-3">Popular Searches</p>
+                                <p className="text-xs font-semibold text-glowalchemy-charcoal uppercase tracking-wider mb-3">Popular Searches</p>
                                 <div className="flex flex-wrap gap-2">
                                     {POPULAR_TERMS.map((term, index) => (
                                         <button
                                             key={term}
                                             type="button"
                                             onClick={() => handleRecentSearchClick(term)}
-                                            className={`px-3 py-2 text-xs bg-trozzi-ivory text-trozzi-charcoal rounded-full hover:bg-trozzi-sand transition-colors duration-150 border border-trozzi-sand ${activeIndex === index ? 'bg-trozzi-sand' : ''}`}
+                                            className={`px-3 py-2 text-xs bg-glowalchemy-ivory text-glowalchemy-charcoal rounded-full hover:bg-glowalchemy-sand transition-colors duration-150 border border-glowalchemy-sand ${activeIndex === index ? 'bg-glowalchemy-sand' : ''}`}
                                         >
                                             {term}
                                         </button>

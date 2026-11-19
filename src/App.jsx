@@ -43,6 +43,13 @@ const Orders = lazy(() => import('./Pages/Orders'));
 const AdminDashboard = lazy(() => import('./Pages/AdminDashboard'));
 const AdminReviews = lazy(() => import('./Pages/AdminReviews'));
 const AdminSettings = lazy(() => import('./Pages/AdminSettings'));
+const Services = lazy(() => import('./Pages/Services'));
+const PrivateLabeling = lazy(() => import('./Pages/Services/PrivateLabeling'));
+const ThirdPartyManufacturing = lazy(() => import('./Pages/Services/ThirdPartyManufacturing'));
+const ContractManufacturing = lazy(() => import('./Pages/Services/ContractManufacturing'));
+const Blog = lazy(() => import('./Pages/Blog'));
+const CompanyProfile = lazy(() => import('./Pages/CompanyProfile'));
+const ManufacturingCapabilities = lazy(() => import('./Pages/ManufacturingCapabilities'));
 
 // Create MyContext for backward compatibility
 export const MyContext = createContext();
@@ -152,7 +159,7 @@ const ScrollToTopButton = ({ show, mainScrollRef }) => {
             <button
                 type="button"
                 onClick={handleScrollTop}
-                className={`fixed md:hidden right-4 z-toast h-12 w-12 rounded-full bg-trozzi-terracotta text-white shadow-lg ring-1 ring-black/10 flex items-center justify-center hover:shadow-xl transition ${mobileFabBottom}`}
+                className={`fixed md:hidden right-4 z-toast h-12 w-12 rounded-full bg-glowalchemy-terracotta text-white shadow-lg ring-1 ring-black/10 flex items-center justify-center hover:shadow-xl transition ${mobileFabBottom}`}
                 aria-label="Scroll to top"
             >
                 <FiArrowUp className="text-xl" />
@@ -161,7 +168,7 @@ const ScrollToTopButton = ({ show, mainScrollRef }) => {
             <button
                 type="button"
                 onClick={handleScrollTop}
-                className="hidden md:flex fixed bottom-8 right-6 z-toast h-11 w-11 rounded-full bg-trozzi-terracotta text-white shadow-lg ring-1 ring-black/10 items-center justify-center hover:shadow-xl transition"
+                className="hidden md:flex fixed bottom-8 right-6 z-toast h-11 w-11 rounded-full bg-glowalchemy-terracotta text-white shadow-lg ring-1 ring-black/10 items-center justify-center hover:shadow-xl transition"
                 aria-label="Scroll to top"
             >
                 <FiArrowUp className="text-lg" />
@@ -199,21 +206,21 @@ const MobileBottomNav = () => {
 
     const linkBase = 'flex flex-col items-center justify-center flex-1 min-w-0 h-full';
 
-    const linkActive = 'text-trozzi-terracotta';
-    const linkInactive = 'text-trozzi-warm-gray';
+    const linkActive = 'text-glowalchemy-terracotta';
+    const linkInactive = 'text-glowalchemy-warm-gray';
 
     const Badge = ({ value }) => {
         const v = Number(value || 0);
         if (!v) return null;
         return (
-            <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-trozzi-terracotta text-white text-[10px] leading-[16px] text-center font-medium">
+            <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-glowalchemy-terracotta text-white text-[10px] leading-[16px] text-center font-medium">
                 {v > 99 ? '99+' : v}
             </span>
         );
     };
 
     return (
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 z-mobile-nav bg-trozzi-white border-t border-trozzi-sand pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 z-mobile-nav bg-glowalchemy-white border-t border-glowalchemy-sand pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
             <div className="flex items-center justify-around h-16 px-2">
                 <NavLink
                     to="/"
@@ -431,11 +438,11 @@ function App() {
                                             {/* Main Content - Scrollable */}
                                             <main
                                                 ref={mainScrollRef}
-                                                className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-trozzi-ivory pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0 relative"
+                                                className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-glowalchemy-ivory pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0 relative"
                                             >
                                                 <Suspense fallback={
                                                     <div className="flex items-center justify-center h-64">
-                                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-trozzi-terracotta"></div>
+                                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-glowalchemy-terracotta"></div>
                                                     </div>
                                                 }>
                                                     <Routes>
@@ -600,6 +607,17 @@ function App() {
                                                                 </AdminRoute>
                                                             }
                                                         />
+
+                                                        {/* Services Routes */}
+                                                        <Route path="/services" element={<Services />} />
+                                                        <Route path="/services/private-labeling" element={<PrivateLabeling />} />
+                                                        <Route path="/services/third-party-manufacturing" element={<ThirdPartyManufacturing />} />
+                                                        <Route path="/services/contract-manufacturing" element={<ContractManufacturing />} />
+
+                                                        {/* Other Routes */}
+                                                        <Route path="/blog" element={<Blog />} />
+                                                        <Route path="/company-profile" element={<CompanyProfile />} />
+                                                        <Route path="/manufacturing-capabilities" element={<ManufacturingCapabilities />} />
 
                                                         {/* Fallback */}
                                                         <Route path="*" element={<Navigate to="/" replace />} />

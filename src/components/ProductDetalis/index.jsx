@@ -302,9 +302,9 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
 
       {/* Brand + Rating + Review */}
       <div className="flex flex-wrap items-center gap-3 mb-3 md:mb-4">
-        <span className="text-trozzi-warm-gray text-[12px] md:text-[14px]">
+        <span className="text-glowalchemy-warm-gray text-[12px] md:text-[14px]">
           Brands:{" "}
-          <span className="font-[500] text-trozzi-charcoal opacity-75">
+          <span className="font-[500] text-glowalchemy-charcoal opacity-75">
             {product?.brand || product?.category || "House of Chikankari"}
           </span>
         </span>
@@ -312,7 +312,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           <Rating name="size-small" value={Number(product?.rating ?? 0)} size="small" readOnly />
         ) : null}
         {Number(product?.reviews ?? 0) > 0 ? (
-          <span className="text-trozzi-warm-gray text-[12px] md:text-[14px] cursor-pointer hover:underline">
+          <span className="text-glowalchemy-warm-gray text-[12px] md:text-[14px] cursor-pointer hover:underline">
             Review ({Number(product?.reviews ?? 0)})
           </span>
         ) : null}
@@ -321,28 +321,28 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
       {/* Price */}
       <div className="flex flex-wrap items-center gap-3 md:gap-4 mt-1 md:mt-2 mb-4 md:mb-6">
         {Number(product?.originalPrice ?? 0) > Number(currentPrice ?? product?.price ?? 0) && (
-          <span className="oldprice line-through text-trozzi-warm-gray text-[16px] md:text-[20px] font-[500]">
+          <span className="oldprice line-through text-glowalchemy-warm-gray text-[16px] md:text-[20px] font-[500]">
             Rs. {product?.originalPrice ?? 999}
           </span>
         )}
-        <span className="newprice text-[18px] md:text-[22px] font-[700] text-trozzi-terracotta">
+        <span className="newprice text-[18px] md:text-[22px] font-[700] text-glowalchemy-terracotta">
           Rs. {currentPrice ?? 799}
         </span>
-        <span className="text-trozzi-warm-gray text-[12px] md:text-[14px] cursor-pointer mt-1">
+        <span className="text-glowalchemy-warm-gray text-[12px] md:text-[14px] cursor-pointer mt-1">
           Available In Stock:{" "}
-          <span className="text-trozzi-charcoal text-[13px] md:text-[16px] font-bold">
+          <span className="text-glowalchemy-charcoal text-[13px] md:text-[16px] font-bold">
             {typeof currentStock === "number" ? `${currentStock} Items` : "147 Items"}
           </span>
         </span>
         {currentSku ? (
-          <span className="text-trozzi-warm-gray text-[12px] md:text-[14px]">
+          <span className="text-glowalchemy-warm-gray text-[12px] md:text-[14px]">
             SKU: <span className="font-medium">{currentSku}</span>
           </span>
         ) : null}
       </div>
 
       {/* Description */}
-      <p className="text-trozzi-charcoal text-[13px] md:text-[15px] leading-5 md:leading-6 mb-4 md:mb-6">
+      <p className="text-glowalchemy-charcoal text-[13px] md:text-[15px] leading-5 md:leading-6 mb-4 md:mb-6">
         {product?.description ?? (
           <>
             Our Chikankari kurta is a beautiful example of Lucknowi craftsmanship.
@@ -355,8 +355,8 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
 
       {materialValues.length > 0 && (
         <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
-          <span className="text-trozzi-warm-gray text-[14px] md:text-[16px] font-[500]">Material:</span>
-          <span className="text-trozzi-charcoal text-[13px] md:text-[15px]">
+          <span className="text-glowalchemy-warm-gray text-[14px] md:text-[16px] font-[500]">Material:</span>
+          <span className="text-glowalchemy-charcoal text-[13px] md:text-[15px]">
             {materialValues.join(', ')}
           </span>
         </div>
@@ -364,14 +364,14 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
 
       {/* Sizes */}
       <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
-        <span className="text-trozzi-warm-gray text-[14px] md:text-[16px] font-[500]">Size:</span>
+        <span className="text-glowalchemy-warm-gray text-[14px] md:text-[16px] font-[500]">Size:</span>
         <div className="flex flex-wrap items-center gap-2">
           {sizesList.map((size) => (
             <Button
               key={size}
               className={`!min-w-[38px] md:!min-w-[50px] !rounded-md !py-0.5 md:!py-1 !px-2 md:!px-3 !text-xs md:!text-sm border ${selectedSize === size
-                ? "!bg-trozzi-charcoal !text-white"
-                : "!bg-trozzi-ivory !text-trozzi-charcoal hover:!bg-trozzi-charcoal hover:!text-white"
+                ? "!bg-glowalchemy-charcoal !text-white"
+                : "!bg-glowalchemy-ivory !text-glowalchemy-charcoal hover:!bg-glowalchemy-charcoal hover:!text-white"
                 }`}
               onClick={() => setSelectedSize(size)}
             >
@@ -385,11 +385,11 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
       {(hasSizeGuideImage || sizeGuideRows.length > 0) && (
         <div className="mb-6">
           <div className="flex items-center justify-between gap-3">
-            <span className="text-trozzi-warm-gray text-[16px] font-[500]">Size Guide</span>
+            <span className="text-glowalchemy-warm-gray text-[16px] font-[500]">Size Guide</span>
             <button
               type="button"
               onClick={() => setIsSizeGuideOpen(true)}
-              className="h-9 px-3 inline-flex items-center justify-center rounded-lg border border-trozzi-sand bg-trozzi-white text-[13px] font-[600] text-trozzi-terracotta hover:bg-trozzi-ivory hover:border-trozzi-terracotta/40 focus:outline-none focus:ring-2 focus:ring-trozzi-terracotta/30 transition-colors"
+              className="h-9 px-3 inline-flex items-center justify-center rounded-lg border border-glowalchemy-sand bg-glowalchemy-white text-[13px] font-[600] text-glowalchemy-terracotta hover:bg-glowalchemy-ivory hover:border-glowalchemy-terracotta/40 focus:outline-none focus:ring-2 focus:ring-glowalchemy-terracotta/30 transition-colors"
             >
               View
             </button>
@@ -400,7 +400,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
             <DialogContent>
               {hasSizeGuideImage ? (
                 <div className="mb-4">
-                  <div className="w-full rounded-lg border border-trozzi-sand bg-trozzi-ivory p-3 flex items-center justify-center">
+                  <div className="w-full rounded-lg border border-glowalchemy-sand bg-glowalchemy-ivory p-3 flex items-center justify-center">
                     <img
                       src={String(product?.sizeGuideImageUrl)}
                       alt="Size guide"
@@ -419,7 +419,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
                         {sizeGuideColumns.map((c, i) => (
                           <th
                             key={c.key}
-                            className={`text-left text-sm font-semibold text-trozzi-charcoal border-b py-2 ${i === 0 ? 'pr-3' : ''}`}
+                            className={`text-left text-sm font-semibold text-glowalchemy-charcoal border-b py-2 ${i === 0 ? 'pr-3' : ''}`}
                           >
                             {c.label}
                           </th>
@@ -428,11 +428,11 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
                     </thead>
                     <tbody>
                       {sizeGuideRows.map((row, idx) => (
-                        <tr key={`${idx}-${String(row?.size ?? 'row')}`} className={idx % 2 === 0 ? "bg-trozzi-ivory" : "bg-trozzi-white"}>
+                        <tr key={`${idx}-${String(row?.size ?? 'row')}`} className={idx % 2 === 0 ? "bg-glowalchemy-ivory" : "bg-glowalchemy-white"}>
                           {sizeGuideColumns.map((c, i) => (
                             <td
                               key={`${idx}-${c.key}`}
-                              className={`${i === 0 ? 'text-sm text-trozzi-charcoal py-2 pr-3 align-top font-medium whitespace-nowrap' : 'text-sm text-trozzi-charcoal py-2 align-top'}`}
+                              className={`${i === 0 ? 'text-sm text-glowalchemy-charcoal py-2 pr-3 align-top font-medium whitespace-nowrap' : 'text-sm text-glowalchemy-charcoal py-2 align-top'}`}
                             >
                               {String(row?.[c.key] ?? '') || (i === 0 ? '-' : '')}
                             </td>
@@ -452,8 +452,8 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
       {(hasColorVariants || colorOptions.length > 0) && (
         <div className="mb-6">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="text-trozzi-warm-gray text-[14px] md:text-[16px] font-[500]">Color:</span>
-            <span className="text-trozzi-warm-gray text-[12px] md:text-[14px]">
+            <span className="text-glowalchemy-warm-gray text-[14px] md:text-[16px] font-[500]">Color:</span>
+            <span className="text-glowalchemy-warm-gray text-[12px] md:text-[14px]">
               {hasColorVariants ? (currentVariant?.colorName || 'Select a color') : (selectedSimpleColor || 'Select a color')}
             </span>
           </div>
@@ -471,8 +471,8 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
                 <Button
                   key={c}
                   className={`!min-w-[38px] md:!min-w-[50px] !rounded-md !py-0.5 md:!py-1 !px-2 md:!px-3 !text-xs md:!text-sm border ${String(c) === String(selectedSimpleColor || '')
-                    ? "!bg-trozzi-charcoal !text-white"
-                    : "!bg-trozzi-ivory !text-trozzi-charcoal hover:!bg-trozzi-charcoal hover:!text-white"
+                    ? "!bg-glowalchemy-charcoal !text-white"
+                    : "!bg-glowalchemy-ivory !text-glowalchemy-charcoal hover:!bg-glowalchemy-charcoal hover:!text-white"
                     }`}
                   onClick={() => {
                     setSelectedSimpleColor(String(c));
@@ -489,11 +489,11 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
       {/* Quantity + Add to Cart */}
       <div className="hidden md:flex items-center gap-4 py-4">
         <div className="QtyBoxWrapper">
-          <div className="inline-flex items-center rounded-md border border-trozzi-sand overflow-hidden">
+          <div className="inline-flex items-center rounded-md border border-glowalchemy-sand overflow-hidden">
             <button
               type="button"
               onClick={() => setQuantity((prev) => Math.max(1, Number(prev || 1) - 1))}
-              className="w-10 h-10 flex items-center justify-center bg-trozzi-white hover:bg-trozzi-ivory text-trozzi-charcoal"
+              className="w-10 h-10 flex items-center justify-center bg-glowalchemy-white hover:bg-glowalchemy-ivory text-glowalchemy-charcoal"
               aria-label="Decrease quantity"
             >
               -
@@ -521,7 +521,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
                   return next;
                 })
               }
-              className="w-10 h-10 flex items-center justify-center bg-trozzi-white hover:bg-trozzi-ivory text-trozzi-charcoal"
+              className="w-10 h-10 flex items-center justify-center bg-glowalchemy-white hover:bg-glowalchemy-ivory text-glowalchemy-charcoal"
               aria-label="Increase quantity"
             >
               +
@@ -532,7 +532,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           variant="contained"
           disabled={isAdding || !productId}
           onClick={handleAddToCart}
-          className="!bg-trozzi-terracotta !text-white !px-6 !py-3 !rounded-md hover:!bg-trozzi-charcoal transition-all duration-300 flex items-center gap-2 shadow-md"
+          className="!bg-glowalchemy-terracotta !text-white !px-6 !py-3 !rounded-md hover:!bg-glowalchemy-charcoal transition-all duration-300 flex items-center gap-2 shadow-md"
         >
           <FaShoppingCart className="text-[20px]" /> {isAdding ? 'Adding...' : 'Add To Cart'}
         </Button>
@@ -541,7 +541,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           variant="contained"
           disabled={isAdding || !productId}
           onClick={handleBuyNow}
-          className="!bg-trozzi-charcoal !text-white !px-6 !py-3 !rounded-md hover:!bg-trozzi-warm-gray transition-all duration-300 shadow-md"
+          className="!bg-glowalchemy-charcoal !text-white !px-6 !py-3 !rounded-md hover:!bg-glowalchemy-warm-gray transition-all duration-300 shadow-md"
         >
           {isAdding ? 'Please wait...' : 'Buy Now'}
         </Button>
@@ -553,7 +553,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           type="button"
           disabled={isAdding || !productId}
           onClick={handleWishlist}
-          className="flex items-center gap-2 text-[13px] md:text-[15px] font-[500] text-trozzi-charcoal hover:text-trozzi-terracotta transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-[13px] md:text-[15px] font-[500] text-glowalchemy-charcoal hover:text-glowalchemy-terracotta transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <FaRegHeart className="text-[16px] md:text-[18px]" /> {isAdding ? 'Adding...' : 'Add to Wishlist'}
         </button>
@@ -562,19 +562,19 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
           type="button"
           disabled={!productId}
           onClick={handleShare}
-          className="flex items-center gap-2 text-[13px] md:text-[15px] font-[500] text-trozzi-charcoal hover:text-trozzi-terracotta transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-[13px] md:text-[15px] font-[500] text-glowalchemy-charcoal hover:text-glowalchemy-terracotta transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <FaShareAlt className="text-[16px] md:text-[18px]" /> Share
         </button>
       </div>
 
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-sticky bg-trozzi-white border-t border-trozzi-sand px-3 sm:px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-sticky bg-glowalchemy-white border-t border-glowalchemy-sand px-3 sm:px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
         <div className="flex gap-3">
           <button
             type="button"
             disabled={isAdding || !productId}
             onClick={handleAddToCart}
-            className="flex-1 h-11 rounded-lg bg-trozzi-terracotta text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="flex-1 h-11 rounded-lg bg-glowalchemy-terracotta text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
             {isAdding ? 'Please wait...' : 'Add to Cart'}
           </button>
@@ -582,7 +582,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
             type="button"
             disabled={isAdding || !productId}
             onClick={handleBuyNow}
-            className="flex-1 h-11 rounded-lg bg-trozzi-charcoal text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+            className="flex-1 h-11 rounded-lg bg-glowalchemy-charcoal text-white text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
             {isAdding ? 'Please wait...' : 'Buy Now'}
           </button>

@@ -23,7 +23,7 @@ const ImageWithFallback = ({
 
   // Fallback styles based on type
   const getFallbackStyles = () => {
-    const base = 'flex flex-col items-center justify-center bg-trozzi-sand/30';
+    const base = 'flex flex-col items-center justify-center bg-glowalchemy-sand/30';
     switch (fallbackType) {
       case 'product':
         return `${base} min-h-[200px] md:min-h-[400px]`;
@@ -43,11 +43,11 @@ const ImageWithFallback = ({
       case 'product':
       case 'card':
       case 'thumbnail':
-        return <FiPackage className="text-3xl md:text-5xl text-trozzi-warm-gray" />;
+        return <FiPackage className="text-3xl md:text-5xl text-glowalchemy-warm-gray" />;
       case 'logo':
-        return <span className="text-2xl font-bold text-trozzi-charcoal">{getBrandDisplayName()}</span>;
+        return <span className="text-2xl font-bold text-glowalchemy-charcoal">{getBrandDisplayName()}</span>;
       default:
-        return <FiImage className="text-3xl text-trozzi-warm-gray" />;
+        return <FiImage className="text-3xl text-glowalchemy-warm-gray" />;
     }
   };
 
@@ -75,7 +75,7 @@ const ImageWithFallback = ({
       >
         {getFallbackIcon()}
         {getFallbackText() && (
-          <span className="mt-2 text-sm text-trozzi-warm-gray">{getFallbackText()}</span>
+          <span className="mt-2 text-sm text-glowalchemy-warm-gray">{getFallbackText()}</span>
         )}
       </div>
     );

@@ -493,35 +493,35 @@ const CheckoutPage = () => {
     // Show loading while cart data is syncing from server (not for buy now mode)
     if (!isBuyNowMode && cartLoading) {
         return (
-            <div className="min-h-screen bg-trozzi-ivory py-8 px-4 flex items-center justify-center">
+            <div className="min-h-screen bg-glowalchemy-ivory py-8 px-4 flex items-center justify-center">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-trozzi-terracotta mx-auto mb-4"></div>
-                    <p className="text-trozzi-warm-gray">Loading cart...</p>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-glowalchemy-terracotta mx-auto mb-4"></div>
+                    <p className="text-glowalchemy-warm-gray">Loading cart...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-trozzi-ivory py-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-glowalchemy-ivory py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <div className="py-4 sm:py-8 overflow-x-hidden pb-24 sm:pb-0">
                     <div className="sm:hidden flex items-center justify-between mb-3">
                         <button
                             type="button"
                             onClick={() => navigate(-1)}
-                            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand"
+                            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand"
                         >
-                            <FaArrowLeft className="text-trozzi-charcoal" />
+                            <FaArrowLeft className="text-glowalchemy-charcoal" />
                         </button>
-                        <div className="text-[18px] font-bold text-trozzi-charcoal">Delivery Address</div>
+                        <div className="text-[18px] font-bold text-glowalchemy-charcoal">Delivery Address</div>
                         <div className="flex items-center gap-2">
-                            <Link to="/profile" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand">
-                                <FiUser className="text-trozzi-charcoal" />
+                            <Link to="/profile" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand">
+                                <FiUser className="text-glowalchemy-charcoal" />
                             </Link>
-                            <Link to="/cart" className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-trozzi-white border border-trozzi-sand">
-                                <FiShoppingCart className="text-trozzi-charcoal" />
-                                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-trozzi-terracotta text-white text-[11px] font-bold flex items-center justify-center">
+                            <Link to="/cart" className="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-glowalchemy-white border border-glowalchemy-sand">
+                                <FiShoppingCart className="text-glowalchemy-charcoal" />
+                                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-glowalchemy-terracotta text-white text-[11px] font-bold flex items-center justify-center">
                                     {normalizedItems.reduce((sum, item) => sum + (Number(item?.quantity ?? 0) || 0), 0)}
                                 </span>
                             </Link>
@@ -530,17 +530,17 @@ const CheckoutPage = () => {
                     </div>
 
                     <div className="sm:hidden mb-3">
-                        <div className="bg-trozzi-white border border-trozzi-sand rounded-lg px-3 py-2.5">
+                        <div className="bg-glowalchemy-white border border-glowalchemy-sand rounded-lg px-3 py-2.5">
                             <div className="flex items-center justify-between text-[10px]">
-                                <div className="flex items-center gap-2 text-trozzi-terracotta">
-                                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-trozzi-terracotta text-white">
+                                <div className="flex items-center gap-2 text-glowalchemy-terracotta">
+                                    <div className="w-5 h-5 rounded-full flex items-center justify-center bg-glowalchemy-terracotta text-white">
                                         <FiCheck className="w-4 h-4" />
                                     </div>
                                     <span className="font-semibold">Cart</span>
                                 </div>
-                                <div className="flex-1 h-[2px] mx-1.5 bg-trozzi-sand" />
-                                <div className="flex items-center gap-1.5 text-trozzi-terracotta">
-                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-trozzi-terracotta text-white">2</div>
+                                <div className="flex-1 h-[2px] mx-1.5 bg-glowalchemy-sand" />
+                                <div className="flex items-center gap-1.5 text-glowalchemy-terracotta">
+                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-terracotta text-white">2</div>
                                     <span className="font-semibold">Address</span>
                                 </div>
                                 <div className="flex-1 h-[2px] mx-1.5 bg-gray-200" />
@@ -560,78 +560,78 @@ const CheckoutPage = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 min-w-0">
                         <div className="lg:col-span-2 min-w-0">
                             {isAddingNew ? (
-                                <div className="bg-white rounded-2xl border border-trozzi-sand p-6 shadow-sm">
-                                    <div className="text-[15px] font-bold text-trozzi-charcoal">Add Delivery Address</div>
+                                <div className="bg-white rounded-2xl border border-glowalchemy-sand p-6 shadow-sm">
+                                    <div className="text-[15px] font-bold text-glowalchemy-charcoal">Add Delivery Address</div>
                                     <div className="mt-4 space-y-4">
                                         <div className="grid grid-cols-2 gap-3">
                                             <div>
-                                                <label className="block text-[12px] font-semibold text-trozzi-charcoal">Full Name</label>
+                                                <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">Full Name</label>
                                                 <input
                                                     type="text"
                                                     name="firstName"
                                                     value={formData.firstName}
                                                     onChange={handleChange}
                                                     placeholder="Full name"
-                                                    className="mt-1 block w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                                    className="mt-1 block w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-[12px] font-semibold text-trozzi-charcoal">Phone Number</label>
+                                                <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">Phone Number</label>
                                                 <input
                                                     type="tel"
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     placeholder="10-digit mobile"
-                                                    className="mt-1 block w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                                    className="mt-1 block w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-[12px] font-semibold text-trozzi-charcoal">Address</label>
+                                            <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">Address</label>
                                             <input
                                                 type="text"
                                                 name="addressLine1"
                                                 value={formData.addressLine1}
                                                 onChange={handleChange}
                                                 placeholder="House no., Street, Area"
-                                                className="mt-1 block w-full border border-trozzi-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
+                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
                                             />
                                         </div>
 
                                         <div className="grid grid-cols-2 gap-3">
                                             <div>
-                                                <label className="block text-[12px] font-semibold text-trozzi-charcoal">City</label>
+                                                <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">City</label>
                                                 <input
                                                     type="text"
                                                     name="city"
                                                     value={formData.city}
                                                     onChange={handleChange}
-                                                    className="mt-1 block w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                                    className="mt-1 block w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-[12px] font-semibold text-trozzi-charcoal">State</label>
+                                                <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">State</label>
                                                 <input
                                                     type="text"
                                                     name="state"
                                                     value={formData.state}
                                                     onChange={handleChange}
-                                                    className="mt-1 block w-full border border-trozzi-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-trozzi-sand focus:border-trozzi-terracotta"
+                                                    className="mt-1 block w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-[12px] font-semibold text-trozzi-charcoal">Pincode</label>
+                                            <label className="block text-[12px] font-semibold text-glowalchemy-charcoal">Pincode</label>
                                             <input
                                                 type="text"
                                                 name="postalCode"
                                                 value={formData.postalCode}
                                                 onChange={handleChange}
                                                 placeholder="6-digit pincode"
-                                                className="mt-1 block w-full border border-trozzi-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
+                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
                                             />
                                         </div>
 
@@ -642,7 +642,7 @@ const CheckoutPage = () => {
                                         <button
                                             type="button"
                                             onClick={saveAddress}
-                                            className="w-full h-11 rounded-xl bg-trozzi-terracotta text-white text-sm font-extrabold"
+                                            className="w-full h-11 rounded-xl bg-glowalchemy-terracotta text-white text-sm font-extrabold"
                                         >
                                             Save Address
                                         </button>
@@ -656,7 +656,7 @@ const CheckoutPage = () => {
                                             setIsAddingNew(true);
                                             setError('');
                                         }}
-                                        className="w-full h-12 rounded-xl bg-white border border-trozzi-sand text-[14px] font-semibold text-trozzi-charcoal hover:bg-trozzi-ivory transition-colors"
+                                        className="w-full h-12 rounded-xl bg-white border border-glowalchemy-sand text-[14px] font-semibold text-glowalchemy-charcoal hover:bg-glowalchemy-ivory transition-colors"
                                     >
                                         + Add New Address
                                     </button>
@@ -668,22 +668,22 @@ const CheckoutPage = () => {
                                                 key={addr.id}
                                                 type="button"
                                                 onClick={() => setSelectedAddressId(addr.id)}
-                                                className={`w-full text-left rounded-xl border p-4 transition ${active ? 'border-trozzi-terracotta ring-1 ring-trozzi-terracotta/30 bg-trozzi-ivory' : 'border-trozzi-sand bg-white hover:border-trozzi-warm-gray'}`}
+                                                className={`w-full text-left rounded-xl border p-4 transition ${active ? 'border-glowalchemy-terracotta ring-1 ring-glowalchemy-terracotta/30 bg-glowalchemy-ivory' : 'border-glowalchemy-sand bg-white hover:border-glowalchemy-warm-gray'}`}
                                             >
                                                 <div className="flex items-start gap-3">
-                                                    <div className={`mt-0.5 w-6 h-6 rounded-full flex items-center justify-center ${active ? 'bg-trozzi-terracotta text-white' : 'bg-white border border-trozzi-sand text-transparent'}`}>
+                                                    <div className={`mt-0.5 w-6 h-6 rounded-full flex items-center justify-center ${active ? 'bg-glowalchemy-terracotta text-white' : 'bg-white border border-glowalchemy-sand text-transparent'}`}>
                                                         <FiCheck className="w-4 h-4" />
                                                     </div>
                                                     <div className="min-w-0">
                                                         <div className="flex items-center gap-2">
                                                             <FiMapPin className="text-gray-500" />
-                                                            <div className="text-[14px] font-bold text-trozzi-charcoal truncate">{addr.name || customerName || 'Address'}</div>
+                                                            <div className="text-[14px] font-bold text-glowalchemy-charcoal truncate">{addr.name || customerName || 'Address'}</div>
                                                             {addr.isDefault ? (
-                                                                <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-trozzi-sand text-trozzi-charcoal">Default</span>
+                                                                <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-glowalchemy-sand text-glowalchemy-charcoal">Default</span>
                                                             ) : null}
                                                         </div>
-                                                        {addr.phone ? (<div className="text-[13px] text-trozzi-warm-gray mt-1">{addr.phone}</div>) : null}
-                                                        <div className="text-[13px] text-trozzi-charcoal mt-1 leading-5">
+                                                        {addr.phone ? (<div className="text-[13px] text-glowalchemy-warm-gray mt-1">{addr.phone}</div>) : null}
+                                                        <div className="text-[13px] text-glowalchemy-charcoal mt-1 leading-5">
                                                             <div>{addr.line1}{addr.line2 ? `, ${addr.line2}` : ''}</div>
                                                             <div>{addr.city}{addr.state ? `, ${addr.state}` : ''}, {addr.state || ''}{addr.postalCode ? ` - ${addr.postalCode}` : ''}</div>
                                                         </div>
@@ -701,14 +701,14 @@ const CheckoutPage = () => {
 
                             {/* Payment Method - Moved to bottom after address */}
                             <div className="mt-6">
-                                <div className="text-[14px] sm:text-[15px] font-bold text-trozzi-charcoal mb-3">Payment Method</div>
+                                <div className="text-[14px] sm:text-[15px] font-bold text-glowalchemy-charcoal mb-3">Payment Method</div>
                                 
                                 <div className="flex flex-col gap-2.5 sm:gap-3">
                                     {/* PhonePe Payment Option */}
                                     <button
                                         type="button"
                                         onClick={() => setFormData((prev) => ({ ...prev, paymentMethod: 'phonepe' }))}
-                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-trozzi-sand bg-trozzi-white hover:border-gray-300'}`}
+                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-glowalchemy-sand bg-glowalchemy-white hover:border-gray-300'}`}
                                     >
                                         {/* Icon */}
                                         <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#5f259f] flex items-center justify-center flex-shrink-0">
@@ -719,12 +719,12 @@ const CheckoutPage = () => {
                                         
                                         {/* Text Content */}
                                         <div className="flex-1 min-w-0 text-left">
-                                            <div className="text-[13px] sm:text-[14px] font-bold text-trozzi-charcoal">Pay Online (UPI)</div>
+                                            <div className="text-[13px] sm:text-[14px] font-bold text-glowalchemy-charcoal">Pay Online (UPI)</div>
                                             <div className="text-[11px] sm:text-[12px] text-gray-500 mt-0.5">PhonePe, GPay, Paytm</div>
                                         </div>
                                         
                                         {/* Selection Indicator */}
-                                        <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-trozzi-terracotta' : 'border-gray-300'}`}>
+                                        <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-glowalchemy-terracotta' : 'border-gray-300'}`}>
                                             {formData.paymentMethod === 'phonepe' && (
                                                 <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -741,18 +741,18 @@ const CheckoutPage = () => {
                                             setFormData((prev) => ({ ...prev, paymentMethod: 'cod' }));
                                         }}
                                         disabled={!isCodEligible}
-                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-trozzi-sand bg-trozzi-white'} ${!isCodEligible ? 'opacity-60 cursor-not-allowed' : 'hover:border-gray-300'}`}
+                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-60 cursor-not-allowed' : 'hover:border-gray-300'}`}
                                     >
                                         {/* Icon */}
-                                        <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'bg-trozzi-terracotta' : 'bg-gray-100'}`}>
-                                            <svg className={`w-5 h-5 sm:w-5 sm:h-5 ${formData.paymentMethod === 'cod' ? 'text-white' : 'text-trozzi-warm-gray'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'bg-glowalchemy-terracotta' : 'bg-gray-100'}`}>
+                                            <svg className={`w-5 h-5 sm:w-5 sm:h-5 ${formData.paymentMethod === 'cod' ? 'text-white' : 'text-glowalchemy-warm-gray'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                                             </svg>
                                         </div>
                                         
                                         {/* Text Content */}
                                         <div className="flex-1 min-w-0 text-left">
-                                            <div className="text-[13px] sm:text-[14px] font-bold text-trozzi-charcoal">Cash on Delivery</div>
+                                            <div className="text-[13px] sm:text-[14px] font-bold text-glowalchemy-charcoal">Cash on Delivery</div>
                                             <div className="text-[11px] sm:text-[12px] text-gray-500 mt-0.5">
                                                 {isCodEligible
                                                     ? 'Pay when you receive'
@@ -763,12 +763,12 @@ const CheckoutPage = () => {
                                         {/* Right Side: Price or Selection Indicator */}
                                         {isCodEligible && codChargeTotal > 0 ? (
                                             <div className="flex-shrink-0">
-                                                <div className="text-[11px] sm:text-[12px] font-bold text-trozzi-terracotta bg-trozzi-terracotta/10 px-2 py-1 rounded-full">
+                                                <div className="text-[11px] sm:text-[12px] font-bold text-glowalchemy-terracotta bg-glowalchemy-terracotta/10 px-2 py-1 rounded-full">
                                                     +₹{Number(codChargeTotal || 0).toFixed(0)}
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-trozzi-terracotta' : 'border-gray-300'}`}>
+                                            <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-glowalchemy-terracotta' : 'border-gray-300'}`}>
                                                 {formData.paymentMethod === 'cod' && (
                                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -781,19 +781,19 @@ const CheckoutPage = () => {
                             </div>
                         </div>
                         <div className="hidden lg:block lg:col-span-1">
-                            <div className="bg-trozzi-white rounded-2xl shadow-lg p-6 mb-6">
-                                <h2 className="text-lg font-semibold text-trozzi-charcoal mb-4">Order Summary</h2>
+                            <div className="bg-glowalchemy-white rounded-2xl shadow-lg p-6 mb-6">
+                                <h2 className="text-lg font-semibold text-glowalchemy-charcoal mb-4">Order Summary</h2>
 
                                 <div className="mb-4">
-                                    <div className="text-sm font-extrabold text-trozzi-charcoal">Payment Method</div>
+                                    <div className="text-sm font-extrabold text-glowalchemy-charcoal">Payment Method</div>
                                     <div className="mt-2 space-y-2">
                                         <button
                                             type="button"
                                             onClick={() => setFormData((prev) => ({ ...prev, paymentMethod: 'phonepe' }))}
-                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-trozzi-sand bg-trozzi-white'}`}
+                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-glowalchemy-sand bg-glowalchemy-white'}`}
                                         >
-                                            <div className="text-[13px] font-extrabold text-trozzi-charcoal">Pay Online (UPI)</div>
-                                            <div className="text-[12px] text-trozzi-warm-gray">PhonePe payment</div>
+                                            <div className="text-[13px] font-extrabold text-glowalchemy-charcoal">Pay Online (UPI)</div>
+                                            <div className="text-[12px] text-glowalchemy-warm-gray">PhonePe payment</div>
                                         </button>
 
                                         <button
@@ -803,10 +803,10 @@ const CheckoutPage = () => {
                                                 setFormData((prev) => ({ ...prev, paymentMethod: 'cod' }));
                                             }}
                                             disabled={!isCodEligible}
-                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-trozzi-sand bg-trozzi-white'} ${!isCodEligible ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
-                                            <div className="text-[13px] font-extrabold text-trozzi-charcoal">Cash on Delivery</div>
-                                            <div className="text-[12px] text-trozzi-warm-gray">
+                                            <div className="text-[13px] font-extrabold text-glowalchemy-charcoal">Cash on Delivery</div>
+                                            <div className="text-[12px] text-glowalchemy-warm-gray">
                                                 {isCodEligible
                                                     ? `COD charge: ₹${Number(codChargeTotal || 0).toFixed(2)}`
                                                     : (settings?.enableCod === false ? 'COD is disabled by admin' : 'Not available for one or more items')}
@@ -817,20 +817,20 @@ const CheckoutPage = () => {
 
                                 <div className="space-y-2 text-sm">
                                     <div className="flex justify-between">
-                                        <span className="text-trozzi-warm-gray">Subtotal</span>
+                                        <span className="text-glowalchemy-warm-gray">Subtotal</span>
                                         <span className="font-semibold">₹{subtotalAmount.toFixed(0)}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-trozzi-warm-gray">Tax</span>
+                                        <span className="text-glowalchemy-warm-gray">Tax</span>
                                         <span className="font-semibold">₹{taxAmount.toFixed(0)}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-trozzi-warm-gray">Shipping</span>
+                                        <span className="text-glowalchemy-warm-gray">Shipping</span>
                                         <span className="font-semibold">{SHIPPING_AMOUNT === 0 ? 'FREE' : `₹${SHIPPING_AMOUNT.toFixed(0)}`}</span>
                                     </div>
                                     {formData.paymentMethod === 'cod' ? (
                                         <div className="flex justify-between">
-                                            <span className="text-trozzi-warm-gray">COD Charge</span>
+                                            <span className="text-glowalchemy-warm-gray">COD Charge</span>
                                             <span className="font-semibold">₹{codChargeTotal.toFixed(0)}</span>
                                         </div>
                                     ) : null}
@@ -843,7 +843,7 @@ const CheckoutPage = () => {
                                 <div className="mt-6 flex gap-3">
                                     <Link
                                         to="/cart"
-                                        className="flex-1 border-2 border-[#B85C3A] text-trozzi-terracotta py-3 rounded-lg font-semibold text-center hover:bg-trozzi-terracotta hover:text-white transition-colors"
+                                        className="flex-1 border-2 border-[#B85C3A] text-glowalchemy-terracotta py-3 rounded-lg font-semibold text-center hover:bg-glowalchemy-terracotta hover:text-white transition-colors"
                                     >
                                         Back to Cart
                                     </Link>
@@ -851,7 +851,7 @@ const CheckoutPage = () => {
                                     <button
                                         onClick={goToPayment}
                                         disabled={loading || !selectedAddressId || isAddingNew}
-                                        className="flex-1 bg-trozzi-terracotta text-white py-3 rounded-lg font-semibold hover:bg-[#9A4A2E] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                        className="flex-1 bg-glowalchemy-terracotta text-white py-3 rounded-lg font-semibold hover:bg-[#9A4A2E] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                                     >
                                         {loading ? 'Processing...' : (formData.paymentMethod === 'cod' ? 'Place COD Order' : 'Continue to Payment')}
                                     </button>
@@ -860,10 +860,10 @@ const CheckoutPage = () => {
                         </div>
                     </div>
 
-                    <div className="sm:hidden fixed bottom-0 left-0 right-0 z-sticky bg-trozzi-white border-t border-trozzi-sand px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+                    <div className="sm:hidden fixed bottom-0 left-0 right-0 z-sticky bg-glowalchemy-white border-t border-glowalchemy-sand px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
                         <div className="flex items-center justify-between gap-3">
                             <div className="min-w-0">
-                                <div className="text-[16px] font-extrabold text-trozzi-terracotta truncate">₹{payableAmount.toFixed(0)}</div>
+                                <div className="text-[16px] font-extrabold text-glowalchemy-terracotta truncate">₹{payableAmount.toFixed(0)}</div>
                                 <div className="text-[12px] text-gray-500">Inclusive of all taxes</div>
                             </div>
                             <button
