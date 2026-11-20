@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Banner.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,6 +8,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
 import { fetchBanners } from "../../api/catalog";
+import BannerImage from "../BannerImage";
 
 const AdBannerSection = () => {
   const [items, setItems] = useState([]);
@@ -39,10 +41,9 @@ const AdBannerSection = () => {
         >
           {items.map((item) => (
             <SwiperSlide key={item.id}>
-              <div className="banner-card px-3">
-                <div className="banner-blur" style={{ backgroundImage: `url(${item.imageUrl})` }} aria-hidden="true" />
-                <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
-              </div>
+              <Link to={item.linkUrl || '/'} className="banner-card block px-3" key={item.id}>
+                <BannerImage src={item.imageUrl} alt={`banner-${item.id}`} className="rounded-lg h-full" />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -51,10 +52,9 @@ const AdBannerSection = () => {
       <div className="hidden md:block">
         <div className="banner-container">
           {items.map((item) => (
-            <div className="banner-card" key={item.id}>
-              <div className="banner-blur" style={{ backgroundImage: `url(${item.imageUrl})` }} aria-hidden="true" />
-              <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
-            </div>
+            <Link to={item.linkUrl || '/'} className="banner-card block" key={item.id}>
+              <BannerImage src={item.imageUrl} alt={`banner-${item.id}`} className="rounded-lg h-full" />
+            </Link>
           ))}
         </div>
       </div>

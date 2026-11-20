@@ -8,6 +8,7 @@ import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useWishlist } from "../../context/WishlistContext";
 import { normalizeProductForColorVariants } from "../../utils/colorVariants";
+import { productUrl } from "../../utils/productUrl";
 
 const ProductCardModern = ({ product, hideAddToCart = false }) => {
   const navigate = useNavigate();
@@ -142,7 +143,7 @@ const ProductCardModern = ({ product, hideAddToCart = false }) => {
 
   return (
     <Link
-      to={`/product/${normalized.id}`}
+      to={productUrl(normalized)}
       className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-glowalchemy-sand/50 hover:border-glowalchemy-terracotta/50"
     >
       <div className="relative aspect-square bg-glowalchemy-ivory/50 overflow-hidden">

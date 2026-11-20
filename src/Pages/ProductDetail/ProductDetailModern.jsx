@@ -56,11 +56,11 @@ const InfoSection = ({ id, title, children, startOpen = true }) => {
     );
 };
 
-const ProductDetailModern = () => {
+const ProductDetailModern = (props = {}) => {
     // Route is /product/:id (see App.jsx). Accept productId too so the
     // component works regardless of how the param is named.
     const routeParams = useParams();
-    const productId = routeParams.productId || routeParams.id;
+    const productId = props?.productIdOverride || routeParams.productId || routeParams.id;
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();

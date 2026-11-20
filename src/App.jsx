@@ -274,9 +274,39 @@ const MobileBottomNav = () => {
     );
 };
 
+import { fetchProductBySlug } from './api/catalog';
 const ProductDetailsRoute = () => {
     const { id } = useParams();
     return <ProductDetailModern key={id} />;
+};
+
+// SEO-friendly product URL: /vitamin-c-face-serum
+// Resolves the slug via the indexed backend lookup, then renders the PDP.
+// Static routes always win over this param route in React Router ranking.
+const ProductSlugRoute = () => {
+    const { productSlug } = useParams();
+    const [resolved, setResolved] = useState(null);
+    const [failed, setFailed] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+        setResolved(null);
+        setFailed(false);
+        if (!productSlug) return;
+        fetchProductBySlug(productSlug)
+            .then((p) => {
+                if (cancelled) return;
+                const pid = p?._id || p?.id;
+                if (pid) setResolved(String(pid));
+                else setFailed(true);
+            })
+            .catch(() => { if (!cancelled) setFailed(true); });
+        return () => { cancelled = true; };
+    }, [productSlug]);
+
+    if (failed) return <Navigate to="/" replace />;
+    if (!resolved) return <div className="min-h-[60vh] flex items-center justify-center text-glowalchemy-warm-gray">Loading…</div>;
+    return <ProductDetailModern key={resolved} productIdOverride={resolved} />;
 };
 
 function App() {
@@ -451,6 +481,7 @@ function App() {
                                                         <Route path="/ProductListing" element={<ProductListing />} />
                                                         <Route path="/ProductListing/:category" element={<ProductListing />} />
                                                         <Route path="/product/:id" element={<ProductDetailsRoute />} />
+                                                        <Route path="/:productSlug" element={<ProductSlugRoute />} />
                                                         <Route path="/policies" element={<Policies />} />
                                                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                                                         <Route path="/terms-of-service" element={<TermsOfService />} />

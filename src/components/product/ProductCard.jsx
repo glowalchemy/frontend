@@ -33,6 +33,7 @@ import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useWishlist } from "../../context/WishlistContext";
 import { normalizeProductForColorVariants } from "../../utils/colorVariants";
+import { productUrl } from "../../utils/productUrl";
 
 const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
   const navigate = useNavigate();
@@ -175,7 +176,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
   const handleProductClick = (e) => {
     e.stopPropagation();
-    navigate(`/product/${normalized.id}`);
+    navigate(productUrl(normalized));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -189,7 +190,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
     e.stopPropagation();
     if (!normalized.id) return;
 
-    const url = `${window.location.origin}/product/${normalized.id}`;
+    const url = `${window.location.origin}${productUrl(normalized)}`;
     const title = String(normalized.name || 'Product');
 
     try {

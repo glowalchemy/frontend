@@ -1,13 +1,11 @@
 .banner-section { width: 100%; padding: 16px 0; animation: fadeIn 1s ease-in-out; }
-.banner-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-/* 3:2 aspect box reserves space (no CLS). Foreground img stays object-contain
-   (full artwork, no crop); the blurred layer behind it reuses the SAME image
-   URL from browser cache — no second download — and fills letterbox space. */
-.banner-card { position: relative; aspect-ratio: 3 / 2; background: #f3efe8; border-radius: 10px; overflow: hidden; }
-.banner-blur { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(18px) brightness(0.88); transform: scale(1.1); }
-.banner-card img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; display: block; animation: zoomIn 1s ease-in-out; }
+.banner-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; align-items: start; }
+/* Cards size to each image's intrinsic ratio (BannerImage) — portrait art
+   gets portrait cards, landscape gets landscape cards. Flat cream backdrop,
+   object-contain foreground: full artwork, no crop, no blur bands. */
+.banner-card { display: block; border-radius: 10px; overflow: hidden; background: #faf5ef; }
+.banner-card img { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes zoomIn { from { transform: scale(0.5); } to { transform: scale(1); } }
 @media (max-width: 767px) {
   .banner-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }

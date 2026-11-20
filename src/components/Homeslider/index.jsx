@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import "App.css";
 
 import { Autoplay, Navigation } from 'swiper/modules';
 
 import { fetchBanners } from '../../api/catalog';
+import BannerImage from '../BannerImage';
 
 const Homeslider = () => {
   const [items, setItems] = useState([]);
@@ -35,33 +35,20 @@ const Homeslider = () => {
             {items.map((b, idx) => (
               <SwiperSlide key={b.id}>
                 <div className='item rounded-2xl overflow-hidden'>
-                  {/* aspect-ratio box reserves space (no CLS). The same image
-                      URL is reused as a blurred, darkened backdrop (served
-                      from browser cache — no second download) so contain-fit
-                      letterboxing shows artwork instead of empty strips. */}
-                  <div className='w-full aspect-[16/9] sm:aspect-[16/6] bg-[#f3efe8] relative overflow-hidden'>
-                    <div
-                      className='absolute inset-0 bg-center bg-cover blur-2xl scale-110 brightness-[0.85]'
-                      style={{ backgroundImage: `url(${b.imageUrl})` }}
-                      aria-hidden="true"
-                    />
-                    <div className='absolute inset-0 bg-black/10' aria-hidden="true" />
-                    <img
-                      src={b.imageUrl}
-                      alt='Banner silder'
-                      width={1920}
-                      height={1080}
-                      decoding="async"
-                      loading={idx === 0 ? 'eager' : 'lazy'}
-                      fetchPriority={idx === 0 ? 'high' : 'auto'}
-                      className='relative z-10 w-full h-full object-contain'
-                    />
-                  </div>
+                  {/* Fixed responsive ratios: 16:9 mobile, 16:6 desktop.
+                      object-contain keeps the full artwork visible; the flat
+                      cream backdrop handles aspect mismatch without blur
+                      bands, crops, or distortion. */}
+                  <BannerImage
+                    src={b.imageUrl}
+                    alt='Banner silder'
+                    ratioClassName="aspect-[16/9] sm:aspect-[16/6]"
+                    eager={idx === 0}
+                    className="rounded-2xl"
+                  />
                 </div>
               </SwiperSlide>
             ))}
-
-
           </Swiper>
         </div>
       </div>
