@@ -35,10 +35,17 @@ const Homeslider = () => {
             {items.map((b, idx) => (
               <SwiperSlide key={b.id}>
                 <div className='item rounded-2xl overflow-hidden'>
-                  {/* aspect-ratio box reserves space (no CLS); object-contain
-                      keeps the FULL banner visible on every device — no
-                      cropping of products, faces, text or buttons. */}
-                  <div className='w-full aspect-[16/9] sm:aspect-[16/6] bg-[#f3efe8] relative'>
+                  {/* aspect-ratio box reserves space (no CLS). The same image
+                      URL is reused as a blurred, darkened backdrop (served
+                      from browser cache — no second download) so contain-fit
+                      letterboxing shows artwork instead of empty strips. */}
+                  <div className='w-full aspect-[16/9] sm:aspect-[16/6] bg-[#f3efe8] relative overflow-hidden'>
+                    <div
+                      className='absolute inset-0 bg-center bg-cover blur-2xl scale-110 brightness-[0.85]'
+                      style={{ backgroundImage: `url(${b.imageUrl})` }}
+                      aria-hidden="true"
+                    />
+                    <div className='absolute inset-0 bg-black/10' aria-hidden="true" />
                     <img
                       src={b.imageUrl}
                       alt='Banner silder'

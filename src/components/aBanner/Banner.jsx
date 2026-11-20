@@ -40,6 +40,7 @@ const AdBannerSection = () => {
           {items.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="banner-card px-3">
+                <div className="banner-blur" style={{ backgroundImage: `url(${item.imageUrl})` }} aria-hidden="true" />
                 <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
               </div>
             </SwiperSlide>
@@ -51,6 +52,7 @@ const AdBannerSection = () => {
         <div className="banner-container">
           {items.map((item) => (
             <div className="banner-card" key={item.id}>
+              <div className="banner-blur" style={{ backgroundImage: `url(${item.imageUrl})` }} aria-hidden="true" />
               <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
             </div>
           ))}
