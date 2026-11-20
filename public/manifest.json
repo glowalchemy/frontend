@@ -3,14 +3,9 @@
   "name": "GlowAlchemy",
   "icons": [
     {
-      "src": "favicon-64.png",
-      "sizes": "64x64",
-      "type": "image/png"
-    },
-    {
-      "src": "favicon-192.png",
+      "src": "/glowalchemy-logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
