@@ -56,8 +56,25 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'system-ui', 'Arial', 'sans-serif'],
-        serif: ['Rasa', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['Jost', 'system-ui', 'Arial', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
+      },
+      maxWidth: {
+        '8xl': '1400px',
+      },
+      keyframes: {
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(18px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'soft-float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.7s ease-out both',
+        'soft-float': 'soft-float 7s ease-in-out infinite',
       },
       colors: {
         // ---- GlowAlchemy semantic tokens ----
@@ -109,8 +126,14 @@ module.exports = {
           error: semantic.status.error,
           info: semantic.status.info,
         },
-        // ---- Legacy flat aliases ----
+        // ---- Storefront brand accents ----
+        burgundy: semantic.brand.secondary,
+        'burgundy-deep': semantic.brand.primary,
+        'pink-soft': semantic.brand.ivory,
+        'pink-light': semantic.background.secondary,
+        cream: semantic.brand.cream,
         ink: semantic.text.primary,
+        // ---- Legacy flat aliases ----
         charcoal: semantic.text.primary,
         primary: forestScale,
         accent: semantic.action.accent,

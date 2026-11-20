@@ -1,6 +1,7 @@
 /* eslint-disable */
 /* stylelint-disable */
 @import './styles/tokens.css';
+@import './styles/home.css';
 
 @tailwind base;
 @tailwind components;
@@ -68,13 +69,15 @@
 }
 
 body{
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Jost", system-ui, Arial, sans-serif;
   font-optical-sizing: auto;
   background-color: var(--background-primary);
   color: var(--text-primary);
   overflow-x: hidden;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html,
@@ -462,14 +465,24 @@ input[type="number"]::-webkit-inner-spin-button {
 
 p {
   font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 1em;
+  line-height: 1.7;
+  margin-bottom: 0.9em;
   color: var(--text-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 900;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.site-section-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.35rem);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .link {

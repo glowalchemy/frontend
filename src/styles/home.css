@@ -1,0 +1,213 @@
+/* GlowAlchemy storefront surface styles — premium blush / burgundy system */
+
+.ga-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .ga-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ga-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.ga-eyebrow {
+  font-family: 'Jost', system-ui, Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.ga-serif {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+.ga-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.ga-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #851638, #EFC3D2 70%, transparent);
+}
+
+/* ---------- Hero ---------- */
+.ga-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 460px at 82% 42%, #FCEAF0 0%, rgba(252, 234, 240, 0) 68%),
+    radial-gradient(760px 360px at 6% 12%, #FFF4F7 0%, rgba(255, 244, 247, 0) 70%),
+    linear-gradient(180deg, #FFF9F5 0%, #FFF4F7 100%);
+}
+
+.ga-hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.ga-hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(133, 22, 56, 0.12);
+  pointer-events: none;
+}
+
+.ga-hero-product {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(111, 18, 48, 0.14);
+  border: 1px solid rgba(243, 221, 229, 0.9);
+  overflow: hidden;
+}
+
+.ga-hero-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.ga-float {
+  animation: ga-float 8s ease-in-out infinite;
+}
+
+.ga-float-slow {
+  animation: ga-float 11s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+@keyframes ga-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ga-float,
+  .ga-float-slow {
+    animation: none;
+  }
+}
+
+/* ---------- Cards ---------- */
+.ga-product-card {
+  transition:
+    transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 320ms ease,
+    border-color 320ms ease;
+}
+
+.ga-product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(111, 18, 48, 0.14);
+  border-color: rgba(239, 195, 210, 0.9);
+}
+
+.ga-bestseller-image {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: linear-gradient(160deg, #FFF4F7 0%, #FCEAF0 100%);
+}
+
+@media (min-width: 768px) {
+  .ga-bestseller-image {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.ga-promo-card {
+  background: linear-gradient(150deg, #FFF4F7 0%, #FCEAF0 100%);
+  border: 1px solid rgba(243, 221, 229, 0.9);
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.ga-trust-item + .ga-trust-item {
+  border-left: 1px solid rgba(133, 22, 56, 0.12);
+}
+
+/* ---------- Scroll snap rails ---------- */
+.ga-rail {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.ga-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.ga-rail > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ---------- Newsletter ---------- */
+.ga-newsletter {
+  background:
+    radial-gradient(700px 300px at 85% 20%, rgba(239, 195, 210, 0.22) 0%, rgba(239, 195, 210, 0) 70%),
+    linear-gradient(115deg, #6F1230 0%, #851638 58%, #6F1230 100%);
+}
+
+/* ---------- WhatsApp ---------- */
+.ga-whatsapp {
+  background: #25d366;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.ga-whatsapp:hover {
+  transform: scale(1.06);
+  box-shadow: 0 16px 34px rgba(37, 211, 102, 0.46);
+}
+
+@media (max-width: 767px) {
+  .ga-whatsapp {
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---------- Section rhythm ---------- */
+.ga-section {
+  padding-block: 3rem;
+}
+
+@media (min-width: 768px) {
+  .ga-section {
+    padding-block: 4.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ga-section {
+    padding-block: 5rem;
+  }
+}
