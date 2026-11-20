@@ -40,7 +40,7 @@ const AdBannerSection = () => {
           {items.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="banner-card px-3">
-                <img src={item.imageUrl} alt={`banner-${item.id}`} />
+                <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
               </div>
             </SwiperSlide>
           ))}
@@ -51,7 +51,7 @@ const AdBannerSection = () => {
         <div className="banner-container">
           {items.map((item) => (
             <div className="banner-card" key={item.id}>
-              <img src={item.imageUrl} alt={`banner-${item.id}`} />
+              <img src={item.imageUrl} alt={`banner-${item.id}`} loading="lazy" decoding="async" />
             </div>
           ))}
         </div>
