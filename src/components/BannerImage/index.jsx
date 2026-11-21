@@ -53,7 +53,7 @@ const BannerImage = ({
 
   return (
     <div
-      className={`relative w-full overflow-hidden bg-[#faf5ef] ${ratioClassName} ${className}`}
+      className={`relative w-full overflow-hidden bg-[var(--color-surface-muted)] ${ratioClassName} ${className}`}
       style={aspectStyle}
       {...rest}
     >

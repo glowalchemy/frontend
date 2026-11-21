@@ -7,6 +7,8 @@ import { WishlistProvider } from './context/WishlistContext';
 import { ContentSettingsProvider } from './context/ContentSettingsContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { CategoryProvider } from './context/CategoryContext';
+import { ThemeProvider } from '@mui/material/styles';
+import muiTheme from './theme/muiTheme';
 import { useAuth } from './context/AuthContext';
 import { useCart } from './context/CartContext';
 import { useWishlist } from './context/WishlistContext';
@@ -444,8 +446,9 @@ function App() {
         toggleCartPanel,
     };
 
-    return (
-        <AuthProvider>
+      return (
+    <ThemeProvider theme={muiTheme}>
+    <AuthProvider>
             <ContentSettingsProvider>
                 <CartProvider>
                     <WishlistProvider>
@@ -468,11 +471,11 @@ function App() {
                                             {/* Main Content - Scrollable */}
                                             <main
                                                 ref={mainScrollRef}
-                                                className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-glowalchemy-ivory pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0 relative"
+                                                className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-brand-ivory pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0 relative"
                                             >
                                                 <Suspense fallback={
                                                     <div className="flex items-center justify-center h-64">
-                                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-glowalchemy-terracotta"></div>
+                                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
                                                     </div>
                                                 }>
                                                     <Routes>
@@ -672,6 +675,7 @@ function App() {
                 </CartProvider>
             </ContentSettingsProvider>
         </AuthProvider>
+    </ThemeProvider>
     );
 }
 

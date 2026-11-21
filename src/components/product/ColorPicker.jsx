@@ -34,8 +34,8 @@ const ColorPicker = ({
               ${sizeClasses[size]} 
               rounded-full border-2 transition-all duration-200 
               ${selectedColor === color.color
-                                ? 'border-blue-500 ring-2 ring-blue-200 scale-110'
-                                : 'border-gray-300 hover:border-gray-400 hover:scale-105'
+                                ? 'border-brand-primary ring-2 ring-brand-primary/25 scale-110'
+                                : 'border-brand-line hover:border-brand-sage hover:scale-105'
                             }
             `}
                         style={{ backgroundColor: color?.colorCode || colorNameToHex(color?.colorName || color?.color) }}
@@ -46,7 +46,7 @@ const ColorPicker = ({
 
                     {showLabels && (
                         <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <span className="text-xs text-gray-600 whitespace-nowrap bg-white px-1 rounded shadow">
+                            <span className="text-xs text-brand-muted whitespace-nowrap bg-white px-1 rounded shadow">
                                 {color.colorName}
                             </span>
                         </div>

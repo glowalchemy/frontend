@@ -1,36 +1,38 @@
 .featured-section {
   width: 100%;
   padding: 40px;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .section-title {
   font-size: 22px;
   margin-bottom: 20px;
   font-weight: 600;
+  color: var(--color-text);
 }
 
 .product-card {
   position: relative;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .product-card img {
   width: 100%;
   height: 250px;
   object-fit: cover;
+  background: var(--color-surface-muted);
 }
 
 .discount-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #ff4d4d;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
   padding: 5px 10px;
   font-size: 12px;
   border-radius: 4px;
@@ -43,17 +45,18 @@
 
 .brand {
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .title {
   font-size: 15px;
   font-weight: 500;
   margin: 5px 0;
+  color: var(--color-text);
 }
 
 .rating {
-  color: #ffb400;
+  color: var(--color-accent);
   font-size: 14px;
 }
 
@@ -64,30 +67,35 @@
 .old-price {
   text-decoration: line-through;
   font-size: 13px;
-  color: #999;
+  color: var(--color-text-muted);
   margin-right: 10px;
 }
 
 .price {
   font-size: 16px;
   font-weight: 600;
-  color: #e53935;
+  color: var(--color-primary);
 }
 
 .cart-btn {
   width: 100%;
   padding: 10px;
-  border: 1px solid #e53935;
+  border: 1px solid var(--color-primary);
   border-radius: 5px;
   background: transparent;
-  color: #e53935;
+  color: var(--color-primary);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition-base);
 }
 
 .cart-btn:hover {
-  background: #e53935;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.cart-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }

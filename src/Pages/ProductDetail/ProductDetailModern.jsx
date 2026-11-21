@@ -829,7 +829,7 @@ const ProductDetailModern = (props = {}) => {
                         <button
                             type="button"
                             onClick={() => setShowReviewForm(true)}
-                            className="bg-glowalchemy-charcoal text-white px-5 py-2.5 rounded-xl hover:bg-glowalchemy-terracotta transition-colors font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glowalchemy-charcoal/50"
+                            className="bg-brand-primary text-brand-ivory px-5 py-2.5 rounded-xl hover:bg-brand-primary-hover transition-colors font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40"
                         >
                             Write a Review
                         </button>

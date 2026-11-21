@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 /*
- * GlowAlchemy theme — derived from src/design-system/tokens.json.
- * Edit tokens.json, regenerate tokens.css, and these utilities follow.
+ * GlowAlchemy theme — Tailwind utilities are wired to the CSS variables in
+ * `src/theme/tokens.css`, which is generated from `src/design-system/tokens.json`.
+ *
+ * To change the brand palette, edit tokens.json and run:
+ *   node src/design-system/generate.mjs
+ * No component edits are required.
  */
 const tokens = require('./src/design-system/tokens.json');
 
 function resolve(value) {
-  if (Array.isArray(value)) return value.map(resolve).join(', ');
+  if (Array.isArray(value)) return value.map(resolve);
   if (value && typeof value === 'object') {
     if (typeof value.$ref === 'string') {
       return resolve(value.$ref.split('.').reduce((acc, k) => (acc == null ? undefined : acc[k]), tokens));
@@ -21,27 +25,17 @@ function resolve(value) {
   return value;
 }
 
-const semantic = resolve(tokens.color.semantic);
-const spacing = resolve(tokens.spacing);
-const radius = resolve(tokens.radius);
-const shadow = resolve(tokens.shadow);
-const zIndex = resolve(tokens.zIndex);
+/** Reference a canonical CSS variable, with Tailwind `/opacity` support. */
+const c = (name) => `rgb(var(--color-${name}-rgb) / <alpha-value>)`;
 
-// Forest-green scale for the legacy numbered utilities (primary-600, etc.)
-const forestScale = {
-  50: '#F0F5F1',
-  100: '#DCE7DF',
-  200: '#B9CFC2',
-  300: '#90B09E',
-  400: '#5F8A75',
-  500: '#3F6B56',
-  600: '#315A46',
-  700: '#294A3A',
-  800: '#243F33',
-  900: '#213D31',
-  950: '#16291F',
-  DEFAULT: '#315A46',
-};
+const raw = resolve(tokens.color.raw);
+const semantic = resolve(tokens.color.semantic);
+
+// Legacy numbered `primary-*` utilities, backed by the token palette.
+const primaryScale = { DEFAULT: c('primary') };
+for (const shade of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
+  primaryScale[shade] = raw[`forest-${shade}`];
+}
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -77,17 +71,30 @@ module.exports = {
         'soft-float': 'soft-float 7s ease-in-out infinite',
       },
       colors: {
-        // ---- GlowAlchemy semantic tokens ----
+        // Pure white is replaced by the warm-white surface tint so no cool
+        // white leaks into the ivory/green palette.
+        white: raw['warm-white'],
+        // ---- Canonical semantic palette (CSS-variable driven) ----
         brand: {
-          primary: semantic.brand.primary,
-          secondary: semantic.brand.secondary,
-          sage: semantic.brand.sage,
-          gold: semantic.brand.gold,
-          'gold-soft': semantic.brand.goldSoft,
-          cream: semantic.brand.cream,
-          ivory: semantic.brand.ivory,
-          ink: semantic.brand.ink,
-          white: semantic.brand.white,
+          primary: c('primary'),
+          'primary-hover': c('primary-hover'),
+          'primary-active': c('primary-active'),
+          secondary: c('secondary'),
+          accent: c('accent'),
+          sage: raw.sage,
+          'sage-light': raw['sage-light'],
+          champagne: raw.champagne,
+          'champagne-soft': raw['champagne-soft'],
+          ivory: c('background'),
+          surface: c('surface'),
+          'surface-muted': c('surface-muted'),
+          ink: c('text'),
+          muted: c('text-muted'),
+          line: c('border'),
+          success: c('success'),
+          warning: c('warning'),
+          error: c('error'),
+          white: raw['warm-white'],
         },
         page: {
           primary: semantic.background.primary,
@@ -95,132 +102,132 @@ module.exports = {
           surface: semantic.background.surface,
         },
         surface: {
-          primary: semantic.background.surface,
-          secondary: semantic.background.primary,
-          ...forestScale,
+          DEFAULT: c('surface'),
+          muted: c('surface-muted'),
         },
-        text: {
-          primary: semantic.text.primary,
-          secondary: semantic.text.secondary,
-          muted: semantic.text.muted,
-          inverse: semantic.text.inverse,
-          ...forestScale,
+        ink: {
+          DEFAULT: c('text'),
+          muted: c('text-muted'),
+          soft: c('text-muted'),
         },
-        border: {
-          default: semantic.border.default,
-          strong: semantic.border.strong,
-          focus: semantic.border.focus,
-          ...forestScale,
+        line: {
+          DEFAULT: c('border'),
+          strong: raw['border-strong'],
         },
         action: {
-          primary: semantic.action.primary,
-          'primary-hover': semantic.action.primaryHover,
-          'primary-active': semantic.action.primaryActive,
-          secondary: semantic.action.secondary,
-          accent: semantic.action.accent,
-          'accent-soft': semantic.action.accentSoft,
+          primary: c('primary'),
+          'primary-hover': c('primary-hover'),
+          'primary-active': c('primary-active'),
+          secondary: c('secondary'),
+          accent: c('accent'),
+          'accent-soft': raw['champagne-soft'],
         },
         status: {
-          success: semantic.status.success,
-          warning: semantic.status.warning,
-          error: semantic.status.error,
-          info: semantic.status.info,
+          success: c('success'),
+          warning: c('warning'),
+          error: c('error'),
+          info: c('secondary'),
         },
-        // ---- Storefront brand accents ----
-        burgundy: semantic.brand.secondary,
-        'burgundy-deep': semantic.brand.primary,
-        'pink-soft': semantic.brand.ivory,
-        'pink-light': semantic.background.secondary,
-        cream: semantic.brand.cream,
-        ink: semantic.text.primary,
-        // ---- Legacy flat aliases ----
-        charcoal: semantic.text.primary,
-        primary: forestScale,
-        accent: semantic.action.accent,
-        // ---- Legacy `glowalchemy-*` design-token aliases (mapped to new palette) ----
+        accent: c('accent'),
+        primary: primaryScale,
+
+        // ---- Legacy aliases (kept so every existing surface re-themes) ----
+        burgundy: c('secondary'),
+        'burgundy-deep': c('primary'),
+        'pink-soft': raw['champagne-soft'],
+        'pink-light': c('surface-muted'),
+        cream: c('background'),
+        charcoal: c('text'),
         glowalchemy: {
-          ivory: semantic.brand.cream,
-          charcoal: semantic.brand.ink,
-          sand: semantic.border.default,
-          warmGray: semantic.text.muted,
-          terracotta: semantic.action.primary,
-          white: '#FFFFFF',
+          ivory: c('background'),
+          charcoal: c('text'),
+          sand: c('border'),
+          warmGray: c('text-muted'),
+          terracotta: c('primary'),
+          white: raw['warm-white'],
         },
       },
       backgroundColor: {
-        'glowalchemy-ivory': semantic.brand.cream,
-        'glowalchemy-charcoal': semantic.brand.ink,
-        'glowalchemy-sand': semantic.border.default,
-        'glowalchemy-warm-gray': semantic.text.muted,
-        'glowalchemy-terracotta': semantic.action.primary,
-        'glowalchemy-white': '#FFFFFF',
+        'glowalchemy-ivory': c('background'),
+        'glowalchemy-charcoal': c('text'),
+        'glowalchemy-sand': c('surface-muted'),
+        'glowalchemy-warm-gray': c('text-muted'),
+        'glowalchemy-terracotta': c('primary'),
+        'glowalchemy-white': raw['warm-white'],
       },
       textColor: {
-        'glowalchemy-ivory': semantic.brand.cream,
-        'glowalchemy-charcoal': semantic.brand.ink,
-        'glowalchemy-sand': semantic.border.default,
-        'glowalchemy-warm-gray': semantic.text.muted,
-        'glowalchemy-terracotta': semantic.action.primary,
-        'glowalchemy-white': '#FFFFFF',
+        'glowalchemy-ivory': c('background'),
+        'glowalchemy-charcoal': c('text'),
+        'glowalchemy-sand': c('border'),
+        'glowalchemy-warm-gray': c('text-muted'),
+        'glowalchemy-terracotta': c('primary'),
+        'glowalchemy-white': raw['warm-white'],
       },
       borderColor: {
-        'glowalchemy-ivory': semantic.brand.cream,
-        'glowalchemy-charcoal': semantic.brand.ink,
-        'glowalchemy-sand': semantic.border.default,
-        'glowalchemy-warm-gray': semantic.text.muted,
-        'glowalchemy-terracotta': semantic.action.primary,
-        'glowalchemy-white': '#FFFFFF',
+        DEFAULT: c('border'),
+        'glowalchemy-ivory': c('background'),
+        'glowalchemy-charcoal': c('text'),
+        'glowalchemy-sand': c('border'),
+        'glowalchemy-warm-gray': c('text-muted'),
+        'glowalchemy-terracotta': c('primary'),
+        'glowalchemy-white': raw['warm-white'],
       },
       placeholderColor: {
-        'glowalchemy-ivory': semantic.brand.cream,
-        'glowalchemy-charcoal': semantic.brand.ink,
-        'glowalchemy-sand': semantic.border.default,
-        'glowalchemy-warm-gray': semantic.text.muted,
-        'glowalchemy-terracotta': semantic.action.primary,
-        'glowalchemy-white': '#FFFFFF',
+        'glowalchemy-ivory': c('background'),
+        'glowalchemy-charcoal': c('text'),
+        'glowalchemy-sand': c('border'),
+        'glowalchemy-warm-gray': c('text-muted'),
+        'glowalchemy-terracotta': c('primary'),
+        'glowalchemy-white': raw['warm-white'],
+      },
+      ringColor: {
+        DEFAULT: c('focus'),
+      },
+      outlineColor: {
+        DEFAULT: c('focus'),
       },
       spacing: {
-        xs: spacing.xs,
-        sm: spacing.sm,
-        md: spacing.md,
-        lg: spacing.lg,
-        xl: spacing.xl,
-        '2xl': spacing['2xl'],
-        '3xl': spacing['3xl'],
-        '4xl': spacing['4xl'],
-        '5xl': spacing['5xl'],
-        '6xl': spacing['6xl'],
+        xs: tokens.spacing.xs,
+        sm: tokens.spacing.sm,
+        md: tokens.spacing.md,
+        lg: tokens.spacing.lg,
+        xl: tokens.spacing.xl,
+        '2xl': tokens.spacing['2xl'],
+        '3xl': tokens.spacing['3xl'],
+        '4xl': tokens.spacing['4xl'],
+        '5xl': tokens.spacing['5xl'],
+        '6xl': tokens.spacing['6xl'],
         '7xl': '80px',
         '8xl': '96px',
       },
       borderRadius: {
-        sm: radius.sm,
-        md: radius.md,
-        lg: radius.lg,
-        xl: radius.xl,
-        pill: radius.pill,
-        circle: radius.circle,
+        sm: tokens.radius.sm,
+        md: tokens.radius.md,
+        lg: tokens.radius.lg,
+        xl: tokens.radius.xl,
+        pill: tokens.radius.pill,
+        circle: tokens.radius.circle,
       },
       boxShadow: {
-        sm: shadow.sm,
-        md: shadow.md,
-        lg: shadow.lg,
-        glowalchemy: shadow.sm,
-        'glowalchemy-lg': shadow.lg,
+        sm: tokens.shadow.sm,
+        md: tokens.shadow.md,
+        lg: tokens.shadow.lg,
+        glowalchemy: tokens.shadow.sm,
+        'glowalchemy-lg': tokens.shadow.lg,
       },
       zIndex: {
-        base: zIndex.base,
-        stories: zIndex.stories,
-        dropdown: zIndex.dropdown,
-        sticky: zIndex.sticky,
-        'mobile-nav': zIndex.mobileNav,
-        'modal-backdrop': zIndex.modalBackdrop,
-        modal: zIndex.modal,
-        popover: zIndex.popover,
-        tooltip: zIndex.tooltip,
-        toast: zIndex.toast,
-        header: zIndex.header,
-        'mobile-menu': zIndex.mobileMenu,
+        base: tokens.zIndex.base,
+        stories: tokens.zIndex.stories,
+        dropdown: tokens.zIndex.dropdown,
+        sticky: tokens.zIndex.sticky,
+        'mobile-nav': tokens.zIndex.mobileNav,
+        'modal-backdrop': tokens.zIndex.modalBackdrop,
+        modal: tokens.zIndex.modal,
+        popover: tokens.zIndex.popover,
+        tooltip: tokens.zIndex.tooltip,
+        toast: tokens.zIndex.toast,
+        header: tokens.zIndex.header,
+        'mobile-menu': tokens.zIndex.mobileMenu,
       },
     },
   },

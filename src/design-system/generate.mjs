@@ -1,49 +1,51 @@
 /**
- * GlowAlchemy design-token generator.
+ * GlowAlchemy theme generator.
  *
- * Reads `tokens.json` (the single source of truth) and writes
- * `src/styles/tokens.css` (CSS custom properties consumed by the app).
+ * Reads `src/design-system/tokens.json` (the single source of truth) and writes
+ * `src/theme/tokens.css` — the canonical CSS custom properties for the app.
  *
  * Usage:
  *   node src/design-system/generate.mjs
  *
- * Keep tokens.css in sync with tokens.json by running this after any edit
- * to tokens.json. Never hand-edit tokens.css.
+ * `.env`-free, dependency-free. Never hand-edit the generated CSS.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const tokens = JSON.parse(readFileSync(join(root, "src", "design-system", "tokens.json"), "utf8"));
 
-/** Resolve a "$ref" (dot path) or "$ref:path" string against the token tree. */
-function resolve(value, path = []) {
-  if (Array.isArray(value)) {
-    return value.map((v) => resolve(v, path));
-  }
+const getPath = (dotPath) =>
+  dotPath.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), tokens);
+
+/** Resolve a "{$ref}" (dot path) or "$ref:path" string against the token tree. */
+function resolve(value) {
+  if (Array.isArray(value)) return value.map(resolve);
   if (value && typeof value === "object") {
-    if (typeof value.$ref === "string") {
-      return resolve(getPath(tokens, value.$ref), []);
-    }
+    if (typeof value.$ref === "string") return resolve(getPath(value.$ref));
     const out = {};
-    for (const [k, v] of Object.entries(value)) {
-      out[k] = resolve(v, path.concat(k));
-    }
+    for (const [k, v] of Object.entries(value)) out[k] = resolve(v);
     return out;
   }
-  if (typeof value === "string" && value.startsWith("$ref:")) {
-    return resolve(getPath(tokens, value.slice(5)), []);
-  }
+  if (typeof value === "string" && value.startsWith("$ref:")) return resolve(getPath(value.slice(5)));
   return value;
 }
 
-function getPath(tree, dotPath) {
-  return dotPath.split(".").reduce((acc, key) => (acc == null ? undefined : acc[key]), tree);
-}
+const kebab = (s) =>
+  String(s)
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/[_\s]+/g, "-")
+    .toLowerCase();
 
-const kebab = (s) => String(s).replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/[_\s]+/g, "-").toLowerCase();
-const cssVarName = (segments) => `--${segments.map(kebab).join("-")}`;
+const cssVar = (segments) => `--${segments.map(kebab).join("-")}`;
+
+function hexToRgbTriple(hex) {
+  const m = /^#([0-9a-f]{6})$/i.exec(String(hex).trim());
+  if (!m) return null;
+  const int = parseInt(m[1], 16);
+  return `${(int >> 16) & 255} ${(int >> 8) & 255} ${int & 255}`;
+}
 
 const lines = [
   "/* AUTO-GENERATED from src/design-system/tokens.json — DO NOT EDIT BY HAND. */",
@@ -51,79 +53,77 @@ const lines = [
   ":root {",
 ];
 
-const sections = [];
+function emit(node, segments = []) {
+  for (const [key, value] of Object.entries(node)) {
+    const next = segments.concat(kebab(key));
+    if (Array.isArray(value)) {
+      lines.push(`  ${cssVar(next)}: ${value.join(", ")};`);
+    } else if (value && typeof value === "object") {
+      emit(value, next);
+    } else {
+      lines.push(`  ${cssVar(next)}: ${value};`);
+    }
+  }
+}
 
-// 1. Raw color palette
-const rawColors = resolve(tokens.color.raw);
-sections.push(["Raw palette", ["color", "raw"], rawColors]);
+function section(label, node, segments = []) {
+  lines.push(`\n  /* ---- ${label} ---- */`);
+  emit(node, segments);
+}
 
-// 2. Semantic colors
-const semanticColors = resolve(tokens.color.semantic);
-sections.push(["Semantic colors", ["color"], semanticColors]);
+// 1. Raw palette (source values)
+section("Raw palette", resolve(tokens.color.raw), ["color", "raw"]);
 
-// 3. Typography
-sections.push(["Typography", ["typography"], resolve(tokens.typography)]);
+// 2. Canonical semantic theme (--color-primary, --color-surface, ...)
+const theme = resolve(tokens.theme);
+lines.push("\n  /* ---- Theme semantic (canonical) ---- */");
+emit(theme, ["color"]);
+lines.push("\n  /* RGB channel triples — let Tailwind apply /opacity modifiers */");
+for (const [key, value] of Object.entries(theme)) {
+  const triple = hexToRgbTriple(value);
+  if (triple) lines.push(`  ${cssVar(["color", kebab(key)])}-rgb: ${triple};`);
+}
 
-// 4. Spacing / radius / shadow / breakpoint / z-index / transition
+// 3. Nested semantic colors used by component tokens
+section("Semantic colors", resolve(tokens.color.semantic), ["color"]);
+
+// 4. Scale + typography
+section("Typography", resolve(tokens.typography));
 for (const key of ["spacing", "radius", "shadow", "breakpoint", "zIndex", "transition"]) {
-  sections.push([key, [kebab(key)], resolve(tokens[key])]);
+  section(key, resolve(tokens[key]), [kebab(key)]);
 }
 
 // 5. Component tokens
-sections.push(["Component tokens", ["component"], resolve(tokens.component)]);
+section("Component tokens", resolve(tokens.component), ["component"]);
 
-let body = "";
-for (const [label, prefix, obj] of sections) {
-  body += `\n  /* ---- ${label} ---- */\n`;
-  const emit = (node, segments, keyMapper) => {
-    for (const [key, value] of Object.entries(node)) {
-      const mapped = keyMapper ? keyMapper(key) : key;
-      const next = segments.concat([mapped]);
-      if (Array.isArray(value)) {
-        body += `  ${cssVarName(next)}: ${value.join(", ")};\n`;
-      } else if (value && typeof value === "object") {
-        emit(value, next, keyMapper);
-      } else if (typeof value === "string" || typeof value === "number") {
-        body += `  ${cssVarName(next)}: ${value};\n`;
-      }
-    }
-  };
-  // Semantic color groups: "background" is exposed as the shorter `bg` prefix.
-  const colorKeyMapper = (key) => (key === "background" ? "bg" : key);
-  emit(obj, prefix, label === "Semantic colors" ? colorKeyMapper : undefined);
-}
-
-// Legacy aliases so pre-existing CSS keeps working while the UI migrates to
-// the new token names. `terracotta` (old rust CTA) intentionally maps to the
-// deep-forest primary action; `sand` maps to the soft border tone.
+// 6. Backwards-compatible aliases. These only reference canonical vars, so a
+// change to tokens.json still propagates everywhere.
+lines.push("\n  /* ---- Legacy aliases (reference canonical vars only) ---- */");
 const legacy = {
-  "--color-ivory": "var(--color-brand-cream)",
-  "--color-charcoal": "var(--color-brand-ink)",
-  "--color-sand": "var(--color-border-default)",
+  "--color-ivory": "var(--color-background)",
+  "--color-charcoal": "var(--color-text)",
+  "--color-sand": "var(--color-border)",
   "--color-warm-gray": "var(--color-text-muted)",
-  "--color-terracotta": "var(--color-action-primary)",
-  "--color-white": "var(--color-brand-white)",
-  "--background-primary": "var(--color-bg-primary)",
-  "--background-secondary": "var(--color-bg-surface)",
-  "--background-accent": "var(--color-bg-secondary)",
-  "--surface-primary": "var(--color-bg-surface)",
-  "--surface-secondary": "var(--color-bg-primary)",
-  "--text-primary": "var(--color-text-primary)",
-  "--text-secondary": "var(--color-text-secondary)",
+  "--color-terracotta": "var(--color-primary)",
+  "--color-white": "var(--color-raw-white)",
+  "--background-primary": "var(--color-background)",
+  "--background-secondary": "var(--color-surface)",
+  "--background-accent": "var(--color-surface-muted)",
+  "--surface-primary": "var(--color-surface)",
+  "--surface-secondary": "var(--color-background)",
+  "--text-primary": "var(--color-text)",
+  "--text-secondary": "var(--color-text-muted)",
   "--text-muted": "var(--color-text-muted)",
-  "--border-primary": "var(--color-border-strong)",
-  "--border-secondary": "var(--color-border-default)",
-  "--border-subtle": "var(--color-border-default)",
-  "--action-primary": "var(--color-action-primary)",
-  "--action-primary-hover": "var(--color-action-primary-hover)",
-  "--action-primary-active": "var(--color-action-primary-active)",
-  "--action-secondary": "var(--color-action-secondary)",
-  "--action-secondary-hover": "var(--color-brand-ink)",
+  "--border-primary": "var(--color-raw-border-strong)",
+  "--border-secondary": "var(--color-border)",
+  "--border-subtle": "var(--color-border)",
+  "--action-primary": "var(--color-primary)",
+  "--action-primary-hover": "var(--color-primary-hover)",
+  "--action-primary-active": "var(--color-primary-active)",
+  "--action-secondary": "var(--color-secondary)",
+  "--action-secondary-hover": "var(--color-primary-active)",
   "--shadow-glowalchemy": "var(--shadow-sm)",
   "--shadow-glowalchemy-lg": "var(--shadow-lg)",
-  "--transition-fast": "var(--transition-fast)",
-  "--transition-base": "var(--transition-base)",
-  "--transition-slow": "var(--transition-slow)",
   "--z-base": "var(--z-index-base)",
   "--z-dropdown": "var(--z-index-dropdown)",
   "--z-sticky": "var(--z-index-sticky)",
@@ -136,14 +136,19 @@ const legacy = {
   "--z-toast": "var(--z-index-toast)",
   "--z-mobile-menu": "var(--z-index-mobile-menu)",
 };
+for (const [name, value] of Object.entries(legacy)) lines.push(`  ${name}: ${value};`);
 
-body += "\n  /* ---- Legacy aliases (backwards compatibility) ---- */\n";
-for (const [name, value] of Object.entries(legacy)) {
-  body += `  ${name}: ${value};\n`;
-}
+lines.push("}", "");
 
-body += "\n}";
+const outFile = join(root, "src", "theme", "tokens.css");
+mkdirSync(dirname(outFile), { recursive: true });
+writeFileSync(outFile, lines.join("\n"), "utf8");
 
-const output = lines.join("\n") + body + "\n";
-writeFileSync(join(root, "src", "styles", "tokens.css"), output);
-console.log("✅ Generated src/styles/tokens.css from tokens.json");
+// Keep the historical path working as a thin re-export.
+writeFileSync(
+  join(root, "src", "styles", "tokens.css"),
+  "/* AUTO-GENERATED shim — canonical theme lives in src/theme/tokens.css */\n@import '../theme/tokens.css';\n",
+  "utf8"
+);
+
+console.log("✅ Generated src/theme/tokens.css (+ src/styles/tokens.css shim)");

@@ -1,0 +1,307 @@
+/* AUTO-GENERATED from src/design-system/tokens.json — DO NOT EDIT BY HAND. */
+/* Regenerate with: node src/design-system/generate.mjs */
+:root {
+
+  /* ---- Raw palette ---- */
+  --color-raw-forest-deepest: #0D291D;
+  --color-raw-forest: #143D2B;
+  --color-raw-botanical: #24543A;
+  --color-raw-sage: #75816B;
+  --color-raw-sage-light: #E7EADD;
+  --color-raw-gold: #B59A58;
+  --color-raw-champagne: #D8C3A5;
+  --color-raw-champagne-soft: #EADFCB;
+  --color-raw-ivory: #F5EFE6;
+  --color-raw-warm-white: #FFFCF7;
+  --color-raw-brown: #302923;
+  --color-raw-brown-soft: #4F483E;
+  --color-raw-muted: #625C52;
+  --color-raw-border: #DDD5C8;
+  --color-raw-border-strong: #C9BFB0;
+  --color-raw-white: #FFFFFF;
+  --color-raw-error: #B42318;
+  --color-raw-success: #216E46;
+  --color-raw-warning: #7C5E18;
+  --color-raw-forest-50: #F0F5F1;
+  --color-raw-forest-100: #DCE7DF;
+  --color-raw-forest-200: #B9CFC2;
+  --color-raw-forest-300: #90B09E;
+  --color-raw-forest-400: #5F8A75;
+  --color-raw-forest-500: #3F6B56;
+  --color-raw-forest-600: #315A46;
+  --color-raw-forest-700: #294A3A;
+  --color-raw-forest-800: #243F33;
+  --color-raw-forest-900: #213D31;
+  --color-raw-forest-950: #16291F;
+
+  /* ---- Theme semantic (canonical) ---- */
+  --color-primary: #143D2B;
+  --color-primary-hover: #24543A;
+  --color-primary-active: #0D291D;
+  --color-secondary: #24543A;
+  --color-accent: #B59A58;
+  --color-background: #F5EFE6;
+  --color-surface: #FFFCF7;
+  --color-surface-muted: #E7EADD;
+  --color-text: #302923;
+  --color-text-muted: #625C52;
+  --color-text-inverse: #FFFCF7;
+  --color-border: #DDD5C8;
+  --color-focus: #143D2B;
+  --color-success: #216E46;
+  --color-warning: #7C5E18;
+  --color-error: #B42318;
+
+  /* RGB channel triples — let Tailwind apply /opacity modifiers */
+  --color-primary-rgb: 20 61 43;
+  --color-primary-hover-rgb: 36 84 58;
+  --color-primary-active-rgb: 13 41 29;
+  --color-secondary-rgb: 36 84 58;
+  --color-accent-rgb: 181 154 88;
+  --color-background-rgb: 245 239 230;
+  --color-surface-rgb: 255 252 247;
+  --color-surface-muted-rgb: 231 234 221;
+  --color-text-rgb: 48 41 35;
+  --color-text-muted-rgb: 98 92 82;
+  --color-text-inverse-rgb: 255 252 247;
+  --color-border-rgb: 221 213 200;
+  --color-focus-rgb: 20 61 43;
+  --color-success-rgb: 33 110 70;
+  --color-warning-rgb: 124 94 24;
+  --color-error-rgb: 180 35 24;
+
+  /* ---- Semantic colors ---- */
+  --color-brand-primary: #143D2B;
+  --color-brand-secondary: #24543A;
+  --color-brand-sage: #75816B;
+  --color-brand-gold: #B59A58;
+  --color-brand-gold-soft: #EADFCB;
+  --color-brand-cream: #F5EFE6;
+  --color-brand-ivory: #FFFCF7;
+  --color-brand-ink: #302923;
+  --color-brand-white: #FFFFFF;
+  --color-background-primary: #F5EFE6;
+  --color-background-secondary: #E7EADD;
+  --color-background-surface: #FFFCF7;
+  --color-text-primary: #302923;
+  --color-text-secondary: #4F483E;
+  --color-text-muted: #625C52;
+  --color-text-inverse: #FFFCF7;
+  --color-border-default: #DDD5C8;
+  --color-border-strong: #C9BFB0;
+  --color-border-focus: #143D2B;
+  --color-action-primary: #143D2B;
+  --color-action-primary-hover: #24543A;
+  --color-action-primary-active: #0D291D;
+  --color-action-secondary: #143D2B;
+  --color-action-accent: #B59A58;
+  --color-action-accent-soft: #EADFCB;
+  --color-status-success: #216E46;
+  --color-status-warning: #7C5E18;
+  --color-status-error: #B42318;
+  --color-status-info: #24543A;
+
+  /* ---- Typography ---- */
+  --font-family-sans: Jost, system-ui, Arial, sans-serif;
+  --font-family-serif: Playfair Display, Georgia, Times New Roman, serif;
+  --display-font-family: Playfair Display, Georgia, Times New Roman, serif;
+  --display-font-size: 58px;
+  --display-line-height: 1.08;
+  --display-font-weight: 600;
+  --display-letter-spacing: -0.02em;
+  --h1-font-family: Playfair Display, Georgia, Times New Roman, serif;
+  --h1-font-size: 44px;
+  --h1-line-height: 1.15;
+  --h1-font-weight: 600;
+  --h2-font-family: Playfair Display, Georgia, Times New Roman, serif;
+  --h2-font-size: 36px;
+  --h2-line-height: 1.2;
+  --h2-font-weight: 600;
+  --h3-font-family: Playfair Display, Georgia, Times New Roman, serif;
+  --h3-font-size: 24px;
+  --h3-line-height: 1.3;
+  --h3-font-weight: 600;
+  --h4-font-family: Playfair Display, Georgia, Times New Roman, serif;
+  --h4-font-size: 20px;
+  --h4-line-height: 1.35;
+  --h4-font-weight: 600;
+  --body-font-family: Jost, system-ui, Arial, sans-serif;
+  --body-font-size: 15px;
+  --body-line-height: 1.7;
+  --body-font-weight: 400;
+  --body-small-font-family: Jost, system-ui, Arial, sans-serif;
+  --body-small-font-size: 14px;
+  --body-small-line-height: 1.6;
+  --body-small-font-weight: 400;
+  --caption-font-family: Jost, system-ui, Arial, sans-serif;
+  --caption-font-size: 13px;
+  --caption-line-height: 1.5;
+  --caption-font-weight: 400;
+  --button-font-family: Jost, system-ui, Arial, sans-serif;
+  --button-font-size: 14px;
+  --button-line-height: 1.2;
+  --button-font-weight: 500;
+  --label-font-family: Jost, system-ui, Arial, sans-serif;
+  --label-font-size: 12px;
+  --label-line-height: 1.3;
+  --label-font-weight: 600;
+  --label-text-transform: uppercase;
+  --label-letter-spacing: 0.16em;
+  --navigation-font-family: Jost, system-ui, Arial, sans-serif;
+  --navigation-font-size: 14px;
+  --navigation-line-height: 1.2;
+  --navigation-font-weight: 500;
+  --price-font-family: Jost, system-ui, Arial, sans-serif;
+  --price-font-size: 17px;
+  --price-line-height: 1.2;
+  --price-font-weight: 600;
+
+  /* ---- spacing ---- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 40px;
+  --spacing-4xl: 48px;
+  --spacing-5xl: 64px;
+  --spacing-6xl: 80px;
+
+  /* ---- radius ---- */
+  --radius-none: 0px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* ---- shadow ---- */
+  --shadow-sm: 0 2px 8px rgba(20, 61, 43, 0.06);
+  --shadow-md: 0 10px 30px rgba(20, 61, 43, 0.10);
+  --shadow-lg: 0 24px 60px rgba(20, 61, 43, 0.16);
+
+  /* ---- breakpoint ---- */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ---- zIndex ---- */
+  --z-index-base: 1;
+  --z-index-stories: 10;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-mobile-nav: 400;
+  --z-index-modal-backdrop: 500;
+  --z-index-modal: 600;
+  --z-index-popover: 700;
+  --z-index-tooltip: 800;
+  --z-index-toast: 900;
+  --z-index-header: 1000;
+  --z-index-mobile-menu: 1100;
+
+  /* ---- transition ---- */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* ---- Component tokens ---- */
+  --component-button-primary-background: #143D2B;
+  --component-button-primary-text: #FFFCF7;
+  --component-button-primary-hover-background: #24543A;
+  --component-button-primary-active-background: #0D291D;
+  --component-button-primary-radius: 18px;
+  --component-button-secondary-background: #F5EFE6;
+  --component-button-secondary-text: #143D2B;
+  --component-button-secondary-border: #143D2B;
+  --component-button-secondary-radius: 18px;
+  --component-button-accent-background: #B59A58;
+  --component-button-accent-text: #302923;
+  --component-button-accent-radius: 9999px;
+  --component-button-ghost-background: transparent;
+  --component-button-ghost-text: #302923;
+  --component-button-ghost-border: #DDD5C8;
+  --component-button-ghost-radius: 18px;
+  --component-button-danger-background: #B42318;
+  --component-button-danger-text: #FFFCF7;
+  --component-button-danger-radius: 18px;
+  --component-input-background: #FFFCF7;
+  --component-input-border: #DDD5C8;
+  --component-input-focus-border: #143D2B;
+  --component-input-text: #302923;
+  --component-input-radius: 12px;
+  --component-card-background: #FFFCF7;
+  --component-card-border: #DDD5C8;
+  --component-card-radius: 18px;
+  --component-card-shadow: 0 2px 8px rgba(20, 61, 43, 0.06);
+  --component-header-background: #143D2B;
+  --component-header-border: #0D291D;
+  --component-header-text: #F5EFE6;
+  --component-header-z-index: 1000;
+  --component-navigation-text: #FFFCF7;
+  --component-navigation-active: #B59A58;
+  --component-navigation-hover-background: #24543A;
+  --component-story-border: #DDD5C8;
+  --component-story-active-border: #B59A58;
+  --component-story-radius: 50%;
+  --component-product-card-background: #FFFCF7;
+  --component-product-card-border: #DDD5C8;
+  --component-product-card-title: #302923;
+  --component-product-card-price: #302923;
+  --component-product-card-radius: 18px;
+  --component-product-card-shadow: 0 2px 8px rgba(20, 61, 43, 0.06);
+  --component-footer-background: #0D291D;
+  --component-footer-text: #F5EFE6;
+  --component-footer-muted: #D8C3A5;
+  --component-footer-accent: #B59A58;
+  --component-badge-background: #B59A58;
+  --component-badge-text: #302923;
+  --component-badge-radius: 9999px;
+  --component-modal-background: #FFFCF7;
+  --component-modal-radius: 18px;
+  --component-modal-shadow: 0 24px 60px rgba(20, 61, 43, 0.16);
+  --component-modal-z-index: 600;
+  --component-toast-background: #143D2B;
+  --component-toast-text: #FFFCF7;
+  --component-toast-z-index: 900;
+
+  /* ---- Legacy aliases (reference canonical vars only) ---- */
+  --color-ivory: var(--color-background);
+  --color-charcoal: var(--color-text);
+  --color-sand: var(--color-border);
+  --color-warm-gray: var(--color-text-muted);
+  --color-terracotta: var(--color-primary);
+  --color-white: var(--color-raw-white);
+  --background-primary: var(--color-background);
+  --background-secondary: var(--color-surface);
+  --background-accent: var(--color-surface-muted);
+  --surface-primary: var(--color-surface);
+  --surface-secondary: var(--color-background);
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-muted);
+  --text-muted: var(--color-text-muted);
+  --border-primary: var(--color-raw-border-strong);
+  --border-secondary: var(--color-border);
+  --border-subtle: var(--color-border);
+  --action-primary: var(--color-primary);
+  --action-primary-hover: var(--color-primary-hover);
+  --action-primary-active: var(--color-primary-active);
+  --action-secondary: var(--color-secondary);
+  --action-secondary-hover: var(--color-primary-active);
+  --shadow-glowalchemy: var(--shadow-sm);
+  --shadow-glowalchemy-lg: var(--shadow-lg);
+  --z-base: var(--z-index-base);
+  --z-dropdown: var(--z-index-dropdown);
+  --z-sticky: var(--z-index-sticky);
+  --z-header: var(--z-index-header);
+  --z-mobile-nav: var(--z-index-mobile-nav);
+  --z-modal-backdrop: var(--z-index-modal-backdrop);
+  --z-modal: var(--z-index-modal);
+  --z-popover: var(--z-index-popover);
+  --z-tooltip: var(--z-index-tooltip);
+  --z-toast: var(--z-index-toast);
+  --z-mobile-menu: var(--z-index-mobile-menu);
+}

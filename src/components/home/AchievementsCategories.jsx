@@ -37,7 +37,7 @@ const CATEGORIES = [
 ];
 
 const AchievementsCategories = () => (
-  <section className="ga-section bg-[#FFF9F5]">
+  <section className="ga-section bg-[var(--color-background)]">
     <div className="ga-container">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Achievements */}
@@ -54,16 +54,16 @@ const AchievementsCategories = () => (
             {ACHIEVEMENTS.map((item) => (
               <div
                 key={item.label}
-                className="flex items-center gap-4 rounded-2xl border border-[#F3DDE5] bg-white px-5 py-4 shadow-[0_2px_10px_rgba(111,18,48,0.04)]"
+                className="flex items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-white px-5 py-4 shadow-[0_2px_10px_rgba(20,61,43,0.04)]"
               >
                 <span className="ga-serif min-w-[92px] text-[26px] leading-none text-burgundy">
                   {item.value}
                 </span>
                 <span>
-                  <span className="block text-[12px] font-semibold uppercase tracking-[0.12em] text-[#29151F]">
+                  <span className="block text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text)]">
                     {item.label}
                   </span>
-                  <span className="mt-1 block text-[11.5px] leading-snug text-[#9A7C88]">{item.copy}</span>
+                  <span className="mt-1 block text-[11.5px] leading-snug text-[var(--color-text-muted)]">{item.copy}</span>
                 </span>
               </div>
             ))}
@@ -87,7 +87,7 @@ const AchievementsCategories = () => (
               <Link
                 key={category.title}
                 to={category.to}
-                className="ga-product-card group overflow-hidden rounded-2xl border border-[#F3DDE5] bg-white"
+                className="ga-product-card group overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-pink-light">
                   <img
@@ -101,10 +101,10 @@ const AchievementsCategories = () => (
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="ga-serif text-[15px] text-[#29151F] group-hover:text-burgundy">
+                  <h3 className="ga-serif text-[15px] text-[var(--color-text)] group-hover:text-burgundy">
                     {category.title}
                   </h3>
-                  <p className="mt-1 text-[11px] leading-snug text-[#9A7C88]">{category.description}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-[var(--color-text-muted)]">{category.description}</p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-burgundy">
                     View Details
                     <FiArrowRight className="text-[11px] transition-transform duration-300 group-hover:translate-x-1" />

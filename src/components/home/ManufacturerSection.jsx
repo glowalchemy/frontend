@@ -13,7 +13,7 @@ const ManufacturerSection = () => (
   <section className="relative overflow-hidden bg-burgundy-deep">
     <div
       className="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full"
-      style={{ background: 'radial-gradient(circle, rgba(239,195,210,0.18) 0%, rgba(111,18,48,0) 70%)' }}
+      style={{ background: 'radial-gradient(circle, rgba(181,154,88,0.18) 0%, rgba(20,61,43,0) 70%)' }}
       aria-hidden="true"
     />
     <div

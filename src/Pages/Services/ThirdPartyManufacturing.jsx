@@ -11,65 +11,65 @@ const ThirdPartyManufacturing = () => {
                     Back to Services
                 </Link>
 
-                <h1 className="text-4xl font-bold text-gray-900 mb-6">Third-Party Cosmetic Manufacturing</h1>
+                <h1 className="text-4xl font-bold text-brand-ink mb-6">Third-Party Cosmetic Manufacturing</h1>
 
                 <div className="prose max-w-none">
-                    <p className="text-gray-600 mb-6 text-lg">
+                    <p className="text-brand-muted mb-6 text-lg">
                         We manufacture high-quality cosmetic products for established brands, retailers, and distributors. 
                         Our state-of-the-art facility ensures consistent quality and timely delivery.
                     </p>
 
-                    <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Our Manufacturing Capabilities</h2>
+                    <h2 className="text-2xl font-semibold text-brand-ink mt-8 mb-4">Our Manufacturing Capabilities</h2>
                     <ul className="space-y-3 mb-6">
                         <li className="flex items-start">
                             <FaCheckCircle className="text-green-500 mt-1 mr-3" />
-                            <span className="text-gray-600">Skincare products (creams, lotions, serums)</span>
+                            <span className="text-brand-muted">Skincare products (creams, lotions, serums)</span>
                         </li>
                         <li className="flex items-start">
                             <FaCheckCircle className="text-green-500 mt-1 mr-3" />
-                            <span className="text-gray-600">Hair care products (shampoos, conditioners, treatments)</span>
+                            <span className="text-brand-muted">Hair care products (shampoos, conditioners, treatments)</span>
                         </li>
                         <li className="flex items-start">
                             <FaCheckCircle className="text-green-500 mt-1 mr-3" />
-                            <span className="text-gray-600">Body care products (body wash, scrubs, oils)</span>
+                            <span className="text-brand-muted">Body care products (body wash, scrubs, oils)</span>
                         </li>
                         <li className="flex items-start">
                             <FaCheckCircle className="text-green-500 mt-1 mr-3" />
-                            <span className="text-gray-600">Makeup and cosmetics</span>
+                            <span className="text-brand-muted">Makeup and cosmetics</span>
                         </li>
                         <li className="flex items-start">
                             <FaCheckCircle className="text-green-500 mt-1 mr-3" />
-                            <span className="text-gray-600">Natural and organic formulations</span>
+                            <span className="text-brand-muted">Natural and organic formulations</span>
                         </li>
                     </ul>
 
-                    <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Quality Standards</h2>
+                    <h2 className="text-2xl font-semibold text-brand-ink mt-8 mb-4">Quality Standards</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div className="bg-green-50 p-6 rounded-lg">
                             <FaStar className="text-green-600 text-2xl mb-3" />
-                            <h3 className="font-semibold text-gray-900 mb-2">GMP Certified</h3>
-                            <p className="text-gray-600 text-sm">Good Manufacturing Practices compliance</p>
+                            <h3 className="font-semibold text-brand-ink mb-2">GMP Certified</h3>
+                            <p className="text-brand-muted text-sm">Good Manufacturing Practices compliance</p>
                         </div>
                         <div className="bg-green-50 p-6 rounded-lg">
                             <FaStar className="text-green-600 text-2xl mb-3" />
-                            <h3 className="font-semibold text-gray-900 mb-2">ISO Standards</h3>
-                            <p className="text-gray-600 text-sm">International quality management systems</p>
+                            <h3 className="font-semibold text-brand-ink mb-2">ISO Standards</h3>
+                            <p className="text-brand-muted text-sm">International quality management systems</p>
                         </div>
                         <div className="bg-green-50 p-6 rounded-lg">
                             <FaStar className="text-green-600 text-2xl mb-3" />
-                            <h3 className="font-semibold text-gray-900 mb-2">FDA Compliant</h3>
-                            <p className="text-gray-600 text-sm">Meeting regulatory requirements</p>
+                            <h3 className="font-semibold text-brand-ink mb-2">FDA Compliant</h3>
+                            <p className="text-brand-muted text-sm">Meeting regulatory requirements</p>
                         </div>
                         <div className="bg-green-50 p-6 rounded-lg">
                             <FaStar className="text-green-600 text-2xl mb-3" />
-                            <h3 className="font-semibold text-gray-900 mb-2">Cruelty-Free</h3>
-                            <p className="text-gray-600 text-sm">Ethical manufacturing practices</p>
+                            <h3 className="font-semibold text-brand-ink mb-2">Cruelty-Free</h3>
+                            <p className="text-brand-muted text-sm">Ethical manufacturing practices</p>
                         </div>
                     </div>
 
-                    <div className="bg-gray-50 p-6 rounded-lg mt-8">
-                        <h3 className="font-semibold text-gray-900 mb-3">Partner With Us</h3>
-                        <p className="text-gray-600 mb-4">Let's discuss how we can help manufacture your cosmetic products.</p>
+                    <div className="bg-brand-surface-muted p-6 rounded-lg mt-8">
+                        <h3 className="font-semibold text-brand-ink mb-3">Partner With Us</h3>
+                        <p className="text-brand-muted mb-4">Let's discuss how we can help manufacture your cosmetic products.</p>
                         <Link to="/contact" className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
                             Contact Us
                         </Link>

@@ -21,13 +21,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -36,7 +36,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
 
@@ -54,13 +54,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -69,7 +69,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
         <div className="w-full flex items-center gap-4 bg-white shadow-sm border rounded-xl p-3 relative hover:shadow-md transition">
@@ -86,13 +86,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -101,7 +101,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
         <div className="w-full flex items-center gap-4 bg-white shadow-sm border rounded-xl p-3 relative hover:shadow-md transition">
@@ -118,13 +118,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -133,7 +133,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
         <div className="w-full flex items-center gap-4 bg-white shadow-sm border rounded-xl p-3 relative hover:shadow-md transition">
@@ -150,13 +150,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -165,7 +165,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
         <div className="w-full flex items-center gap-4 bg-white shadow-sm border rounded-xl p-3 relative hover:shadow-md transition">
@@ -182,13 +182,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -197,7 +197,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
         <div className="w-full flex items-center gap-4 bg-white shadow-sm border rounded-xl p-3 relative hover:shadow-md transition">
@@ -214,13 +214,13 @@ const CartPanel = () => {
 
        
         <div className="flex-1 pr-6">
-          <h4 className="text-[15px] font-semibold text-gray-800 hover:text-orange-500 transition line-clamp-2">
+          <h4 className="text-[15px] font-semibold text-brand-ink hover:text-orange-500 transition line-clamp-2">
             A line Kurti with Beautiful Embroidery
           </h4>
 
           <div className="flex items-center justify-between mt-2 text-sm">
-            <span className="text-gray-600">
-              Qty: <b className="text-gray-900">1</b>
+            <span className="text-brand-muted">
+              Qty: <b className="text-brand-ink">1</b>
             </span>
 
             <span className="font-bold text-orange-500">
@@ -229,7 +229,7 @@ const CartPanel = () => {
           </div>
         </div>
 
-        <MdDelete className="absolute top-3 right-3 text-[22px] text-gray-500 hover:text-red-500 cursor-pointer transition-all" />
+        <MdDelete className="absolute top-3 right-3 text-[22px] text-brand-muted hover:text-red-500 cursor-pointer transition-all" />
       </div>
 
       
@@ -239,38 +239,38 @@ const CartPanel = () => {
 {/* Items & Shipping */}
 
 <div className="bottomsection">
-<div className="bottomInfo w-full py-3 border-t border-[rgba(0,0,0,0.1)] px-4 bg-white flex flex-col gap-3">
+<div className="bottomInfo w-full py-3 border-t border-brand-line px-4 bg-white flex flex-col gap-3">
   <div className="w-full flex items-center justify-between">
-    <span className="font-medium text-gray-600">1 Item</span>
+    <span className="font-medium text-brand-muted">1 Item</span>
     <span className="font-bold text-base text-orange-500">₹1198</span>
   </div>
 
   <div className="w-full flex items-center justify-between">
-    <span className="font-medium text-gray-600">Shipping</span>
+    <span className="font-medium text-brand-muted">Shipping</span>
     <span className="font-bold text-base text-orange-500">₹100</span>
   </div>
 </div>
 
 {/* Total (Tax Excl.) */}
-<div className="bottomInfo w-full py-3 border-t border-[rgba(0,0,0,0.1)] px-4 bg-white flex flex-col gap-3">
+<div className="bottomInfo w-full py-3 border-t border-brand-line px-4 bg-white flex flex-col gap-3">
   <div className="w-full flex items-center justify-between">
-    <span className="font-medium text-gray-600">Total (tax excl.)</span>
+    <span className="font-medium text-brand-muted">Total (tax excl.)</span>
     <span className="font-bold text-base text-orange-500">₹1100</span>
   </div>
 </div>
 
 {/* Total (Tax Incl.) */}
-<div className="bottomInfo w-full py-3 border-t border-[rgba(0,0,0,0.1)] px-4 bg-white flex flex-col gap-3">
+<div className="bottomInfo w-full py-3 border-t border-brand-line px-4 bg-white flex flex-col gap-3">
   <div className="w-full flex items-center justify-between">
-    <span className="font-medium text-gray-600">Total (tax incl.)</span>
+    <span className="font-medium text-brand-muted">Total (tax incl.)</span>
     <span className="font-bold text-base text-orange-500">₹1198</span>
   </div>
 </div>
 
 
-<div className="bottomInfo w-full py-3 border-t border-[rgba(0,0,0,0.1)] px-4 bg-white flex flex-col gap-3">
+<div className="bottomInfo w-full py-3 border-t border-brand-line px-4 bg-white flex flex-col gap-3">
   <div className="w-full flex items-center justify-between">
-    <span className="font-medium text-gray-600">Taxs</span>
+    <span className="font-medium text-brand-muted">Taxs</span>
     <span className="font-bold text-base text-orange-500">₹1198</span>
   </div>
 </div>

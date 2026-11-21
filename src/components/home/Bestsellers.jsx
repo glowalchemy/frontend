@@ -76,18 +76,18 @@ const Bestsellers = () => {
                 </div>
 
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <h3 className="ga-serif text-[19px] leading-snug text-[#29151F] transition-colors group-hover:text-burgundy sm:text-[21px]">
+                  <h3 className="ga-serif text-[19px] leading-snug text-[var(--color-text)] transition-colors group-hover:text-burgundy sm:text-[21px]">
                     {card.title}
                   </h3>
                   <p className="mt-2 line-clamp-2 text-[13.5px] leading-relaxed text-glowalchemy-warm-gray">
                     {card.description}
                   </p>
 
-                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#F3DDE5] pt-4">
+                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[var(--color-border)] pt-4">
                     {card.price ? (
                       <span className="text-[15px] font-semibold text-burgundy">{card.price}</span>
                     ) : (
-                      <span className="text-[11px] uppercase tracking-[0.16em] text-[#9A7C88]">
+                      <span className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                         Natural care
                       </span>
                     )}

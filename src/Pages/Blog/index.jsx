@@ -63,15 +63,15 @@ const Blog = () => {
         <div className="min-h-screen bg-white py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Blog</h1>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <h1 className="text-4xl font-bold text-brand-ink mb-4">Our Blog</h1>
+                    <p className="text-lg text-brand-muted max-w-3xl mx-auto">
                         Stay updated with the latest news, trends, and insights from the cosmetic industry
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {blogPosts.map((post) => (
-                        <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+                        <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden border border-brand-line hover:shadow-xl transition-shadow">
                             <div className="h-48 overflow-hidden">
                                 <img 
                                     src={post.image} 
@@ -80,7 +80,7 @@ const Blog = () => {
                                 />
                             </div>
                             <div className="p-6">
-                                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                                <div className="flex items-center gap-4 text-sm text-brand-muted mb-3">
                                     <span className="flex items-center">
                                         <FaTag className="mr-1" />
                                         {post.category}
@@ -90,13 +90,13 @@ const Blog = () => {
                                         {new Date(post.date).toLocaleDateString()}
                                     </span>
                                 </div>
-                                <h2 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
+                                <h2 className="text-xl font-bold text-brand-ink mb-3 hover:text-brand-primary cursor-pointer">
                                     {post.title}
                                 </h2>
-                                <p className="text-gray-600 mb-4 line-clamp-3">
+                                <p className="text-brand-muted mb-4 line-clamp-3">
                                     {post.excerpt}
                                 </p>
-                                <div className="flex items-center text-sm text-gray-500">
+                                <div className="flex items-center text-sm text-brand-muted">
                                     <FaUser className="mr-2" />
                                     {post.author}
                                 </div>

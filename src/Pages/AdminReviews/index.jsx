@@ -336,10 +336,10 @@ const AdminReviews = () => {
                         <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-xl font-bold text-[#111111]">Review Details</h2>
+                                    <h2 className="text-xl font-bold text-[var(--color-text)]">Review Details</h2>
                                     <button
                                         onClick={() => setShowDetails(false)}
-                                        className="text-[#8A8882] hover:text-[#111111]"
+                                        className="text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                                     >
                                         ×
                                     </button>
@@ -348,8 +348,8 @@ const AdminReviews = () => {
                                 <div className="space-y-4">
                                     {/* Customer Info */}
                                     <div>
-                                        <h3 className="font-semibold text-[#111111] mb-2">Customer Information</h3>
-                                        <div className="bg-[#F7F6F2] p-4 rounded-lg">
+                                        <h3 className="font-semibold text-[var(--color-text)] mb-2">Customer Information</h3>
+                                        <div className="bg-[var(--color-surface-muted)] p-4 rounded-lg">
                                             <p><strong>Name:</strong> {selectedReview.customerName}</p>
                                             <p><strong>Email:</strong> {selectedReview.customerEmail}</p>
                                             <p><strong>Date:</strong> {formatDate(selectedReview.date)}</p>
@@ -359,8 +359,8 @@ const AdminReviews = () => {
 
                                     {/* Product Info */}
                                     <div>
-                                        <h3 className="font-semibold text-[#111111] mb-2">Product Information</h3>
-                                        <div className="bg-[#F7F6F2] p-4 rounded-lg">
+                                        <h3 className="font-semibold text-[var(--color-text)] mb-2">Product Information</h3>
+                                        <div className="bg-[var(--color-surface-muted)] p-4 rounded-lg">
                                             <p><strong>Product:</strong> {selectedReview.productName}</p>
                                             <p><strong>Product ID:</strong> {selectedReview.productId}</p>
                                         </div>
@@ -368,8 +368,8 @@ const AdminReviews = () => {
 
                                     {/* Rating */}
                                     <div>
-                                        <h3 className="font-semibold text-[#111111] mb-2">Rating</h3>
-                                        <div className="bg-[#F7F6F2] p-4 rounded-lg">
+                                        <h3 className="font-semibold text-[var(--color-text)] mb-2">Rating</h3>
+                                        <div className="bg-[var(--color-surface-muted)] p-4 rounded-lg">
                                             <div className="flex items-center gap-2">
                                                 {[...Array(5)].map((_, i) => (
                                                     <FaStar
@@ -385,10 +385,10 @@ const AdminReviews = () => {
 
                                     {/* Review Content */}
                                     <div>
-                                        <h3 className="font-semibold text-[#111111] mb-2">Review Content</h3>
-                                        <div className="bg-[#F7F6F2] p-4 rounded-lg">
-                                            <h4 className="font-medium text-[#111111] mb-2">{selectedReview.title}</h4>
-                                            <p className="text-[#8A8882] whitespace-pre-wrap">{selectedReview.comment}</p>
+                                        <h3 className="font-semibold text-[var(--color-text)] mb-2">Review Content</h3>
+                                        <div className="bg-[var(--color-surface-muted)] p-4 rounded-lg">
+                                            <h4 className="font-medium text-[var(--color-text)] mb-2">{selectedReview.title}</h4>
+                                            <p className="text-[var(--color-text-muted)] whitespace-pre-wrap">{selectedReview.comment}</p>
                                         </div>
                                     </div>
 
@@ -421,13 +421,13 @@ const AdminReviews = () => {
                                                 handleDeleteReview(selectedReview.id);
                                                 setShowDetails(false);
                                             }}
-                                            className="bg-[#8A8882] text-white px-4 py-2 rounded-lg hover:bg-[#6B6965]"
+                                            className="bg-[var(--color-text-muted)] text-white px-4 py-2 rounded-lg hover:bg-[#6B6965]"
                                         >
                                             Delete
                                         </button>
                                         <button
                                             onClick={() => setShowDetails(false)}
-                                            className="bg-[#D8CBB8] text-[#111111] px-4 py-2 rounded-lg hover:bg-[#C5B9A8]"
+                                            className="bg-[var(--color-border)] text-[var(--color-text)] px-4 py-2 rounded-lg hover:bg-[#C5B9A8]"
                                         >
                                             Close
                                         </button>

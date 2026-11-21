@@ -39,15 +39,15 @@ const Commitment = () => (
           return (
             <div
               key={item.title}
-              className="group flex flex-col items-center rounded-2xl border border-[#F7E6EC] bg-[#FFF9F5] px-3 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#EFC3D2] hover:bg-pink-light hover:shadow-[0_16px_34px_rgba(111,18,48,0.08)]"
+              className="group flex flex-col items-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-champagne)] hover:bg-pink-light hover:shadow-[0_16px_34px_rgba(20,61,43,0.08)]"
             >
-              <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-burgundy shadow-[0_4px_14px_rgba(111,18,48,0.08)] transition-colors duration-300 group-hover:bg-burgundy group-hover:text-white">
+              <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-burgundy shadow-[0_4px_14px_rgba(20,61,43,0.08)] transition-colors duration-300 group-hover:bg-burgundy group-hover:text-white">
                 <Icon className="text-[18px]" aria-hidden="true" />
               </span>
-              <h3 className="text-[12.5px] font-semibold leading-tight text-[#29151F] sm:text-[13px]">
+              <h3 className="text-[12.5px] font-semibold leading-tight text-[var(--color-text)] sm:text-[13px]">
                 {item.title}
               </h3>
-              <p className="mt-1.5 text-[10.5px] leading-snug text-[#9A7C88] sm:text-[11px]">{item.copy}</p>
+              <p className="mt-1.5 text-[10.5px] leading-snug text-[var(--color-text-muted)] sm:text-[11px]">{item.copy}</p>
             </div>
           );
         })}

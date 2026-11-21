@@ -543,14 +543,14 @@ const CheckoutPage = () => {
                                     <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-glowalchemy-terracotta text-white">2</div>
                                     <span className="font-semibold">Address</span>
                                 </div>
-                                <div className="flex-1 h-[2px] mx-1.5 bg-gray-200" />
-                                <div className="flex items-center gap-1.5 text-gray-400">
-                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-gray-200">3</div>
+                                <div className="flex-1 h-[2px] mx-1.5 bg-brand-line" />
+                                <div className="flex items-center gap-1.5 text-brand-muted">
+                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-brand-line">3</div>
                                     <span className="font-semibold">Payment</span>
                                 </div>
-                                <div className="flex-1 h-[2px] mx-1.5 bg-gray-200" />
-                                <div className="flex items-center gap-1.5 text-gray-400">
-                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-gray-200">4</div>
+                                <div className="flex-1 h-[2px] mx-1.5 bg-brand-line" />
+                                <div className="flex items-center gap-1.5 text-brand-muted">
+                                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold bg-brand-line">4</div>
                                     <span className="font-semibold">Summary</span>
                                 </div>
                             </div>
@@ -596,7 +596,7 @@ const CheckoutPage = () => {
                                                 value={formData.addressLine1}
                                                 onChange={handleChange}
                                                 placeholder="House no., Street, Area"
-                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
+                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-[var(--color-primary)]"
                                             />
                                         </div>
 
@@ -631,7 +631,7 @@ const CheckoutPage = () => {
                                                 value={formData.postalCode}
                                                 onChange={handleChange}
                                                 placeholder="6-digit pincode"
-                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-[#5A0B5A]/20 focus:border-[#5A0B5A]"
+                                                className="mt-1 block w-full border border-glowalchemy-sand rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-[var(--color-primary)]"
                                             />
                                         </div>
 
@@ -676,7 +676,7 @@ const CheckoutPage = () => {
                                                     </div>
                                                     <div className="min-w-0">
                                                         <div className="flex items-center gap-2">
-                                                            <FiMapPin className="text-gray-500" />
+                                                            <FiMapPin className="text-brand-muted" />
                                                             <div className="text-[14px] font-bold text-glowalchemy-charcoal truncate">{addr.name || customerName || 'Address'}</div>
                                                             {addr.isDefault ? (
                                                                 <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-glowalchemy-sand text-glowalchemy-charcoal">Default</span>
@@ -708,7 +708,7 @@ const CheckoutPage = () => {
                                     <button
                                         type="button"
                                         onClick={() => setFormData((prev) => ({ ...prev, paymentMethod: 'phonepe' }))}
-                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-glowalchemy-sand bg-glowalchemy-white hover:border-gray-300'}`}
+                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'phonepe' ? 'border-[var(--color-primary)] bg-[var(--color-surface-muted)] ring-1 ring-brand-primary/20' : 'border-glowalchemy-sand bg-glowalchemy-white hover:border-brand-line'}`}
                                     >
                                         {/* Icon */}
                                         <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#5f259f] flex items-center justify-center flex-shrink-0">
@@ -720,11 +720,11 @@ const CheckoutPage = () => {
                                         {/* Text Content */}
                                         <div className="flex-1 min-w-0 text-left">
                                             <div className="text-[13px] sm:text-[14px] font-bold text-glowalchemy-charcoal">Pay Online (UPI)</div>
-                                            <div className="text-[11px] sm:text-[12px] text-gray-500 mt-0.5">PhonePe, GPay, Paytm</div>
+                                            <div className="text-[11px] sm:text-[12px] text-brand-muted mt-0.5">PhonePe, GPay, Paytm</div>
                                         </div>
                                         
                                         {/* Selection Indicator */}
-                                        <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] bg-glowalchemy-terracotta' : 'border-gray-300'}`}>
+                                        <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'phonepe' ? 'border-[var(--color-primary)] bg-glowalchemy-terracotta' : 'border-brand-line'}`}>
                                             {formData.paymentMethod === 'phonepe' && (
                                                 <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -741,10 +741,10 @@ const CheckoutPage = () => {
                                             setFormData((prev) => ({ ...prev, paymentMethod: 'cod' }));
                                         }}
                                         disabled={!isCodEligible}
-                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-[#F7F6F2] ring-1 ring-[#B85C3A]/20' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-60 cursor-not-allowed' : 'hover:border-gray-300'}`}
+                                        className={`w-full flex items-center gap-3 p-3 sm:p-4 rounded-[10px] border transition-all duration-200 ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary)] bg-[var(--color-surface-muted)] ring-1 ring-brand-primary/20' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-60 cursor-not-allowed' : 'hover:border-brand-line'}`}
                                     >
                                         {/* Icon */}
-                                        <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'bg-glowalchemy-terracotta' : 'bg-gray-100'}`}>
+                                        <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'bg-glowalchemy-terracotta' : 'bg-brand-line/70'}`}>
                                             <svg className={`w-5 h-5 sm:w-5 sm:h-5 ${formData.paymentMethod === 'cod' ? 'text-white' : 'text-glowalchemy-warm-gray'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                                             </svg>
@@ -753,7 +753,7 @@ const CheckoutPage = () => {
                                         {/* Text Content */}
                                         <div className="flex-1 min-w-0 text-left">
                                             <div className="text-[13px] sm:text-[14px] font-bold text-glowalchemy-charcoal">Cash on Delivery</div>
-                                            <div className="text-[11px] sm:text-[12px] text-gray-500 mt-0.5">
+                                            <div className="text-[11px] sm:text-[12px] text-brand-muted mt-0.5">
                                                 {isCodEligible
                                                     ? 'Pay when you receive'
                                                     : (settings?.enableCod === false ? 'Currently unavailable' : 'Not eligible for this order')}
@@ -768,7 +768,7 @@ const CheckoutPage = () => {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] bg-glowalchemy-terracotta' : 'border-gray-300'}`}>
+                                            <div className={`w-5 h-5 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary)] bg-glowalchemy-terracotta' : 'border-brand-line'}`}>
                                                 {formData.paymentMethod === 'cod' && (
                                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -790,7 +790,7 @@ const CheckoutPage = () => {
                                         <button
                                             type="button"
                                             onClick={() => setFormData((prev) => ({ ...prev, paymentMethod: 'phonepe' }))}
-                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'phonepe' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-glowalchemy-sand bg-glowalchemy-white'}`}
+                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'phonepe' ? 'border-[var(--color-primary)] ring-1 ring-brand-primary/30 bg-[var(--color-surface-muted)]' : 'border-glowalchemy-sand bg-glowalchemy-white'}`}
                                         >
                                             <div className="text-[13px] font-extrabold text-glowalchemy-charcoal">Pay Online (UPI)</div>
                                             <div className="text-[12px] text-glowalchemy-warm-gray">PhonePe payment</div>
@@ -803,7 +803,7 @@ const CheckoutPage = () => {
                                                 setFormData((prev) => ({ ...prev, paymentMethod: 'cod' }));
                                             }}
                                             disabled={!isCodEligible}
-                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'cod' ? 'border-[#B85C3A] ring-1 ring-[#B85C3A]/30 bg-[#F7F6F2]' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`w-full text-left rounded-xl border px-3 py-2.5 transition ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary)] ring-1 ring-brand-primary/30 bg-[var(--color-surface-muted)]' : 'border-glowalchemy-sand bg-glowalchemy-white'} ${!isCodEligible ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         >
                                             <div className="text-[13px] font-extrabold text-glowalchemy-charcoal">Cash on Delivery</div>
                                             <div className="text-[12px] text-glowalchemy-warm-gray">
@@ -843,7 +843,7 @@ const CheckoutPage = () => {
                                 <div className="mt-6 flex gap-3">
                                     <Link
                                         to="/cart"
-                                        className="flex-1 border-2 border-[#B85C3A] text-glowalchemy-terracotta py-3 rounded-lg font-semibold text-center hover:bg-glowalchemy-terracotta hover:text-white transition-colors"
+                                        className="flex-1 border-2 border-[var(--color-primary)] text-glowalchemy-terracotta py-3 rounded-lg font-semibold text-center hover:bg-glowalchemy-terracotta hover:text-white transition-colors"
                                     >
                                         Back to Cart
                                     </Link>
@@ -851,7 +851,7 @@ const CheckoutPage = () => {
                                     <button
                                         onClick={goToPayment}
                                         disabled={loading || !selectedAddressId || isAddingNew}
-                                        className="flex-1 bg-glowalchemy-terracotta text-white py-3 rounded-lg font-semibold hover:bg-[#9A4A2E] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                        className="flex-1 bg-glowalchemy-terracotta text-white py-3 rounded-lg font-semibold hover:bg-[var(--color-primary-hover)] transition-colors disabled:bg-brand-sage disabled:cursor-not-allowed"
                                     >
                                         {loading ? 'Processing...' : (formData.paymentMethod === 'cod' ? 'Place COD Order' : 'Continue to Payment')}
                                     </button>
@@ -864,13 +864,13 @@ const CheckoutPage = () => {
                         <div className="flex items-center justify-between gap-3">
                             <div className="min-w-0">
                                 <div className="text-[16px] font-extrabold text-glowalchemy-terracotta truncate">₹{payableAmount.toFixed(0)}</div>
-                                <div className="text-[12px] text-gray-500">Inclusive of all taxes</div>
+                                <div className="text-[12px] text-brand-muted">Inclusive of all taxes</div>
                             </div>
                             <button
                                 type="button"
                                 onClick={goToPayment}
                                 disabled={loading || !selectedAddressId || isAddingNew}
-                                className="h-12 px-6 inline-flex items-center justify-center rounded-xl bg-[#C97BCB] disabled:bg-[#E7C6E7] text-white text-sm font-extrabold shadow-sm flex-1"
+                                className="h-12 px-6 inline-flex items-center justify-center rounded-xl bg-[var(--color-primary)] disabled:bg-[var(--color-text-muted)] text-white text-sm font-extrabold shadow-sm flex-1"
                             >
                                 {loading ? 'Processing...' : (formData.paymentMethod === 'cod' ? 'Place COD Order' : 'Continue to Payment')}
                             </button>

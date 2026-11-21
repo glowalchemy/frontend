@@ -120,7 +120,7 @@ const LoginPage = () => {
                                     id="remember-me"
                                     name="remember-me"
                                     type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-glowalchemy-terracotta focus:ring-orange-500"
+                                    className="h-4 w-4 rounded border-brand-line text-glowalchemy-terracotta focus:ring-orange-500"
                                 />
                                 Remember me
                             </label>

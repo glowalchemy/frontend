@@ -37,21 +37,21 @@ const HeroBanner = () => {
       {/* botanical decoration */}
       <div
         className="ga-hero-blob -top-24 -left-24 h-72 w-72 opacity-70"
-        style={{ background: 'radial-gradient(circle, #FCEAF0 0%, rgba(252,234,240,0) 72%)' }}
+        style={{ background: 'radial-gradient(circle, var(--color-surface-muted) 0%, rgba(231,234,221,0) 72%)' }}
         aria-hidden="true"
       />
       <div
         className="ga-hero-blob right-[-10%] top-1/3 h-[520px] w-[520px] opacity-80"
-        style={{ background: 'radial-gradient(circle, #FCEAF0 0%, rgba(255,244,247,0) 70%)' }}
+        style={{ background: 'radial-gradient(circle, var(--color-surface-muted) 0%, rgba(255,252,247,0) 70%)' }}
         aria-hidden="true"
       />
       <FaLeaf
-        className="absolute left-6 top-10 hidden text-5xl text-[#E7B3C2]/40 lg:block"
+        className="absolute left-6 top-10 hidden text-5xl text-[var(--color-accent)]/40 lg:block"
         aria-hidden="true"
         style={{ transform: 'rotate(-18deg)' }}
       />
       <FaLeaf
-        className="absolute bottom-10 right-1/3 hidden text-4xl text-[#E7B3C2]/30 lg:block"
+        className="absolute bottom-10 right-1/3 hidden text-4xl text-[var(--color-accent)]/30 lg:block"
         aria-hidden="true"
         style={{ transform: 'rotate(24deg)' }}
       />
@@ -66,7 +66,7 @@ const HeroBanner = () => {
               <span className="hidden h-px w-10 bg-burgundy/40 lg:inline-block" aria-hidden="true" />
             </p>
 
-            <h1 className="ga-serif text-[2.25rem] leading-[1.06] text-[#29151F] sm:text-5xl lg:text-[3.6rem] xl:text-[3.9rem]">
+            <h1 className="ga-serif text-[2.25rem] leading-[1.06] text-[var(--color-text)] sm:text-5xl lg:text-[3.6rem] xl:text-[3.9rem]">
               Natural Care.
               <br />
               <span className="italic text-burgundy">Lasting Glow.</span>
@@ -77,20 +77,20 @@ const HeroBanner = () => {
               skin that glows from within.
             </p>
 
-            <p className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[#6E4E5A] lg:justify-start">
+            <p className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)] lg:justify-start">
               <span>Skincare</span>
-              <span className="text-[#E7B3C2]">•</span>
+              <span className="text-[var(--color-accent)]">•</span>
               <span>Haircare</span>
-              <span className="text-[#E7B3C2]">•</span>
+              <span className="text-[var(--color-accent)]">•</span>
               <span>Bodycare</span>
-              <span className="text-[#E7B3C2]">•</span>
+              <span className="text-[var(--color-accent)]">•</span>
               <span>Selfcare</span>
             </p>
 
             <div className="mt-7 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <Link
                 to="/ProductListing"
-                className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-burgundy px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(133,22,56,0.24)] transition-all duration-300 hover:bg-burgundy-deep hover:shadow-[0_18px_36px_rgba(133,22,56,0.3)] sm:w-auto"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-burgundy px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.14em] text-white shadow-[0_14px_30px_rgba(20,61,43,0.24)] transition-all duration-300 hover:bg-burgundy-deep hover:shadow-[0_18px_36px_rgba(20,61,43,0.3)] sm:w-auto"
               >
                 Shop The Collection
                 <FiArrowRight className="text-base transition-transform duration-300 group-hover:translate-x-1" />
@@ -98,13 +98,13 @@ const HeroBanner = () => {
 
               <a
                 href="#bestsellers"
-                className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.14em] text-[#29151F] underline decoration-[#E7B3C2] decoration-2 underline-offset-8 transition-colors hover:text-burgundy"
+                className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.14em] text-[var(--color-text)] underline decoration-[var(--color-accent)] decoration-2 underline-offset-8 transition-colors hover:text-burgundy"
               >
                 Our Bestsellers
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-[#6E4E5A] lg:justify-start">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-[var(--color-text-muted)] lg:justify-start">
               <span className="inline-flex items-center gap-2">
                 <FiCheck className="text-burgundy" /> 100% Natural
               </span>
@@ -123,7 +123,7 @@ const HeroBanner = () => {
             <div className="relative hidden h-[440px] lg:block xl:h-[470px]">
               <div
                 className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-                style={{ background: 'linear-gradient(150deg, #FCEAF0 0%, #FFF4F7 60%, #FFF9F5 100%)' }}
+                style={{ background: 'linear-gradient(150deg, var(--color-surface-muted) 0%, var(--color-surface) 60%, var(--color-background) 100%)' }}
                 aria-hidden="true"
               />
               <div
@@ -187,9 +187,9 @@ const HeroBanner = () => {
                 </span>
               </Link>
 
-              <div className="absolute right-2 bottom-8 z-20 rounded-2xl border border-[#F3DDE5] bg-white/95 px-4 py-3 text-center shadow-[0_12px_28px_rgba(111,18,48,0.12)] backdrop-blur">
+              <div className="absolute right-2 bottom-8 z-20 rounded-2xl border border-[var(--color-border)] bg-white/95 px-4 py-3 text-center shadow-[0_12px_28px_rgba(20,61,43,0.12)] backdrop-blur">
                 <p className="ga-serif text-lg leading-none text-burgundy">100%</p>
-                <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.16em] text-[#9A7C88]">
+                <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                   Natural &amp; Safe
                 </p>
               </div>
@@ -219,7 +219,7 @@ const HeroBanner = () => {
                   </Link>
                 ))}
               </div>
-              <p className="mt-3 text-center text-[10px] uppercase tracking-[0.18em] text-[#9A7C88]">
+              <p className="mt-3 text-center text-[10px] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                 Skincare • Haircare • Bodycare
               </p>
             </div>

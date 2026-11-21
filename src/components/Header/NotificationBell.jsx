@@ -64,10 +64,10 @@ const NotificationBell = () => {
         <IconButton
           aria-label="notifications"
           onClick={handleOpen}
-          className="!w-10 !h-10 sm:!w-11 sm:!h-11 hover:bg-[#F7F6F2] transition-colors rounded-xl"
+          className="!w-10 !h-10 sm:!w-11 sm:!h-11 hover:!bg-white/10 transition-colors rounded-xl"
         >
           <StyledBadge badgeContent={unreadCount} color="secondary">
-            <FiBell className="text-lg sm:text-xl md:text-2xl text-[#111111]" />
+            <FiBell className="text-lg sm:text-xl md:text-2xl text-brand-ivory" />
           </StyledBadge>
         </IconButton>
       </Tooltip>
@@ -88,10 +88,10 @@ const NotificationBell = () => {
       >
         <MenuItem disabled>
           <div className="w-full flex items-center justify-between">
-            <div className="font-semibold text-[#111111]">Notifications</div>
+            <div className="font-semibold text-[var(--color-text)]">Notifications</div>
             <button
               type="button"
-              className="text-sm text-[#B85C3A] hover:text-[#9A4A2E]"
+              className="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
               onClick={handleMarkAllRead}
             >
               Mark all read
@@ -116,10 +116,10 @@ const NotificationBell = () => {
             >
               <div className="w-full">
                 <div className="flex items-center justify-between gap-2">
-                  <div className="font-medium text-[#111111]">{String(n?.title || 'Notification')}</div>
-                  <div className="text-xs text-[#8A8882]">{n?.createdAt ? new Date(n.createdAt).toLocaleString() : ''}</div>
+                  <div className="font-medium text-[var(--color-text)]">{String(n?.title || 'Notification')}</div>
+                  <div className="text-xs text-[var(--color-text-muted)]">{n?.createdAt ? new Date(n.createdAt).toLocaleString() : ''}</div>
                 </div>
-                <div className="text-sm text-[#8A8882] mt-1">{String(n?.message || '')}</div>
+                <div className="text-sm text-[var(--color-text-muted)] mt-1">{String(n?.message || '')}</div>
               </div>
             </MenuItem>
           ))

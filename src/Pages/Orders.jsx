@@ -29,7 +29,7 @@ const STATUS_META = {
 
 const STATUS_STYLES = {
     new:        'bg-status-info/10 text-status-info border-status-info/20',
-    processing: 'bg-status-warning/15 text-[#8a6d1f] border-status-warning/40',
+    processing: 'bg-status-warning/15 text-brand-warning border-status-warning/40',
     paid:       'bg-status-info/10 text-status-info border-status-info/20',
     shipped:    'bg-status-info/10 text-status-info border-status-info/20',
     delivered:  'bg-status-success/10 text-status-success border-status-success/20',

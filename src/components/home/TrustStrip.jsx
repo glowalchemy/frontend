@@ -10,7 +10,7 @@ const BENEFITS = [
 ];
 
 const TrustStrip = () => (
-  <section className="border-y border-[#F3DDE5] bg-pink-soft">
+  <section className="border-y border-[var(--color-border)] bg-pink-soft">
     <div className="ga-container py-6 sm:py-7">
       <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 lg:grid-cols-5 lg:gap-0">
         {BENEFITS.map((benefit, index) => {
@@ -22,14 +22,14 @@ const TrustStrip = () => (
                 index > 0 && index % 2 === 0 ? 'sm:border-none' : ''
               }`}
             >
-              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-burgundy shadow-[0_4px_14px_rgba(111,18,48,0.08)] lg:h-12 lg:w-12">
+              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white text-burgundy shadow-[0_4px_14px_rgba(20,61,43,0.08)] lg:h-12 lg:w-12">
                 <Icon className="text-[17px]" aria-hidden="true" />
               </span>
               <span className="min-w-0">
-                <span className="block text-[12.5px] font-semibold leading-tight text-[#29151F] sm:text-[13px]">
+                <span className="block text-[12.5px] font-semibold leading-tight text-[var(--color-text)] sm:text-[13px]">
                   {benefit.title}
                 </span>
-                <span className="mt-1 block text-[11px] leading-tight text-[#9A7C88]">{benefit.copy}</span>
+                <span className="mt-1 block text-[11px] leading-tight text-[var(--color-text-muted)]">{benefit.copy}</span>
               </span>
             </div>
           );

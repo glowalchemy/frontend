@@ -43,14 +43,14 @@ const CategoryStrip = () => {
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
             <p className="ga-eyebrow text-burgundy">Shop By Ritual</p>
-            <h2 className="ga-serif mt-2 text-[22px] text-[#29151F] sm:text-[26px]">Find Your Everyday Care</h2>
+            <h2 className="ga-serif mt-2 text-[22px] text-[var(--color-text)] sm:text-[26px]">Find Your Everyday Care</h2>
           </div>
           <div className="hidden gap-2 md:flex">
             <button
               type="button"
               onClick={() => scrollBy(-320)}
               aria-label="Scroll categories left"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F3DDE5] bg-white text-burgundy transition-colors hover:bg-pink-soft"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-burgundy transition-colors hover:bg-pink-soft"
             >
               ‹
             </button>
@@ -58,7 +58,7 @@ const CategoryStrip = () => {
               type="button"
               onClick={() => scrollBy(320)}
               aria-label="Scroll categories right"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F3DDE5] bg-white text-burgundy transition-colors hover:bg-pink-soft"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-burgundy transition-colors hover:bg-pink-soft"
             >
               ›
             </button>
@@ -72,7 +72,7 @@ const CategoryStrip = () => {
               to={tile.to}
               className="group flex min-w-[88px] flex-1 flex-col items-center md:min-w-0"
             >
-              <span className="relative flex h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full border border-[#F3DDE5] bg-pink-light p-[3px] transition-all duration-300 group-hover:border-burgundy/40 group-hover:shadow-[0_10px_24px_rgba(111,18,48,0.12)] sm:h-[92px] sm:w-[92px]">
+              <span className="relative flex h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full border border-[var(--color-border)] bg-pink-light p-[3px] transition-all duration-300 group-hover:border-burgundy/40 group-hover:shadow-[0_10px_24px_rgba(20,61,43,0.12)] sm:h-[92px] sm:w-[92px]">
                 <img
                   src={tile.img}
                   alt={tile.name}
@@ -80,7 +80,7 @@ const CategoryStrip = () => {
                   loading="lazy"
                 />
               </span>
-              <span className="mt-3 text-center text-[11.5px] font-medium uppercase tracking-[0.12em] text-[#29151F] transition-colors group-hover:text-burgundy sm:text-[12px]">
+              <span className="mt-3 text-center text-[11.5px] font-medium uppercase tracking-[0.12em] text-[var(--color-text)] transition-colors group-hover:text-burgundy sm:text-[12px]">
                 {tile.name}
               </span>
             </Link>

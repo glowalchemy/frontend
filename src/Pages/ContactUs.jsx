@@ -46,14 +46,14 @@ const ContactUs = () => {
     return (
         <div className="min-h-screen bg-white py-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Link to="/" className="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6">
+                <Link to="/" className="inline-flex items-center text-brand-primary hover:text-brand-primary-hover mb-6">
                     <FaArrowLeft className="mr-2" />
                     Back to Home
                 </Link>
 
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-                    <p className="text-lg text-gray-600">
+                    <h1 className="text-4xl font-bold text-brand-ink mb-4">Contact Us</h1>
+                    <p className="text-lg text-brand-muted">
                         We're here to help! Reach out to us through any of the following channels.
                     </p>
                 </div>
@@ -62,32 +62,32 @@ const ContactUs = () => {
                     {/* Contact Information */}
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-lg shadow p-6 mb-6">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-6">Get in Touch</h2>
+                            <h2 className="text-xl font-semibold text-brand-ink mb-6">Get in Touch</h2>
 
                             <div className="space-y-4">
                                 <div className="flex items-start space-x-3">
-                                    <FaPhone className="h-5 w-5 text-indigo-600 mt-1" />
+                                    <FaPhone className="h-5 w-5 text-brand-primary mt-1" />
                                     <div>
-                                        <h3 className="font-medium text-gray-900">Phone</h3>
-                                        <p className="text-gray-600">+91 73592 30538</p>
-                                        <p className="text-sm text-gray-500">Mon-Sat, 9 AM - 6 PM IST</p>
+                                        <h3 className="font-medium text-brand-ink">Phone</h3>
+                                        <p className="text-brand-muted">+91 73592 30538</p>
+                                        <p className="text-sm text-brand-muted">Mon-Sat, 9 AM - 6 PM IST</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start space-x-3">
-                                    <FaEnvelope className="h-5 w-5 text-indigo-600 mt-1" />
+                                    <FaEnvelope className="h-5 w-5 text-brand-primary mt-1" />
                                     <div>
-                                        <h3 className="font-medium text-gray-900">Email</h3>
-                                        <p className="text-gray-600">glowalchemy67@gmail.com</p>
-                                        <p className="text-sm text-gray-500">We respond within 24 hours</p>
+                                        <h3 className="font-medium text-brand-ink">Email</h3>
+                                        <p className="text-brand-muted">glowalchemy67@gmail.com</p>
+                                        <p className="text-sm text-brand-muted">We respond within 24 hours</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start space-x-3">
-                                    <FaMapMarkerAlt className="h-5 w-5 text-indigo-600 mt-1" />
+                                    <FaMapMarkerAlt className="h-5 w-5 text-brand-primary mt-1" />
                                     <div>
-                                        <h3 className="font-medium text-gray-900">Address</h3>
-                                        <p className="text-gray-600">
+                                        <h3 className="font-medium text-brand-ink">Address</h3>
+                                        <p className="text-brand-muted">
                                             Sarthana,<br />
                                             Varachha,<br />
                                             Surat, Gujarat
@@ -96,10 +96,10 @@ const ContactUs = () => {
                                 </div>
 
                                 <div className="flex items-start space-x-3">
-                                    <FaClock className="h-5 w-5 text-indigo-600 mt-1" />
+                                    <FaClock className="h-5 w-5 text-brand-primary mt-1" />
                                     <div>
-                                        <h3 className="font-medium text-gray-900">Business Hours</h3>
-                                        <p className="text-gray-600">
+                                        <h3 className="font-medium text-brand-ink">Business Hours</h3>
+                                        <p className="text-brand-muted">
                                             Monday - Saturday: 9 AM - 6 PM<br />
                                             Sunday: Closed
                                         </p>
@@ -109,26 +109,26 @@ const ContactUs = () => {
                         </div>
 
                         <div className="bg-white rounded-lg shadow p-6">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                            <h2 className="text-xl font-semibold text-brand-ink mb-4">Frequently Asked Questions</h2>
 
                             <div className="space-y-4">
                                 <div>
-                                    <h3 className="font-medium text-gray-900 mb-1">How can I track my order?</h3>
-                                    <p className="text-gray-600 text-sm">
+                                    <h3 className="font-medium text-brand-ink mb-1">How can I track my order?</h3>
+                                    <p className="text-brand-muted text-sm">
                                         You can track your order through the link in your confirmation email or by logging into your account.
                                     </p>
                                 </div>
 
                                 <div>
-                                    <h3 className="font-medium text-gray-900 mb-1">What is your return policy?</h3>
-                                    <p className="text-gray-600 text-sm">
+                                    <h3 className="font-medium text-brand-ink mb-1">What is your return policy?</h3>
+                                    <p className="text-brand-muted text-sm">
                                         We offer a 7-day return policy for unused items in original packaging.
                                     </p>
                                 </div>
 
                                 <div>
-                                    <h3 className="font-medium text-gray-900 mb-1">Do you ship internationally?</h3>
-                                    <p className="text-gray-600 text-sm">
+                                    <h3 className="font-medium text-brand-ink mb-1">Do you ship internationally?</h3>
+                                    <p className="text-brand-muted text-sm">
                                         Currently, we ship within India only. International shipping coming soon!
                                     </p>
                                 </div>
@@ -139,7 +139,7 @@ const ContactUs = () => {
                     {/* Contact Form */}
                     <div className="lg:col-span-2">
                         <div className="bg-white rounded-lg shadow p-8">
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
+                            <h2 className="text-2xl font-semibold text-brand-ink mb-6">Send us a Message</h2>
 
                             {submitMessage && (
                                 <div className={`mb-6 p-4 rounded-md ${submitMessage.includes('Thank you') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
@@ -150,7 +150,7 @@ const ContactUs = () => {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="name" className="block text-sm font-medium text-brand-muted mb-2">
                                             Name *
                                         </label>
                                         <input
@@ -160,13 +160,13 @@ const ContactUs = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            className="w-full px-3 py-2 border border-brand-line rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary"
                                             placeholder="Your full name"
                                         />
                                     </div>
 
                                     <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="email" className="block text-sm font-medium text-brand-muted mb-2">
                                             Email *
                                         </label>
                                         <input
@@ -176,7 +176,7 @@ const ContactUs = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            className="w-full px-3 py-2 border border-brand-line rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary"
                                             placeholder="your.email@example.com"
                                         />
                                     </div>
@@ -184,7 +184,7 @@ const ContactUs = () => {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="phone" className="block text-sm font-medium text-brand-muted mb-2">
                                             Phone Number
                                         </label>
                                         <input
@@ -193,13 +193,13 @@ const ContactUs = () => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            className="w-full px-3 py-2 border border-brand-line rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary"
                                             placeholder="+91 73592 30538"
                                         />
                                     </div>
 
                                     <div>
-                                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                                        <label htmlFor="subject" className="block text-sm font-medium text-brand-muted mb-2">
                                             Subject *
                                         </label>
                                         <select
@@ -208,7 +208,7 @@ const ContactUs = () => {
                                             value={formData.subject}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            className="w-full px-3 py-2 border border-brand-line rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary"
                                         >
                                             <option value="">Select a subject</option>
                                             <option value="order">Order Related</option>
@@ -220,7 +220,7 @@ const ContactUs = () => {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                                    <label htmlFor="message" className="block text-sm font-medium text-brand-muted mb-2">
                                         Message *
                                     </label>
                                     <textarea
@@ -230,7 +230,7 @@ const ContactUs = () => {
                                         onChange={handleChange}
                                         required
                                         rows={6}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full px-3 py-2 border border-brand-line rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary"
                                         placeholder="Tell us more about your inquiry..."
                                     ></textarea>
                                 </div>
@@ -240,9 +240,9 @@ const ContactUs = () => {
                                         type="checkbox"
                                         id="agree"
                                         required
-                                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-brand-primary focus:ring-brand-primary border-brand-line rounded"
                                     />
-                                    <label htmlFor="agree" className="ml-2 text-sm text-gray-600">
+                                    <label htmlFor="agree" className="ml-2 text-sm text-brand-muted">
                                         I agree to be contacted regarding this inquiry *
                                     </label>
                                 </div>
@@ -251,7 +251,7 @@ const ContactUs = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full bg-brand-primary text-white py-3 px-4 rounded-md hover:bg-brand-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {isSubmitting ? 'Sending...' : 'Send Message'}
                                     </button>
@@ -263,15 +263,15 @@ const ContactUs = () => {
 
                 {/* Quick Links */}
                 <div className="mt-12 text-center">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Quick Links</h2>
+                    <h2 className="text-2xl font-semibold text-brand-ink mb-6">Quick Links</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <Link to="/privacy-policy" className="text-indigo-600 hover:text-indigo-800">
+                        <Link to="/privacy-policy" className="text-brand-primary hover:text-brand-primary-hover">
                             Privacy Policy
                         </Link>
-                        <Link to="/terms-of-service" className="text-indigo-600 hover:text-indigo-800">
+                        <Link to="/terms-of-service" className="text-brand-primary hover:text-brand-primary-hover">
                             Terms of Service
                         </Link>
-                        <Link to="/about" className="text-indigo-600 hover:text-indigo-800">
+                        <Link to="/about" className="text-brand-primary hover:text-brand-primary-hover">
                             About
                         </Link>
                     </div>

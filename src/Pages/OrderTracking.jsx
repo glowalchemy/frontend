@@ -834,13 +834,13 @@ const OrderTracking = () => {
 
                 {reviewModalOpen && (
                     <div className="fixed inset-0 z-modal-backdrop flex items-center justify-center bg-black/50 p-4">
-                        <div className="w-full max-w-lg rounded-xl bg-white border border-[#D8CBB8] shadow-lg">
-                            <div className="flex items-center justify-between px-5 py-4 border-b border-[#D8CBB8]">
+                        <div className="w-full max-w-lg rounded-xl bg-white border border-[var(--color-border)] shadow-lg">
+                            <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--color-border)]">
                                 <div>
-                                    <div className="text-sm font-semibold text-[#111111]">Write a Review</div>
-                                    <div className="text-xs text-[#8A8882]">{reviewItem?.name || ''}</div>
+                                    <div className="text-sm font-semibold text-[var(--color-text)]">Write a Review</div>
+                                    <div className="text-xs text-[var(--color-text-muted)]">{reviewItem?.name || ''}</div>
                                 </div>
-                                <button type="button" onClick={closeReviewModal} className="p-2 rounded-md hover:bg-[#F7F6F2]">
+                                <button type="button" onClick={closeReviewModal} className="p-2 rounded-md hover:bg-[var(--color-surface-muted)]">
                                     <FiX />
                                 </button>
                             </div>
@@ -851,11 +851,11 @@ const OrderTracking = () => {
                                 ) : null}
 
                                 <div>
-                                    <div className="text-sm font-medium text-[#111111] mb-1">Rating</div>
+                                    <div className="text-sm font-medium text-[var(--color-text)] mb-1">Rating</div>
                                     <select
                                         value={reviewRating}
                                         onChange={(e) => setReviewRating(Number(e.target.value) || 5)}
-                                        className="w-full h-10 rounded-md border border-[#D8CBB8] bg-white px-3 text-sm"
+                                        className="w-full h-10 rounded-md border border-[var(--color-border)] bg-white px-3 text-sm"
                                     >
                                         {[5, 4, 3, 2, 1].map((r) => (
                                             <option key={r} value={r}>{r}</option>
@@ -864,27 +864,27 @@ const OrderTracking = () => {
                                 </div>
 
                                 <div>
-                                    <div className="text-sm font-medium text-[#111111] mb-1">Title</div>
+                                    <div className="text-sm font-medium text-[var(--color-text)] mb-1">Title</div>
                                     <input
                                         value={reviewTitle}
                                         onChange={(e) => setReviewTitle(e.target.value)}
-                                        className="w-full h-10 rounded-md border border-[#D8CBB8] bg-white px-3 text-sm"
+                                        className="w-full h-10 rounded-md border border-[var(--color-border)] bg-white px-3 text-sm"
                                         placeholder="e.g. Great quality"
                                     />
                                 </div>
 
                                 <div>
-                                    <div className="text-sm font-medium text-[#111111] mb-1">Comment</div>
+                                    <div className="text-sm font-medium text-[var(--color-text)] mb-1">Comment</div>
                                     <textarea
                                         value={reviewComment}
                                         onChange={(e) => setReviewComment(e.target.value)}
-                                        className="w-full min-h-[110px] rounded-md border border-[#D8CBB8] bg-white px-3 py-2 text-sm"
+                                        className="w-full min-h-[110px] rounded-md border border-[var(--color-border)] bg-white px-3 py-2 text-sm"
                                         placeholder="Write your experience..."
                                     />
                                 </div>
 
                                 <div>
-                                    <div className="text-sm font-medium text-[#111111] mb-2">Photos (optional)</div>
+                                    <div className="text-sm font-medium text-[var(--color-text)] mb-2">Photos (optional)</div>
                                     <input
                                         type="file"
                                         accept="image/*"
@@ -896,11 +896,11 @@ const OrderTracking = () => {
                                         <div className="mt-3 grid grid-cols-5 gap-2">
                                             {reviewImages.map((u, idx) => (
                                                 <div key={`${u}_${idx}`} className="relative">
-                                                    <img src={u} alt="review" className="w-full h-14 object-cover rounded-md border border-[#D8CBB8]" />
+                                                    <img src={u} alt="review" className="w-full h-14 object-cover rounded-md border border-[var(--color-border)]" />
                                                     <button
                                                         type="button"
                                                         onClick={() => setReviewImages((prev) => prev.filter((_, i) => i !== idx))}
-                                                        className="absolute -top-2 -right-2 bg-white border border-[#D8CBB8] rounded-full p-1"
+                                                        className="absolute -top-2 -right-2 bg-white border border-[var(--color-border)] rounded-full p-1"
                                                     >
                                                         <FiX size={12} />
                                                     </button>
@@ -911,11 +911,11 @@ const OrderTracking = () => {
                                 </div>
                             </div>
 
-                            <div className="px-5 py-4 border-t border-[#D8CBB8] flex items-center justify-end gap-3">
+                            <div className="px-5 py-4 border-t border-[var(--color-border)] flex items-center justify-end gap-3">
                                 <button
                                     type="button"
                                     onClick={closeReviewModal}
-                                    className="h-10 px-4 rounded-md border border-[#D8CBB8] text-sm"
+                                    className="h-10 px-4 rounded-md border border-[var(--color-border)] text-sm"
                                 >
                                     Cancel
                                 </button>
@@ -923,7 +923,7 @@ const OrderTracking = () => {
                                     type="button"
                                     onClick={submitReview}
                                     disabled={reviewSubmitting}
-                                    className="h-10 px-4 rounded-md bg-[#B85C3A] text-white text-sm font-semibold disabled:opacity-60"
+                                    className="h-10 px-4 rounded-md bg-[var(--color-primary)] text-white text-sm font-semibold disabled:opacity-60"
                                 >
                                     {reviewSubmitting ? 'Submitting...' : 'Submit Review'}
                                 </button>

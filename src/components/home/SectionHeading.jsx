@@ -34,7 +34,7 @@ const SectionHeading = ({
           </p>
         ) : null}
         <h2
-          className={`site-section-title ${light ? 'text-white' : 'text-[#29151F]'}`}
+          className={`site-section-title ${light ? 'text-white' : 'text-[var(--color-text)]'}`}
         >
           {title}
         </h2>

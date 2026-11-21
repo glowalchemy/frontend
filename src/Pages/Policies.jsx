@@ -4,21 +4,21 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Policies = () => {
     return (
-        <div className="min-h-screen bg-gray-50 mt-40 py-12">
+        <div className="min-h-screen bg-brand-surface-muted mt-40 py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-white rounded-lg shadow p-8">
-                    <Link to="/" className="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6">
+                    <Link to="/" className="inline-flex items-center text-brand-primary hover:text-brand-primary-hover mb-6">
                         <FaArrowLeft className="mr-2" />
                         Back to Home
                     </Link>
 
-                    <h1 className="text-3xl font-bold text-gray-900 mb-6">Policies</h1>
+                    <h1 className="text-3xl font-bold text-brand-ink mb-6">Policies</h1>
 
-                    <div className="text-gray-600 mb-6">
+                    <div className="text-brand-muted mb-6">
                         Last updated: {new Date().toLocaleDateString()}
                     </div>
 
-                    <div className="whitespace-pre-wrap text-gray-700 leading-7">
+                    <div className="whitespace-pre-wrap text-brand-muted leading-7">
                         {`Terms & Conditions
 This document is an electronic record in terms of Information Technology Act, 2000 and rules
 there under as applicable and the amended provisions pertaining to electronic records in various

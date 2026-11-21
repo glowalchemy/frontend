@@ -3,7 +3,7 @@
 /* Cards size to each image's intrinsic ratio (BannerImage) — portrait art
    gets portrait cards, landscape gets landscape cards. Flat cream backdrop,
    object-contain foreground: full artwork, no crop, no blur bands. */
-.banner-card { display: block; border-radius: 10px; overflow: hidden; background: #faf5ef; }
+.banner-card { display: block; border-radius: 10px; overflow: hidden; background: var(--color-surface-muted); }
 .banner-card img { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 767px) {

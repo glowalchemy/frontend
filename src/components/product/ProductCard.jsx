@@ -6,8 +6,8 @@
 //           disabled={isAddingToCart || normalized.stock <= 0}
 //           className={
 //             isList
-//               ? "mt-4 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
-//               : "mt-auto w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+//               ? "mt-4 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold bg-brand-primary text-white hover:bg-brand-primary-hover disabled:opacity-50"
+//               : "mt-auto w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold bg-brand-primary text-white hover:bg-brand-primary-hover disabled:opacity-50"
 //           }
 //         >
 //           {justAdded ? (
@@ -263,8 +263,8 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
       }}
       className={
         isList
-          ? "group cursor-pointer overflow-hidden rounded-lg bg-glowalchemy-white border border-glowalchemy-sand hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex h-[280px]"
-          : "group cursor-pointer overflow-hidden rounded-lg bg-glowalchemy-white border border-glowalchemy-sand hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
+          ? "group cursor-pointer overflow-hidden rounded-2xl bg-brand-surface border border-brand-line hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex h-[280px]"
+          : "group cursor-pointer overflow-hidden rounded-2xl bg-brand-surface border border-brand-line hover:border-brand-accent/60 hover:shadow-md transition-all duration-200 hover:-translate-y-1 active:scale-[0.99]"
       }
     >
       <div className={isList ? "transition-transform duration-300 flex flex-row h-full" : "transition-transform duration-300 flex flex-col"}>
@@ -272,8 +272,8 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
         <div
           className={
             isList
-              ? "aspect-[4/5] bg-glowalchemy-ivory overflow-hidden relative w-[220px] min-w-[220px]"
-              : "aspect-square sm:aspect-[4/5] bg-glowalchemy-ivory overflow-hidden relative"
+              ? "aspect-[4/5] bg-brand-surface-muted overflow-hidden relative w-[220px] min-w-[220px]"
+              : "aspect-square sm:aspect-[4/5] bg-brand-surface-muted overflow-hidden relative"
           }
         >
           <div className="relative overflow-hidden w-full h-full">
@@ -301,7 +301,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
           {/* Discount Badge */}
           {shouldShowDiscount && normalized.discountPercent > 0 && (
-            <div className="absolute top-2 left-2 bg-glowalchemy-terracotta text-white text-xs px-2 py-1 rounded-md font-bold shadow-md animate-bounce-in">
+            <div className="absolute top-2 left-2 bg-brand-primary text-brand-ivory text-xs px-2 py-1 rounded-md font-bold shadow-md animate-bounce-in">
               {normalized.discountPercent}% OFF
             </div>
           )}
@@ -314,7 +314,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
             aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           >
             {wishlisted ? (
-              <FaHeart className="text-glowalchemy-terracotta" />
+              <FaHeart className="text-brand-primary" />
             ) : (
               <FaRegHeart className="text-glowalchemy-charcoal" />
             )}
@@ -386,7 +386,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
               <span className="text-xs sm:text-sm text-glowalchemy-warm-gray line-through">{formatPrice(displayMrp)}</span>
             ) : null}
             {normalized.discountPercent > 0 ? (
-              <span className="text-xs sm:text-sm text-glowalchemy-terracotta font-semibold">{normalized.discountPercent}% off</span>
+              <span className="text-xs sm:text-sm text-brand-primary font-semibold">{normalized.discountPercent}% off</span>
             ) : null}
           </div>
 
@@ -411,24 +411,24 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
 
           {/* Stock Status */}
           {normalized.stockStatus?.state === "in" && (
-            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-green-700">
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-brand-success">
               <FaCheck className="text-[11px]" /> In Stock
             </div>
           )}
           {normalized.stockStatus?.state === "low" && (
-            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-glowalchemy-terracotta">
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-brand-warning">
               <FaExclamationTriangle className="text-[11px]" /> {normalized.stockStatus.label}
             </div>
           )}
           {normalized.stockStatus?.state === "out" && (
-            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-red-600">
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-brand-error">
               <FaBan className="text-[11px]" /> Out of Stock
             </div>
           )}
 
           <div className="flex items-center justify-between pt-1 sm:pt-2">
             {shouldShowRating ? (
-              <div className="inline-flex items-center gap-1 bg-glowalchemy-terracotta text-white px-2 py-1 rounded-md text-[10px] sm:text-[12px] font-semibold">
+              <div className="inline-flex items-center gap-1 bg-brand-primary text-brand-ivory px-2 py-1 rounded-md text-[10px] sm:text-[12px] font-semibold">
                 <span>{safeRating.toFixed(1)}</span>
                 <FaStar className="h-2.5 w-2.5 sm:h-3 sm:w-3 fill-current" />
                 <span className="text-white/90">({Number(normalized.reviews || 0)})</span>
@@ -443,7 +443,7 @@ const ProductCard = ({ product, view = "grid", hideAddToCart = false }) => {
               type="button"
               onClick={handleAddToCart}
               disabled={isAddingToCart || normalized.stock <= 0}
-              className="mt-1.5 sm:mt-2 w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-[13px] font-semibold bg-glowalchemy-terracotta text-white hover:bg-glowalchemy-charcoal disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="mt-1.5 sm:mt-2 w-full inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-[13px] font-semibold bg-brand-primary text-brand-ivory hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
               {justAdded ? (
                 <>

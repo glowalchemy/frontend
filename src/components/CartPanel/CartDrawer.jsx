@@ -260,7 +260,7 @@ const CartDrawer = ({ open, onClose }) => {
                                 variant="outlined"
                                 fullWidth
                                 onClick={handleViewCart}
-                                sx={{ borderColor: '#B85C3A', color: '#B85C3A', '&:hover': { borderColor: '#9A4A2E', backgroundColor: '#F7F6F2' } }}
+                                sx={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)', '&:hover': { borderColor: 'var(--color-primary-hover)', backgroundColor: 'var(--color-surface-muted)' } }}
                             >
                                 View Cart
                             </Button>
@@ -268,7 +268,7 @@ const CartDrawer = ({ open, onClose }) => {
                                 variant="contained"
                                 fullWidth
                                 onClick={handleCheckout}
-                                sx={{ backgroundColor: '#B85C3A', '&:hover': { backgroundColor: '#9A4A2E' } }}
+                                sx={{ backgroundColor: 'var(--color-primary)', '&:hover': { backgroundColor: 'var(--color-primary-hover)' } }}
                             >
                                 Checkout
                             </Button>

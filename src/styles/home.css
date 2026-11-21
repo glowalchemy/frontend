@@ -1,4 +1,5 @@
-/* GlowAlchemy storefront surface styles — premium blush / burgundy system */
+/* GlowAlchemy storefront surface styles — botanical luxury system.
+   Every colour here resolves through src/theme/tokens.css. */
 
 .ga-container {
   width: 100%;
@@ -44,7 +45,7 @@
   bottom: -8px;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #851638, #EFC3D2 70%, transparent);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-champagne) 70%, transparent);
 }
 
 /* ---------- Hero ---------- */
@@ -52,9 +53,9 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(1100px 460px at 82% 42%, #FCEAF0 0%, rgba(252, 234, 240, 0) 68%),
-    radial-gradient(760px 360px at 6% 12%, #FFF4F7 0%, rgba(255, 244, 247, 0) 70%),
-    linear-gradient(180deg, #FFF9F5 0%, #FFF4F7 100%);
+    radial-gradient(1100px 460px at 82% 42%, var(--color-surface-muted) 0%, rgb(231 234 221 / 0) 68%),
+    radial-gradient(760px 360px at 6% 12%, var(--color-surface) 0%, rgb(255 252 247 / 0) 70%),
+    linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%);
 }
 
 .ga-hero-blob {
@@ -67,15 +68,15 @@
 .ga-hero-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(133, 22, 56, 0.12);
+  border: 1px solid rgb(181 154 88 / 0.35);
   pointer-events: none;
 }
 
 .ga-hero-product {
-  background: #FFFFFF;
+  background: var(--color-surface);
   border-radius: 24px;
-  box-shadow: 0 20px 45px rgba(111, 18, 48, 0.14);
-  border: 1px solid rgba(243, 221, 229, 0.9);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
   overflow: hidden;
 }
 
@@ -122,14 +123,14 @@
 
 .ga-product-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 50px rgba(111, 18, 48, 0.14);
-  border-color: rgba(239, 195, 210, 0.9);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
 }
 
 .ga-bestseller-image {
   aspect-ratio: 4 / 3;
   width: 100%;
-  background: linear-gradient(160deg, #FFF4F7 0%, #FCEAF0 100%);
+  background: linear-gradient(160deg, var(--color-surface) 0%, var(--color-surface-muted) 100%);
 }
 
 @media (min-width: 768px) {
@@ -139,14 +140,14 @@
 }
 
 .ga-promo-card {
-  background: linear-gradient(150deg, #FFF4F7 0%, #FCEAF0 100%);
-  border: 1px solid rgba(243, 221, 229, 0.9);
+  background: linear-gradient(150deg, var(--color-surface) 0%, var(--color-surface-muted) 100%);
+  border: 1px solid var(--color-border);
   border-radius: 26px;
   overflow: hidden;
 }
 
 .ga-trust-item + .ga-trust-item {
-  border-left: 1px solid rgba(133, 22, 56, 0.12);
+  border-left: 1px solid var(--color-border);
 }
 
 /* ---------- Scroll snap rails ---------- */
@@ -171,11 +172,11 @@
 /* ---------- Newsletter ---------- */
 .ga-newsletter {
   background:
-    radial-gradient(700px 300px at 85% 20%, rgba(239, 195, 210, 0.22) 0%, rgba(239, 195, 210, 0) 70%),
-    linear-gradient(115deg, #6F1230 0%, #851638 58%, #6F1230 100%);
+    radial-gradient(700px 300px at 85% 20%, rgb(181 154 88 / 0.22) 0%, rgb(181 154 88 / 0) 70%),
+    linear-gradient(115deg, var(--color-primary-active) 0%, var(--color-primary) 58%, var(--color-primary-active) 100%);
 }
 
-/* ---------- WhatsApp ---------- */
+/* ---------- WhatsApp (third-party brand colour preserved) ---------- */
 .ga-whatsapp {
   background: #25d366;
   box-shadow: 0 12px 28px rgba(37, 211, 102, 0.38);

@@ -10,9 +10,9 @@ const PROMISES = [
 ];
 
 const BeautyCares = () => (
-  <section className="ga-section bg-[#FFF9F5]">
+  <section className="ga-section bg-[var(--color-background)]">
     <div className="ga-container">
-      <div className="overflow-hidden rounded-[28px] border border-[#F3DDE5] bg-white shadow-[0_18px_50px_rgba(111,18,48,0.08)]">
+      <div className="overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white shadow-[0_18px_50px_rgba(20,61,43,0.08)]">
         <div className="grid lg:grid-cols-[1.05fr_1fr_0.85fr]">
           {/* lifestyle image */}
           <div className="relative min-h-[240px] overflow-hidden sm:min-h-[320px] lg:min-h-[380px]">
@@ -24,7 +24,7 @@ const BeautyCares = () => (
             />
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(90deg, rgba(111,18,48,0.18) 0%, rgba(111,18,48,0) 60%)' }}
+              style={{ background: 'linear-gradient(90deg, rgba(20,61,43,0.18) 0%, rgba(20,61,43,0) 60%)' }}
               aria-hidden="true"
             />
           </div>
@@ -32,7 +32,7 @@ const BeautyCares = () => (
           {/* copy */}
           <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-12 lg:py-14">
             <p className="ga-eyebrow mb-3 text-burgundy">Because You Deserve More</p>
-            <h2 className="site-section-title text-[#29151F]">
+            <h2 className="site-section-title text-[var(--color-text)]">
               Beauty <span className="italic text-burgundy">That Cares</span>
             </h2>
             <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-glowalchemy-warm-gray">
@@ -55,14 +55,14 @@ const BeautyCares = () => (
               return (
                 <div
                   key={promise.title}
-                  className={`flex gap-3 py-4 ${index > 0 ? 'border-t border-[#F3DDE5]' : ''}`}
+                  className={`flex gap-3 py-4 ${index > 0 ? 'border-t border-[var(--color-border)]' : ''}`}
                 >
                   <span className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white text-burgundy shadow-sm">
                     <Icon className="text-[14px]" aria-hidden="true" />
                   </span>
                   <div>
-                    <h3 className="ga-serif text-[15px] font-semibold text-[#29151F]">{promise.title}</h3>
-                    <p className="mt-1 text-[12px] leading-relaxed text-[#9A7C88]">{promise.copy}</p>
+                    <h3 className="ga-serif text-[15px] font-semibold text-[var(--color-text)]">{promise.title}</h3>
+                    <p className="mt-1 text-[12px] leading-relaxed text-[var(--color-text-muted)]">{promise.copy}</p>
                   </div>
                 </div>
               );

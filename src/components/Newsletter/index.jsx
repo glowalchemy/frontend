@@ -67,11 +67,11 @@ const Newsletter = () => {
                 placeholder="Enter your email address"
                 aria-invalid={status === 'error'}
                 aria-describedby="newsletter-message"
-                className="min-w-0 flex-1 rounded-full border border-white/25 bg-white px-5 py-3.5 text-[13.5px] text-[#29151F] placeholder-[#9A7C88] outline-none focus:border-white focus:ring-2 focus:ring-white/40"
+                className="min-w-0 flex-1 rounded-full border border-white/25 bg-white px-5 py-3.5 text-[13.5px] text-[var(--color-text)] placeholder-[var(--color-text-muted)] outline-none focus:border-white focus:ring-2 focus:ring-white/40"
               />
               <button
                 type="submit"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#29151F] px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-burgundy"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-text)] px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-burgundy"
               >
                 Subscribe
                 <FiArrowRight className="text-sm transition-transform duration-300 group-hover:translate-x-1" />
@@ -83,7 +83,7 @@ const Newsletter = () => {
               role="status"
               aria-live="polite"
               className={`mt-2 min-h-[18px] text-[12px] ${
-                status === 'error' ? 'text-[#FFD8E1]' : 'text-white/80'
+                status === 'error' ? 'text-[var(--color-champagne-soft)]' : 'text-white/80'
               }`}
             >
               {message}

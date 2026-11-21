@@ -256,41 +256,41 @@ const SummaryPage = () => {
     }, [paymentStatus, cartCleared, clearCart, data, fetchedOrder]);
 
     return (
-        <div className="relative min-h-screen bg-[#F1F3F6]">
+        <div className="relative min-h-screen bg-[var(--color-background)]">
             <div className="pt-32 sm:pt-36 pb-8 px-3 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between mb-3 sm:mb-6">
                     <button
                         type="button"
                         onClick={() => navigate(-1)}
-                        className="inline-flex items-center text-[13px] sm:text-sm text-gray-600 hover:text-[#2874F0]"
+                        className="inline-flex items-center text-[13px] sm:text-sm text-brand-muted hover:text-[var(--color-primary)]"
                     >
                         <FaArrowLeft className="mr-2" />
                         Back
                     </button>
-                    <h1 className="text-[18px] sm:text-[24px] font-bold text-gray-900">Summary</h1>
+                    <h1 className="text-[18px] sm:text-[24px] font-bold text-brand-ink">Summary</h1>
                     <div className="w-10" />
                 </div>
 
                 <div className="mb-3 sm:mb-6 overflow-x-auto">
-                    <div className="bg-white border border-gray-200 rounded-lg px-2 sm:px-4 py-2.5 min-w-[320px]">
+                    <div className="bg-white border border-brand-line rounded-lg px-2 sm:px-4 py-2.5 min-w-[320px]">
                         <div className="flex items-center justify-between text-[9px] sm:text-[13px] whitespace-nowrap">
-                            <div className="flex items-center gap-1 sm:gap-2 text-emerald-600">
-                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-emerald-600 text-white">1</div>
+                            <div className="flex items-center gap-1 sm:gap-2 text-brand-primary">
+                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-brand-primary text-white">1</div>
                                 <span className="font-semibold">Cart</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-emerald-200 min-w-[20px]" />
-                            <div className="flex items-center gap-1 sm:gap-2 text-emerald-600">
-                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-emerald-600 text-white">2</div>
+                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-brand-primary/20 min-w-[20px]" />
+                            <div className="flex items-center gap-1 sm:gap-2 text-brand-primary">
+                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-brand-primary text-white">2</div>
                                 <span className="font-semibold">Address</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-emerald-200 min-w-[20px]" />
-                            <div className="flex items-center gap-1 sm:gap-2 text-emerald-600">
-                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-emerald-600 text-white">3</div>
+                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-brand-primary/20 min-w-[20px]" />
+                            <div className="flex items-center gap-1 sm:gap-2 text-brand-primary">
+                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-brand-primary text-white">3</div>
                                 <span className="font-semibold">Payment</span>
                             </div>
-                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-gray-200 min-w-[20px]" />
-                            <div className="flex items-center gap-1 sm:gap-2 text-[#5A0B5A]">
-                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-[#5A0B5A] text-white">4</div>
+                            <div className="flex-1 h-[2px] mx-1 sm:mx-4 bg-brand-line min-w-[20px]" />
+                            <div className="flex items-center gap-1 sm:gap-2 text-[var(--color-primary)]">
+                                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[11px] font-bold bg-[var(--color-primary)] text-white">4</div>
                                 <span className="font-semibold">Summary</span>
                             </div>
                         </div>
@@ -299,36 +299,36 @@ const SummaryPage = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 min-w-0">
                     <div className="lg:col-span-2 min-w-0 space-y-3">
-                        <div className="bg-white rounded-lg border border-gray-200 p-4">
+                        <div className="bg-white rounded-lg border border-brand-line p-4">
                             {paymentStatus === 'completed' ? (
                                 <>
-                                    <div className="text-sm font-semibold text-gray-900">Order placed</div>
+                                    <div className="text-sm font-semibold text-brand-ink">Order placed</div>
                                     {(createdOrder?.orderNumber || fetchedOrder?.orderNumber || data.orderNumber) ? (
-                                        <div className="text-xs text-gray-500 mt-1">Order #: <span className="font-mono">{createdOrder?.orderNumber || fetchedOrder?.orderNumber || data.orderNumber}</span></div>
+                                        <div className="text-xs text-brand-muted mt-1">Order #: <span className="font-mono">{createdOrder?.orderNumber || fetchedOrder?.orderNumber || data.orderNumber}</span></div>
                                     ) : (createdOrder?.orderId || fetchedOrder?._id || data.orderId) ? (
-                                        <div className="text-xs text-gray-500 mt-1">Order ID: <span className="font-mono">{createdOrder?.orderId || fetchedOrder?._id || data.orderId}</span></div>
+                                        <div className="text-xs text-brand-muted mt-1">Order ID: <span className="font-mono">{createdOrder?.orderId || fetchedOrder?._id || data.orderId}</span></div>
                                     ) : null}
                                     {(fetchedOrder?.paymentMethod || data.paymentMethod) ? (
-                                        <div className="text-xs text-gray-500 mt-1">Payment: {(fetchedOrder?.paymentMethod || data.paymentMethod).toUpperCase()}</div>
+                                        <div className="text-xs text-brand-muted mt-1">Payment: {(fetchedOrder?.paymentMethod || data.paymentMethod).toUpperCase()}</div>
                                     ) : null}
                                 </>
                             ) : (
                                 <>
-                                    <div className="text-sm font-semibold text-gray-900">Payment not completed</div>
-                                    <div className="text-xs text-gray-600 mt-1">{paymentMessage || 'Please complete payment to place your order.'}</div>
+                                    <div className="text-sm font-semibold text-brand-ink">Payment not completed</div>
+                                    <div className="text-xs text-brand-muted mt-1">{paymentMessage || 'Please complete payment to place your order.'}</div>
                                     <div className="mt-3 flex gap-2">
                                         <button
                                             type="button"
                                             onClick={refreshPhonePeStatus}
                                             disabled={checking}
-                                            className="h-9 px-3 inline-flex items-center justify-center rounded-md bg-[#5A0B5A] text-white text-xs font-semibold disabled:opacity-60"
+                                            className="h-9 px-3 inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] text-white text-xs font-semibold disabled:opacity-60"
                                         >
                                             {checking ? 'Checking...' : 'Retry Status'}
                                         </button>
                                         <button
                                             type="button"
                                             onClick={() => navigate('/checkout')}
-                                            className="h-9 px-3 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-900 text-xs font-semibold"
+                                            className="h-9 px-3 inline-flex items-center justify-center rounded-md border border-brand-line bg-white text-brand-ink text-xs font-semibold"
                                         >
                                             Back to Checkout
                                         </button>
@@ -338,11 +338,11 @@ const SummaryPage = () => {
                         </div>
 
                         {(fetchedOrder?.address || data.address) ? (
-                            <div className="bg-white rounded-lg border border-gray-200 p-4">
-                                <div className="text-sm font-semibold text-gray-900 mb-2">Delivery Address</div>
-                                <div className="text-[13px] text-gray-700 leading-5">
+                            <div className="bg-white rounded-lg border border-brand-line p-4">
+                                <div className="text-sm font-semibold text-brand-ink mb-2">Delivery Address</div>
+                                <div className="text-[13px] text-brand-muted leading-5">
                                     {(fetchedOrder?.customer?.name || data.customer?.name) ? (<div className="font-semibold">{fetchedOrder?.customer?.name || data.customer?.name}</div>) : null}
-                                    {(fetchedOrder?.customer?.phone || data.customer?.phone) ? (<div className="text-gray-600">{fetchedOrder?.customer?.phone || data.customer?.phone}</div>) : null}
+                                    {(fetchedOrder?.customer?.phone || data.customer?.phone) ? (<div className="text-brand-muted">{fetchedOrder?.customer?.phone || data.customer?.phone}</div>) : null}
                                     <div className="mt-1">
                                         {(fetchedOrder?.address?.line1 || data.address?.line1) || ''}{(fetchedOrder?.address?.line2 || data.address?.line2) ? `, ${fetchedOrder?.address?.line2 || data.address?.line2}` : ''}
                                     </div>
@@ -354,8 +354,8 @@ const SummaryPage = () => {
                             </div>
                         ) : null}
 
-                        <div className="bg-white rounded-lg border border-gray-200 p-4">
-                            <div className="text-sm font-semibold text-gray-900 mb-3">Items</div>
+                        <div className="bg-white rounded-lg border border-brand-line p-4">
+                            <div className="text-sm font-semibold text-brand-ink mb-3">Items</div>
                             <div className="space-y-3">
                                 {(fetchedOrder?.items || data.items).map((item, idx) => {
                                     const pid = item?.product?._id || item?.productId || item?._id || item?.product || idx;
@@ -368,21 +368,21 @@ const SummaryPage = () => {
                                             <img
                                                 src={image}
                                                 alt={name}
-                                                className="w-14 h-14 rounded-md border border-gray-200 object-contain bg-white"
+                                                className="w-14 h-14 rounded-md border border-brand-line object-contain bg-white"
                                                 onError={(e) => { e.currentTarget.src = FALLBACK_IMAGE; }}
                                             />
                                             <div className="min-w-0 flex-1">
-                                                <div className="text-[13px] font-semibold text-gray-900 truncate">{name}</div>
+                                                <div className="text-[13px] font-semibold text-brand-ink truncate">{name}</div>
                                                 {(item?.selectedSize || item?.selectedColor || item?.size || item?.color) ? (
-                                                    <div className="text-[12px] text-gray-500 mt-0.5">
+                                                    <div className="text-[12px] text-brand-muted mt-0.5">
                                                         {(item?.selectedSize || item?.size) ? `Size: ${item.selectedSize || item.size}` : ''}
                                                         {(item?.selectedSize || item?.size) && (item?.selectedColor || item?.color) ? ' | ' : ''}
                                                         {(item?.selectedColor || item?.color) ? `Color: ${item.selectedColor || item.color}` : ''}
                                                     </div>
                                                 ) : null}
-                                                <div className="text-[12px] text-gray-600 mt-0.5">Qty: {qty}</div>
+                                                <div className="text-[12px] text-brand-muted mt-0.5">Qty: {qty}</div>
                                             </div>
-                                            <div className="text-[13px] font-semibold text-gray-900">₹{(price * qty).toFixed(0)}</div>
+                                            <div className="text-[13px] font-semibold text-brand-ink">₹{(price * qty).toFixed(0)}</div>
                                         </div>
                                     );
                                 })}
@@ -393,21 +393,21 @@ const SummaryPage = () => {
                             {paymentStatus === 'completed' ? (
                                 <Link
                                     to="/orders"
-                                    className="flex-1 h-11 inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-900 text-sm font-semibold"
+                                    className="flex-1 h-11 inline-flex items-center justify-center rounded-lg border border-brand-line bg-white text-brand-ink text-sm font-semibold"
                                 >
                                     View Orders
                                 </Link>
                             ) : (
                                 <Link
                                     to="/cart"
-                                    className="flex-1 h-11 inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-900 text-sm font-semibold"
+                                    className="flex-1 h-11 inline-flex items-center justify-center rounded-lg border border-brand-line bg-white text-brand-ink text-sm font-semibold"
                                 >
                                     Back to Cart
                                 </Link>
                             )}
                             <Link
                                 to="/"
-                                className="flex-1 h-11 inline-flex items-center justify-center rounded-lg bg-[#5A0B5A] text-white text-sm font-semibold"
+                                className="flex-1 h-11 inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] text-white text-sm font-semibold"
                             >
                                 Continue Shopping
                             </Link>
@@ -415,16 +415,16 @@ const SummaryPage = () => {
                     </div>
 
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-lg border border-gray-200 p-4 lg:sticky lg:top-4">
-                            <div className="text-sm font-semibold text-gray-900 mb-3">Price Details</div>
+                        <div className="bg-white rounded-lg border border-brand-line p-4 lg:sticky lg:top-4">
+                            <div className="text-sm font-semibold text-brand-ink mb-3">Price Details</div>
                             <div className="space-y-2 text-[13px]">
-                                <div className="flex justify-between text-gray-700"><span>Subtotal</span><span className="font-semibold">₹{Number((fetchedOrder?.subtotal || data.subtotal) || 0).toFixed(0)}</span></div>
-                                <div className="flex justify-between text-gray-700"><span>Tax</span><span className="font-semibold">₹{Number((fetchedOrder?.tax || data.tax) || 0).toFixed(0)}</span></div>
-                                <div className="flex justify-between text-gray-700"><span>Shipping</span><span className="font-semibold">{Number((fetchedOrder?.shipping || data.shipping) || 0) === 0 ? 'FREE' : `₹${Number((fetchedOrder?.shipping || data.shipping) || 0).toFixed(0)}`}</span></div>
+                                <div className="flex justify-between text-brand-muted"><span>Subtotal</span><span className="font-semibold">₹{Number((fetchedOrder?.subtotal || data.subtotal) || 0).toFixed(0)}</span></div>
+                                <div className="flex justify-between text-brand-muted"><span>Tax</span><span className="font-semibold">₹{Number((fetchedOrder?.tax || data.tax) || 0).toFixed(0)}</span></div>
+                                <div className="flex justify-between text-brand-muted"><span>Shipping</span><span className="font-semibold">{Number((fetchedOrder?.shipping || data.shipping) || 0) === 0 ? 'FREE' : `₹${Number((fetchedOrder?.shipping || data.shipping) || 0).toFixed(0)}`}</span></div>
                                 {Number((fetchedOrder?.codCharge || data.codCharge) || 0) > 0 ? (
-                                    <div className="flex justify-between text-gray-700"><span>COD charge</span><span className="font-semibold">₹{Number((fetchedOrder?.codCharge || data.codCharge) || 0).toFixed(0)}</span></div>
+                                    <div className="flex justify-between text-brand-muted"><span>COD charge</span><span className="font-semibold">₹{Number((fetchedOrder?.codCharge || data.codCharge) || 0).toFixed(0)}</span></div>
                                 ) : null}
-                                <div className="border-t pt-2 flex justify-between text-gray-900"><span className="font-semibold">Total</span><span className="font-extrabold">₹{Number((fetchedOrder?.total || data.total) || 0).toFixed(0)}</span></div>
+                                <div className="border-t pt-2 flex justify-between text-brand-ink"><span className="font-semibold">Total</span><span className="font-extrabold">₹{Number((fetchedOrder?.total || data.total) || 0).toFixed(0)}</span></div>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,9 @@
 .product-card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
   position: relative;
 }
 
@@ -10,8 +11,8 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  background: red;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
   font-size: 12px;
   font-weight: bold;
   padding: 2px 6px;
@@ -22,7 +23,7 @@
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .product-info {
@@ -31,18 +32,19 @@
 
 .brand {
   font-size: 13px;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .title {
   font-size: 14px;
   font-weight: 600;
   margin: 4px 0;
+  color: var(--color-text);
 }
 
 .rating {
   font-size: 12px;
-  color: gold;
+  color: var(--color-accent);
 }
 
 .price {
@@ -51,27 +53,32 @@
 
 .price .old {
   text-decoration: line-through;
-  color: #999;
+  color: var(--color-text-muted);
   margin-right: 8px;
 }
 
 .price .new {
-  color: #e53935;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
 .add-btn {
   width: 100%;
-  border: 1px solid red;
-  color: red;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
   background: transparent;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition-base);
 }
 
 .add-btn:hover {
-  background: red;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.add-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }

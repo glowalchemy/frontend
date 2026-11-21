@@ -164,23 +164,23 @@ const Profile = () => {
   return (
     <div className="container mx-auto px-4 mt-40 py-8">
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">My Profile</h1>
+        <h1 className="text-2xl font-bold text-brand-ink mb-4">My Profile</h1>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="h-16 w-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
+          <div className="h-16 w-16 rounded-full bg-brand-line/70 overflow-hidden flex-shrink-0">
             {resolvedAvatarUrl ? (
               <img src={resolvedAvatarUrl} alt="Avatar" className="h-full w-full object-cover" />
             ) : null}
           </div>
           <div className="min-w-0">
-            <p className="text-sm text-gray-500">Signed in as</p>
-            <p className="text-base font-medium text-gray-900 break-words">{user?.email || '-'}</p>
+            <p className="text-sm text-brand-muted">Signed in as</p>
+            <p className="text-base font-medium text-brand-ink break-words">{user?.email || '-'}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <p className="text-sm text-gray-500">First Name</p>
+            <p className="text-sm text-brand-muted">First Name</p>
             <input
               value={profileForm.firstName}
               onChange={(e) => onProfileChange('firstName', e.target.value)}
@@ -189,7 +189,7 @@ const Profile = () => {
             />
           </div>
           <div>
-            <p className="text-sm text-gray-500">Last Name</p>
+            <p className="text-sm text-brand-muted">Last Name</p>
             <input
               value={profileForm.lastName}
               onChange={(e) => onProfileChange('lastName', e.target.value)}
@@ -198,11 +198,11 @@ const Profile = () => {
             />
           </div>
           <div className="min-w-0">
-            <p className="text-sm text-gray-500">Email</p>
-            <p className="text-base font-medium text-gray-900 break-words">{user?.email || '-'}</p>
+            <p className="text-sm text-brand-muted">Email</p>
+            <p className="text-base font-medium text-brand-ink break-words">{user?.email || '-'}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Phone</p>
+            <p className="text-sm text-brand-muted">Phone</p>
             <input
               value={profileForm.phone}
               onChange={(e) => onProfileChange('phone', e.target.value)}
@@ -213,7 +213,7 @@ const Profile = () => {
         </div>
 
         <div className="mt-6">
-          <p className="text-sm text-gray-500">Avatar URL</p>
+          <p className="text-sm text-brand-muted">Avatar URL</p>
           <input
             value={profileForm.avatarUrl}
             onChange={(e) => onProfileChange('avatarUrl', e.target.value)}
@@ -224,8 +224,8 @@ const Profile = () => {
 
         <div className="mt-4">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">Bio</p>
-            <p className="text-xs text-gray-400">{String(profileForm.bio || '').length}/{bioMax}</p>
+            <p className="text-sm text-brand-muted">Bio</p>
+            <p className="text-xs text-brand-muted">{String(profileForm.bio || '').length}/{bioMax}</p>
           </div>
           <textarea
             value={profileForm.bio}
@@ -261,27 +261,27 @@ const Profile = () => {
           <h2 className="text-lg font-semibold text-glowalchemy-charcoal mb-3">Address</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-500">Address Line 1</p>
+              <p className="text-sm text-brand-muted">Address Line 1</p>
               <input value={profileForm.address.line1} onChange={(e) => onAddressChange('line1', e.target.value)} disabled={!canEdit} className="mt-1 w-full border border-glowalchemy-sand rounded-xl px-4 py-3 text-sm text-glowalchemy-charcoal focus:outline-none focus:ring-2 focus:ring-glowalchemy-sand focus:border-glowalchemy-terracotta disabled:opacity-60" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Address Line 2</p>
+              <p className="text-sm text-brand-muted">Address Line 2</p>
               <input value={profileForm.address.line2} onChange={(e) => onAddressChange('line2', e.target.value)} disabled={!canEdit} className="mt-1 w-full border rounded-md px-3 py-2 disabled:opacity-60" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">City</p>
+              <p className="text-sm text-brand-muted">City</p>
               <input value={profileForm.address.city} onChange={(e) => onAddressChange('city', e.target.value)} disabled={!canEdit} className="mt-1 w-full border rounded-md px-3 py-2 disabled:opacity-60" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">State</p>
+              <p className="text-sm text-brand-muted">State</p>
               <input value={profileForm.address.state} onChange={(e) => onAddressChange('state', e.target.value)} disabled={!canEdit} className="mt-1 w-full border rounded-md px-3 py-2 disabled:opacity-60" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Postal Code</p>
+              <p className="text-sm text-brand-muted">Postal Code</p>
               <input value={profileForm.address.postalCode} onChange={(e) => onAddressChange('postalCode', e.target.value)} disabled={!canEdit} className="mt-1 w-full border rounded-md px-3 py-2 disabled:opacity-60" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Country</p>
+              <p className="text-sm text-brand-muted">Country</p>
               <input value={profileForm.address.country} onChange={(e) => onAddressChange('country', e.target.value)} disabled={!canEdit} className="mt-1 w-full border rounded-md px-3 py-2 disabled:opacity-60" />
             </div>
           </div>
@@ -295,23 +295,23 @@ const Profile = () => {
             >
               {savingProfile ? 'Saving...' : 'Save Profile'}
             </button>
-            {profileMsg ? <p className="text-sm text-gray-600 min-w-0 break-words">{profileMsg}</p> : null}
+            {profileMsg ? <p className="text-sm text-brand-muted min-w-0 break-words">{profileMsg}</p> : null}
           </div>
         </div>
 
         <div className="mt-10 border-t pt-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-3">Change Password</h2>
+          <h2 className="text-lg font-semibold text-brand-ink mb-3">Change Password</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-500">Current Password</p>
+              <p className="text-sm text-brand-muted">Current Password</p>
               <input type="password" value={passwordForm.currentPassword} onChange={(e) => setPasswordForm((p) => ({ ...p, currentPassword: e.target.value }))} className="mt-1 w-full border rounded-md px-3 py-2" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">New Password</p>
+              <p className="text-sm text-brand-muted">New Password</p>
               <input type="password" value={passwordForm.newPassword} onChange={(e) => setPasswordForm((p) => ({ ...p, newPassword: e.target.value }))} className="mt-1 w-full border rounded-md px-3 py-2" />
             </div>
             <div>
-              <p className="text-sm text-gray-500">Confirm New Password</p>
+              <p className="text-sm text-brand-muted">Confirm New Password</p>
               <input type="password" value={passwordForm.confirmPassword} onChange={(e) => setPasswordForm((p) => ({ ...p, confirmPassword: e.target.value }))} className="mt-1 w-full border rounded-md px-3 py-2" />
             </div>
           </div>
@@ -321,11 +321,11 @@ const Profile = () => {
               type="button"
               onClick={changePassword}
               disabled={savingPassword}
-              className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-black disabled:opacity-50"
+              className="bg-brand-ink text-white px-4 py-2 rounded-md hover:bg-black disabled:opacity-50"
             >
               {savingPassword ? 'Updating...' : 'Update Password'}
             </button>
-            {passwordMsg ? <p className="text-sm text-gray-600 min-w-0 break-words">{passwordMsg}</p> : null}
+            {passwordMsg ? <p className="text-sm text-brand-muted min-w-0 break-words">{passwordMsg}</p> : null}
           </div>
         </div>
       </div>

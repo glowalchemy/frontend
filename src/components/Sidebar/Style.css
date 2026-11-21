@@ -8,10 +8,10 @@
     height: 5px;
 }
 .sidebar .Scroll::-webkit-scrollbar-thumb{
-    background-color: #ccc;
+    background-color: var(--color-border);
 }
 .sidebar .Scroll::-webkit-scrollbar-track{
-    background-color: #fff;
+    background-color: var(--color-surface);
 }
 .range-slider .range-slider__thumb{
     width: 14px!important;
@@ -22,5 +22,5 @@
 
 }
 .range-slider .range-slider__thumb,.range-slider .range-slider__range{
-    background-color: #ff5252!important;
+    background-color: var(--color-primary)!important;
 }

@@ -195,7 +195,7 @@ const Home = () => {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
           
           {/* Welcome Section */}
-          <div className="bg-gradient-to-r from-glowalchemy-terracotta to-glowalchemy-charcoal rounded-2xl p-6 sm:p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-br from-brand-primary to-brand-primary-active rounded-2xl p-6 sm:p-8 md:p-12 text-brand-ivory">
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                 Third Party Colour Cosmetics Manufacturer
@@ -214,7 +214,7 @@ const Home = () => {
 
           {/* Key Features/Claims Section */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 border border-glowalchemy-sand">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-ink text-center mb-6 sm:mb-8">
               Our Commitment to Quality
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
@@ -235,7 +235,7 @@ const Home = () => {
                     <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 bg-glowalchemy-sand rounded-full flex items-center justify-center">
                       <Icon className="text-glowalchemy-terracotta text-xl sm:text-2xl" />
                     </div>
-                    <p className="text-xs sm:text-sm font-semibold text-gray-800">{feature.text}</p>
+                    <p className="text-xs sm:text-sm font-semibold text-brand-ink">{feature.text}</p>
                   </div>
                 )
               })}
@@ -264,40 +264,40 @@ const Home = () => {
               
               {/* Left: Stats */}
               <div className="lg:col-span-1 space-y-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Our Achievements</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-6">Our Achievements</h3>
                 <div className="space-y-4">
                   <div className="bg-white rounded-lg p-4 sm:p-6 border-l-4 border-glowalchemy-terracotta shadow-sm">
                     <div className="text-2xl sm:text-3xl font-bold text-glowalchemy-terracotta mb-1">3000KG</div>
-                    <div className="text-sm sm:text-base text-gray-600">PRODUCTION CAPACITY</div>
+                    <div className="text-sm sm:text-base text-brand-muted">PRODUCTION CAPACITY</div>
                   </div>
                   <div className="bg-white rounded-lg p-4 sm:p-6 border-l-4 border-glowalchemy-terracotta shadow-sm">
                     <div className="text-2xl sm:text-3xl font-bold text-glowalchemy-terracotta mb-1">100+</div>
-                    <div className="text-sm sm:text-base text-gray-600">SATISFIED CLIENTS</div>
+                    <div className="text-sm sm:text-base text-brand-muted">SATISFIED CLIENTS</div>
                   </div>
                   <div className="bg-white rounded-lg p-4 sm:p-6 border-l-4 border-glowalchemy-terracotta shadow-sm">
                     <div className="text-2xl sm:text-3xl font-bold text-glowalchemy-terracotta mb-1">12+</div>
-                    <div className="text-sm sm:text-base text-gray-600">COUNTRIES SERVED</div>
+                    <div className="text-sm sm:text-base text-brand-muted">COUNTRIES SERVED</div>
                   </div>
                 </div>
               </div>
 
               {/* Right: Product Categories */}
               <div className="lg:col-span-2 space-y-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Product Categories</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-6">Product Categories</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   
                   {/* Rice Water */}
                   <div className="bg-white rounded-xl overflow-hidden border border-glowalchemy-sand hover:shadow-xl transition-all hover:-translate-y-1">
                     <div className="h-40 sm:h-48 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1620916566650-9427b32c8335?w=400&h=300&fit=crop&q=80" 
+                        src="/skin.jpg"
                         alt="Rice Water Products"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <div className="p-4 sm:p-5">
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">Rice Water</h4>
-                      <p className="text-sm text-gray-600 mb-3">Rice Water Products MANUFACTURER</p>
+                      <h4 className="text-lg font-bold text-brand-ink mb-2">Rice Water</h4>
+                      <p className="text-sm text-brand-muted mb-3">Rice Water Products MANUFACTURER</p>
                       <Link to="/contact" className="inline-block text-sm font-semibold text-glowalchemy-terracotta hover:text-glowalchemy-charcoal">
                         VIEW DETAILS →
                       </Link>
@@ -308,14 +308,14 @@ const Home = () => {
                   <div className="bg-white rounded-xl overflow-hidden border border-glowalchemy-sand hover:shadow-xl transition-all hover:-translate-y-1">
                     <div className="h-40 sm:h-48 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1570194065340-dc8ea937c859?w=400&h=300&fit=crop&q=80" 
+                        src="/hair.jpg"
                         alt="Hair Conditioner Products"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <div className="p-4 sm:p-5">
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">Hair Conditioner</h4>
-                      <p className="text-sm text-gray-600 mb-3">Hair Conditioner Products MANUFACTURER</p>
+                      <h4 className="text-lg font-bold text-brand-ink mb-2">Hair Conditioner</h4>
+                      <p className="text-sm text-brand-muted mb-3">Hair Conditioner Products MANUFACTURER</p>
                       <Link to="/contact" className="inline-block text-sm font-semibold text-glowalchemy-terracotta hover:text-glowalchemy-charcoal">
                         VIEW DETAILS →
                       </Link>
@@ -326,14 +326,14 @@ const Home = () => {
                   <div className="bg-white rounded-xl overflow-hidden border border-glowalchemy-sand hover:shadow-xl transition-all hover:-translate-y-1">
                     <div className="h-40 sm:h-48 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1598440947619-2c35fc9ae54e?w=400&h=300&fit=crop&q=80" 
+                        src="/body.jpg"
                         alt="Shampoo Products"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <div className="p-4 sm:p-5">
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">Shampoo</h4>
-                      <p className="text-sm text-gray-600 mb-3">Shampoo Products MANUFACTURER</p>
+                      <h4 className="text-lg font-bold text-brand-ink mb-2">Shampoo</h4>
+                      <p className="text-sm text-brand-muted mb-3">Shampoo Products MANUFACTURER</p>
                       <Link to="/contact" className="inline-block text-sm font-semibold text-glowalchemy-terracotta hover:text-glowalchemy-charcoal">
                         VIEW DETAILS →
                       </Link>
@@ -344,14 +344,14 @@ const Home = () => {
                   <div className="bg-white rounded-xl overflow-hidden border border-glowalchemy-sand hover:shadow-xl transition-all hover:-translate-y-1">
                     <div className="h-40 sm:h-48 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=400&h=300&fit=crop&q=80" 
+                        src="/natural.jpg"
                         alt="Hair Mask Products"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <div className="p-4 sm:p-5">
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">Hair Mask</h4>
-                      <p className="text-sm text-gray-600 mb-3">Hair Mask Products MANUFACTURER</p>
+                      <h4 className="text-lg font-bold text-brand-ink mb-2">Hair Mask</h4>
+                      <p className="text-sm text-brand-muted mb-3">Hair Mask Products MANUFACTURER</p>
                       <Link to="/contact" className="inline-block text-sm font-semibold text-glowalchemy-terracotta hover:text-glowalchemy-charcoal">
                         VIEW DETAILS →
                       </Link>
