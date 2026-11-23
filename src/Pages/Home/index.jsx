@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaLeaf, FaFlask, FaHeart, FaSpa, FaTree, FaPumpSoap, FaCheckCircle, FaHandshake, FaRecycle } from 'react-icons/fa'
 import Homeslider from '../../components/Homeslider'
 import Adsbennerslider from '../../components/Adsbannerslider'
+import MidBanners from '../../components/MidBanners'
 import PopularProducts from '../../components/product/popularproduct'
 import LatestProducts from '../../components/Latestproduct/latestproduct'
 import FeaturedSlider from '../../components/FeaturedSlider/FeaturedSlider'
@@ -179,7 +180,11 @@ const Home = () => {
             <AdBannerSection />
           </div>
           <LatestProducts title="Latest Products" hideAddToCart />
+          <MidBanners />
           <FeaturedSlider hideAddToCart />
+          <div className="mt-4 sm:mt-8">
+            <Adsbennerslider position="home_mid_slider" items={4} />
+          </div>
         </div>
       </section>
 

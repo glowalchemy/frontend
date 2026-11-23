@@ -31,6 +31,8 @@ const ProductListing = () => {
     const [items, setItems] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [facets, setFacets] = useState(null);
+    // Bumped to force a refetch (e.g. "Try again" while already on page 1).
+    const [reloadKey, setReloadKey] = useState(0);
 
     const resolvedCategory = useMemo(() => {
         const raw = String(category || '').trim();
@@ -186,7 +188,7 @@ const ProductListing = () => {
         return () => {
             cancelled = true;
         };
-    }, [resolvedCategory, subCategoryId, limit, normalizedSelectedSizes, page, priceRange, searchQuery, selectedFilters.availability, selectedFilters.rating, sortBy]);
+    }, [resolvedCategory, subCategoryId, limit, normalizedSelectedSizes, page, priceRange, searchQuery, selectedFilters.availability, selectedFilters.rating, sortBy, reloadKey]);
 
     return (
         <section className="py-4 sm:py-6 min-h-screen">
@@ -228,7 +230,7 @@ const ProductListing = () => {
                     <div className="flex-1 min-w-0">
                         {loading && items.length === 0 ? (
                             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
-                                {Array.from({ length: 8 }).map((_, idx) => (
+                                {Array.from({ length: limit }).map((_, idx) => (
                                     <ProductCardSkeleton key={`skeleton-${idx}`} />
                                 ))}
                             </div>
@@ -236,7 +238,10 @@ const ProductListing = () => {
                             <ErrorState
                                 title="Failed to load products"
                                 description="We couldn't load the products. Please try again."
-                                onAction={() => setPage(1)}
+                                onAction={() => {
+                                    setPage(1);
+                                    setReloadKey((k) => k + 1);
+                                }}
                                 actionText="Try Again"
                             />
                         ) : items.length === 0 ? (

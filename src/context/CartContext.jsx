@@ -3,6 +3,7 @@ import { apiClient } from '../api/client';
 import { toast } from 'react-toastify';
 import { useAuth } from './AuthContext';
 import { trackAddToCart } from '../utils/metaPixelSdk';
+import { normalizeApiError } from '../utils/errors';
 
 const CartContext = createContext();
 
@@ -394,16 +395,32 @@ export const CartProvider = ({ children }) => {
             setTotalAmount(calculateTotalAmount(response.data.items || []));
             return { success: true, message: response.data.message };
         } catch (error) {
-            console.error('Failed to update cart:', error);
-            const newItems = items.map(item =>
-                getComparableId(item) === productId
-                    ? { ...item, quantity }
-                    : item
-            );
-            const newTotal = calculateTotalAmount(newItems);
-            setItems(newItems);
-            setTotalAmount(newTotal);
-            return { success: true, message: 'Cart updated' };
+            const { kind, message } = normalizeApiError(error);
+
+            // Offline / slow network: keep the optimistic quantity so the cart
+            // stays usable; the next successful sync reconciles it.
+            if (kind === 'network' || kind === 'offline' || kind === 'timeout') {
+                const newItems = items.map(item =>
+                    getComparableId(item) === productId
+                        ? { ...item, quantity }
+                        : item
+                );
+                setItems(newItems);
+                setTotalAmount(calculateTotalAmount(newItems));
+                return { success: true, offline: true, message: 'Saved on this device' };
+            }
+
+            // The server rejected the change (stock limit, unavailable variant,
+            // session): do NOT report success. Tell the user and resync to the
+            // server's truth so the displayed totals cannot drift.
+            console.error('Failed to update cart:', { kind, message });
+            toast.error(message, { toastId: 'cart-update' });
+            try {
+                await fetchCart();
+            } catch (_e) {
+                /* resync is best-effort */
+            }
+            return { success: false, message };
         } finally {
             setLoading(false);
         }
@@ -431,12 +448,23 @@ export const CartProvider = ({ children }) => {
             setTotalAmount(calculateTotalAmount(response.data.items || []));
             return { success: true, message: response.data.message };
         } catch (error) {
-            console.error('Failed to remove from cart:', error);
-            const newItems = items.filter(item => getComparableId(item) !== productId);
-            const newTotal = calculateTotalAmount(newItems);
-            setItems(newItems);
-            setTotalAmount(newTotal);
-            return { success: true, message: 'Item removed' };
+            const { kind, message } = normalizeApiError(error);
+
+            if (kind === 'network' || kind === 'offline' || kind === 'timeout') {
+                const newItems = items.filter(item => getComparableId(item) !== productId);
+                setItems(newItems);
+                setTotalAmount(calculateTotalAmount(newItems));
+                return { success: true, offline: true, message: 'Removed on this device' };
+            }
+
+            console.error('Failed to remove from cart:', { kind, message });
+            toast.error(message, { toastId: 'cart-remove' });
+            try {
+                await fetchCart();
+            } catch (_e) {
+                /* resync is best-effort */
+            }
+            return { success: false, message };
         } finally {
             setLoading(false);
         }
@@ -450,10 +478,16 @@ export const CartProvider = ({ children }) => {
             setTotalAmount(0);
             return { success: true, message: response.data.message };
         } catch (error) {
-            console.error('Failed to clear cart:', error);
+            const { kind, message } = normalizeApiError(error);
+            console.error('Failed to clear cart:', { kind, message });
             setItems([]);
             setTotalAmount(0);
-            return { success: true, message: 'Cart cleared' };
+            // Clearing locally is safe (the cart is re-fetched on next load), but
+            // the caller must know the server did not confirm it.
+            if (kind !== 'network' && kind !== 'offline' && kind !== 'timeout') {
+                toast.error(message, { toastId: 'cart-clear' });
+            }
+            return { success: false, offline: kind === 'network' || kind === 'offline' || kind === 'timeout', message };
         } finally {
             setLoading(false);
         }

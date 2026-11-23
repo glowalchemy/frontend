@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 import { FiSend, FiHelpCircle, FiPackage, FiCreditCard, FiTruck, FiUser, FiClock, FiCheckCircle, FiMessageCircle } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const HelpCenter = () => {
     const [activeCategory, setActiveCategory] = useState('orders');
@@ -152,11 +153,11 @@ const HelpCenter = () => {
             setFormData({ issueType: '', orderId: '', message: '' });
             setShowContactForm(false);
 
-            // Show success message
-            alert('Support ticket created successfully!');
+            // Non-blocking, themed notification (never a browser alert dialog).
+            toast.success('Support ticket created successfully!');
         } catch (error) {
             console.error('Error creating ticket:', error);
-            alert('Failed to create ticket. Please try again.');
+            toast.error('Failed to create ticket. Please try again.');
         } finally {
             setLoading(false);
         }

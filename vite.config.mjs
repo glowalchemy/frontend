@@ -50,6 +50,23 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       sourcemap: true,
+      // Split long-lived vendor code into its own chunks so app-code deploys do
+      // not invalidate the React/MUI/Swiper cache, and so the browser can fetch
+      // them in parallel with the entry chunk.
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (!id.includes('node_modules')) return undefined;
+            if (id.includes('react-router')) return 'vendor-router';
+            if (id.includes('@mui') || id.includes('@emotion') || id.includes('styled-components')) return 'vendor-mui';
+            if (id.includes('swiper')) return 'vendor-swiper';
+            if (id.includes('socket.io')) return 'vendor-realtime';
+            if (id.includes('react-icons')) return 'vendor-icons';
+            if (id.includes('react-dom') || id.includes('/react/')) return 'vendor-react';
+            return undefined;
+          },
+        },
+      },
     },
   };
 });

@@ -209,10 +209,15 @@ export async function fetchBanners({ position } = {}) {
                 ? `${getApiOrigin()}${rawImage}`
                 : rawImage;
 
+        // Responsive variant metadata (AVIF/WebP 320/640/1200) so banners get
+        // srcset + a reserved aspect ratio instead of a bare full-size <img>.
+        const media = b.imageMedia && typeof b.imageMedia === "object" ? b.imageMedia : null;
+
         return {
             ...b,
             id,
-            imageUrl,
+            imageUrl: (media && media.url) || imageUrl,
+            imageMedia: media,
             linkUrl: b.linkUrl || b.link || "",
         };
     });

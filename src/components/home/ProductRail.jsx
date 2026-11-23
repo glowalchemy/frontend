@@ -23,6 +23,9 @@ const ProductRail = ({
   viewAllTo = '/ProductListing',
   hideAddToCart = false,
   className = '',
+  // Skeleton count matches the rail's request limit so the loading grid has the
+  // same number of rows as the loaded grid — replacing it causes no shift.
+  skeletonCount = 12,
 }) => {
   const items = Array.isArray(products) ? products : [];
 
@@ -40,7 +43,7 @@ const ProductRail = ({
 
         {loading ? (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
-            {Array.from({ length: 10 }).map((_, index) => (
+            {Array.from({ length: skeletonCount }).map((_, index) => (
               <div
                 key={`skeleton-${index}`}
                 className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white"

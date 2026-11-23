@@ -19,6 +19,7 @@ import { initMetaPixel, trackPageView } from './utils/metaPixelSdk';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { RouteErrorBoundary } from './components/shared/ErrorBoundary';
 
 const Home = lazy(() => import('./Pages/Home'));
 const ProductListing = lazy(() => import('./Pages/ProductListing'));
@@ -474,10 +475,15 @@ function App() {
                                                 className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-brand-ivory pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0 relative"
                                             >
                                                 <Suspense fallback={
-                                                    <div className="flex items-center justify-center h-64">
+                                                    // Reserve most of the viewport while a route chunk loads.
+                                                    // A short fallback let the footer paint high up and then
+                                                    // get pushed a full page down when the route arrived —
+                                                    // the single largest layout shift on the homepage.
+                                                    <div className="flex items-center justify-center min-h-[70vh]" role="status" aria-label="Loading page">
                                                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary"></div>
                                                     </div>
                                                 }>
+                                                    <RouteErrorBoundary>
                                                     <Routes>
                                                         {/* Public Routes */}
                                                         <Route path="/" element={<Home />} />
@@ -656,6 +662,7 @@ function App() {
                                                         {/* Fallback */}
                                                         <Route path="*" element={<Navigate to="/" replace />} />
                                                     </Routes>
+                                                    </RouteErrorBoundary>
                                                 </Suspense>
                                                 {/* Footer */}
                                                 <Footer />

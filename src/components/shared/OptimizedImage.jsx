@@ -88,7 +88,7 @@ const OptimizedImage = ({
   decoding = 'async',
   onLoad,
   onError,
-  revealTimeoutMs = 1500,
+  revealTimeoutMs = 400,
   hangTimeoutMs = 20000,
 }) => {
   const imgRef = useRef(null);
@@ -119,6 +119,12 @@ const OptimizedImage = ({
       setStatus('ready');
       if (typeof onLoad === 'function') onLoad();
     };
+    // Priority/LCP images must never wait on decode(): the browser paints a
+    // loaded image fine, and any decode gating here would add to LCP.
+    if (priority) {
+      finish();
+      return;
+    }
     // decode() may reject (e.g. SVG, or a decode race) — never block reveal.
     // The safety timeout guarantees we cannot hang if decode() misbehaves.
     const timer = setTimeout(finish, revealTimeoutMs);
@@ -128,7 +134,7 @@ const OptimizedImage = ({
         clearTimeout(timer);
         finish();
       });
-  }, [onLoad, revealTimeoutMs]);
+  }, [onLoad, revealTimeoutMs, priority]);
 
   const handleError = useCallback(() => {
     setStatus('error');
@@ -189,7 +195,7 @@ const OptimizedImage = ({
           decoding={decoding}
           onLoad={handleLoad}
           onError={handleError}
-          className={`${className} ${status === 'ready' ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+          className={`${className} ${status === 'ready' ? 'opacity-100' : 'opacity-0'} transition-opacity ${priority ? 'duration-0' : 'duration-150'}`}
           style={style}
         />
       </picture>

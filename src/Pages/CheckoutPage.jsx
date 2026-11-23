@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -58,6 +58,22 @@ const CheckoutPage = () => {
     const normalizedItems = isBuyNowMode ? buyNowItems : normalizedCartItems;
 
     const [loading, setLoading] = useState(false);
+
+    // Double-submit guard. `loading` disables the buttons only on the next
+    // render, so two fast clicks (or a double Enter) could otherwise create two
+    // orders and two Shiprocket shipments. This ref blocks re-entry immediately.
+    const submitLockRef = useRef(false);
+
+    // Stable id for this checkout attempt: the backend returns the order it
+    // already created instead of creating a duplicate when the same id arrives
+    // again (retry after a timeout, refresh, etc.).
+    const clientRequestIdRef = useRef('');
+    if (!clientRequestIdRef.current) {
+        const randomPart = (typeof crypto !== 'undefined' && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        clientRequestIdRef.current = `checkout_${randomPart}`;
+    }
     const [error, setError] = useState('');
 
     const [savedAddresses, setSavedAddresses] = useState([]);
@@ -362,6 +378,8 @@ const CheckoutPage = () => {
                 return;
             }
 
+            if (submitLockRef.current) return;
+            submitLockRef.current = true;
             setLoading(true);
             try {
                 try { await fetchCart(); } catch (_e) {}
@@ -371,6 +389,7 @@ const CheckoutPage = () => {
                 }
 
                 const resp = await apiClient.post('/orders/cod', {
+                    clientRequestId: clientRequestIdRef.current,
                     currency: 'INR',
                     subtotal: subtotalAmount,
                     shipping: SHIPPING_AMOUNT,
@@ -414,6 +433,7 @@ const CheckoutPage = () => {
                 setError(String(msg));
                 return;
             } finally {
+                submitLockRef.current = false;
                 setLoading(false);
             }
         }
@@ -439,6 +459,8 @@ const CheckoutPage = () => {
 
         const returnUrl = `${window.location.origin}/summary`;
 
+        if (submitLockRef.current) return;
+        submitLockRef.current = true;
         setLoading(true);
         try {
             try { await fetchCart(); } catch (_e) {}
@@ -486,6 +508,7 @@ const CheckoutPage = () => {
                 }
             });
         } finally {
+            submitLockRef.current = false;
             setLoading(false);
         }
     };

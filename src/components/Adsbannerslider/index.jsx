@@ -10,14 +10,14 @@ import BannerBox from '../BannerBox';
 
 import { fetchBanners } from '../../api/catalog';
 
-const Adsbennerslider = (props) => {
+const Adsbennerslider = ({ items: itemsCount, position = 'home_promo_slider' }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     let cancelled = false;
     async function load() {
       try {
-        const data = await fetchBanners({ position: 'home_promo_slider' });
+        const data = await fetchBanners({ position });
         if (!cancelled) setItems(Array.isArray(data) ? data : []);
       } catch (e) {
         if (!cancelled) setItems([]);
@@ -27,7 +27,9 @@ const Adsbennerslider = (props) => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [position]);
+
+  if (items.length === 0) return null;
 
   return (
     <div className='py-2 sm:py-4 w-full -mx-3 sm:mx-0'>
@@ -45,13 +47,19 @@ const Adsbennerslider = (props) => {
           430: { slidesPerView: 1.1, spaceBetween: 10, pagination: { clickable: true }, autoplay: { delay: 2500, disableOnInteraction: false } },
           640: { slidesPerView: 3, freeMode: true, autoplay: false, pagination: false },
           768: { slidesPerView: 4, freeMode: true, autoplay: false, pagination: false },
-          1024: { slidesPerView: props.items || 4, navigation: true, freeMode: false, autoplay: false, pagination: false },
+          1024: { slidesPerView: itemsCount || 4, navigation: true, freeMode: false, autoplay: false, pagination: false },
         }}
         className="smlbtn w-full"
       >
         {items.map((b) => (
           <SwiperSlide key={b.id}>
-            <BannerBox img={b.imageUrl} link={b.linkUrl} />
+            <BannerBox
+              img={b.imageUrl}
+              link={b.linkUrl}
+              variants={b.imageMedia?.variants || null}
+              width={b.imageMedia?.width || null}
+              height={b.imageMedia?.height || null}
+            />
           </SwiperSlide>
         ))}
 

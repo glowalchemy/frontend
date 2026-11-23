@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isCanceled, normalizeApiError } from "../utils/errors";
 
 const inferLocalApiBaseUrl = () => {
     if (typeof window === "undefined") return "/api";
@@ -95,8 +96,17 @@ api.interceptors.response.use(
         if (key) {
             inFlight.delete(key);
         }
+        // A request we deliberately cancelled (route change, superseded search,
+        // unmount) is never a failure: no log, no redirect, no user message.
+        if (isCanceled(error)) {
+            return Promise.reject(error);
+        }
+
         const config = error?.config;
         const hasResponse = Boolean(error?.response);
+
+        // Attach the shared, safe interpretation so callers never re-derive it.
+        error.normalized = normalizeApiError(error);
 
         if (!hasResponse && !hasLoggedNetworkError) {
             hasLoggedNetworkError = true;
@@ -117,17 +127,20 @@ api.interceptors.response.use(
         }
 
         if (error.response?.status === 401) {
-            // Token expired or invalid, remove it and redirect to login
-            // But don't redirect if this is a login/register request itself
+            // Token expired or invalid: clear the session. Only bounce to sign-in
+            // when a session actually existed — a signed-out visitor hitting a
+            // protected endpoint should see the page's own "sign in" state, not
+            // an unexpected hard redirect. The current location is preserved so
+            // the user returns where they were after signing in.
             const isAuthRequest = config?.url?.includes('/auth/login') || config?.url?.includes('/auth/register');
-            
+            const hadSession = Boolean(localStorage.getItem('token') || localStorage.getItem('adminToken'));
+
             if (!isAuthRequest) {
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                // Use React Router navigation instead of full page reload when possible
-                // For API client level, we'll use window.location but avoid reload if already on login
-                if (window.location.pathname !== '/login') {
-                    window.location.href = '/login';
+                if (hadSession && window.location.pathname !== '/login') {
+                    const back = `${window.location.pathname}${window.location.search}`;
+                    window.location.href = `/login?redirect=${encodeURIComponent(back)}`;
                 }
             }
         }

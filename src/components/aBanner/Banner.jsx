@@ -29,6 +29,8 @@ const AdBannerSection = () => {
     };
   }, []);
 
+  if (items.length === 0) return null;
+
   return (
     <section className="container banner-section">
       <div className="md:hidden -mx-3">
@@ -42,7 +44,15 @@ const AdBannerSection = () => {
           {items.map((item) => (
             <SwiperSlide key={item.id}>
               <Link to={item.linkUrl || '/'} className="banner-card block px-3" key={item.id}>
-                <BannerImage src={item.imageUrl} alt={`banner-${item.id}`} className="rounded-lg h-full" />
+                <BannerImage
+                  src={item.imageUrl}
+                  variants={item.imageMedia?.variants || null}
+                  width={item.imageMedia?.width || null}
+                  height={item.imageMedia?.height || null}
+                  alt={`banner-${item.id}`}
+                  sizes="(min-width: 768px) 25vw, 100vw"
+                  className="rounded-lg h-full"
+                />
               </Link>
             </SwiperSlide>
           ))}
@@ -53,7 +63,15 @@ const AdBannerSection = () => {
         <div className="banner-container">
           {items.map((item) => (
             <Link to={item.linkUrl || '/'} className="banner-card block" key={item.id}>
-              <BannerImage src={item.imageUrl} alt={`banner-${item.id}`} className="rounded-lg h-full" />
+              <BannerImage
+                src={item.imageUrl}
+                variants={item.imageMedia?.variants || null}
+                width={item.imageMedia?.width || null}
+                height={item.imageMedia?.height || null}
+                alt={`banner-${item.id}`}
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                className="rounded-lg h-full"
+              />
             </Link>
           ))}
         </div>
