@@ -277,9 +277,39 @@ const MobileBottomNav = () => {
     );
 };
 
-import { fetchProductBySlug } from './api/catalog';
+import { fetchProductById, fetchProductBySlug } from './api/catalog';
+import NotFound from './Pages/NotFound';
+
 const ProductDetailsRoute = () => {
     const { id } = useParams();
+    return <ProductDetailModern key={id} />;
+};
+
+// Legacy ID-based URL: /product/<mongoId>
+// The product is resolved once; when it has a saved slug the browser is moved
+// to the canonical root-level slug URL. Products without a slug still render
+// the PDP by ID (backward compatibility until migration assigns one).
+const LegacyProductRedirect = () => {
+    const { id } = useParams();
+    const [target, setTarget] = useState(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        setTarget(null);
+        if (!id) return;
+        fetchProductById(id)
+            .then((p) => {
+                if (cancelled) return;
+                const slug = String(p?.slug ?? '').trim();
+                // Products without a slug (pre-migration) still render the PDP
+                // by ID — full backward compatibility.
+                if (slug) setTarget(`/${slug}`);
+            })
+            .catch(() => { /* lookup failed -> render PDP by id below */ });
+        return () => { cancelled = true; };
+    }, [id]);
+
+    if (target) return <Navigate to={target} replace />;
     return <ProductDetailModern key={id} />;
 };
 
@@ -289,25 +319,54 @@ const ProductDetailsRoute = () => {
 const ProductSlugRoute = () => {
     const { productSlug } = useParams();
     const [resolved, setResolved] = useState(null);
-    const [failed, setFailed] = useState(false);
+    const [state, setState] = useState('loading'); // loading | notfound | error
+    const [redirectTo, setRedirectTo] = useState(null);
 
     useEffect(() => {
         let cancelled = false;
         setResolved(null);
-        setFailed(false);
-        if (!productSlug) return;
+        setRedirectTo(null);
+        setState('loading');
+        if (!productSlug) { setState('notfound'); return; }
         fetchProductBySlug(productSlug)
             .then((p) => {
                 if (cancelled) return;
                 const pid = p?._id || p?.id;
-                if (pid) setResolved(String(pid));
-                else setFailed(true);
+                if (pid) { setResolved(String(pid)); setState('ready'); }
+                else setState('notfound');
             })
-            .catch(() => { if (!cancelled) setFailed(true); });
+            .catch((err) => {
+                if (cancelled) return;
+                const data = err?.response?.data;
+                // Historical slug -> the backend tells us the canonical URL.
+                if (data?.code === 'SLUG_MOVED' && data?.redirectTo) {
+                    setRedirectTo(String(data.redirectTo));
+                    setState('redirect');
+                    return;
+                }
+                // 404 = genuinely missing product; anything else = server problem.
+                const status = err?.response?.status;
+                setState(status === 404 ? 'notfound' : 'error');
+            });
         return () => { cancelled = true; };
     }, [productSlug]);
 
-    if (failed) return <Navigate to="/" replace />;
+    if (state === 'redirect' && redirectTo) return <Navigate to={redirectTo} replace />;
+    if (state === 'notfound') return <NotFound />;
+    if (state === 'error') {
+        return (
+            <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-glowalchemy-warm-gray">
+                <p>We couldn't load this product. Please check your connection and try again.</p>
+                <button
+                    type="button"
+                    onClick={() => window.location.reload()}
+                    className="rounded-xl bg-glowalchemy-terracotta px-6 py-2.5 text-white font-medium hover:bg-glowalchemy-charcoal transition-colors"
+                >
+                    Retry
+                </button>
+            </div>
+        );
+    }
     if (!resolved) return <div className="min-h-[60vh] flex items-center justify-center text-glowalchemy-warm-gray">Loading…</div>;
     return <ProductDetailModern key={resolved} productIdOverride={resolved} />;
 };
@@ -489,7 +548,7 @@ function App() {
                                                         <Route path="/" element={<Home />} />
                                                         <Route path="/ProductListing" element={<ProductListing />} />
                                                         <Route path="/ProductListing/:category" element={<ProductListing />} />
-                                                        <Route path="/product/:id" element={<ProductDetailsRoute />} />
+                                                        <Route path="/product/:id" element={<LegacyProductRedirect />} />
                                                         <Route path="/:productSlug" element={<ProductSlugRoute />} />
                                                         <Route path="/policies" element={<Policies />} />
                                                         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

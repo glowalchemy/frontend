@@ -29,6 +29,8 @@ export const productImage = (product) =>
 
 export const productId = (product) => product?.id || product?._id || '';
 
+export const productSlug = (product) => String(product?.slug ?? '').trim();
+
 export const pickHeroProducts = (products) => {
   const list = Array.isArray(products) ? products.filter((p) => productImage(p)) : [];
   const slots = [
@@ -56,6 +58,7 @@ export const pickHeroProducts = (products) => {
         name: product.name || product.title || 'GlowAlchemy',
         image: productImage(product),
         id: productId(product),
+        slug: productSlug(product),
         fromApi: true,
       };
     }
@@ -70,6 +73,7 @@ export const pickHeroProducts = (products) => {
         name: extra.name || extra.title || 'GlowAlchemy',
         image: productImage(extra),
         id: productId(extra),
+        slug: productSlug(extra),
         fromApi: true,
       };
     }
@@ -124,6 +128,7 @@ export const pickBestsellers = (products) => {
       return {
         key: fallback.key,
         id: productId(match),
+        slug: productSlug(match),
         title: match.name || match.title || fallback.title,
         description: stripHtml(match.description || match.shortDescription || '') || fallback.description,
         image: productImage(match),

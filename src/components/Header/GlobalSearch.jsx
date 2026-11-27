@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiX, FiArrowLeft, FiAlertCircle } from 'react-icons/fi';
 import { fetchSearchSuggest } from '../../api/catalog';
+import { productUrl } from '../../utils/productUrl';
 import OptimizedImage from '../shared/OptimizedImage';
 
 // Minimum query length for the lightweight autocomplete request (matches
@@ -122,8 +123,7 @@ const GlobalSearch = ({ onBack, autoFocus = false }) => {
         saveRecentSearch(String(searchQuery || '').trim());
         setIsSearchOpen(false);
         setSearchQuery('');
-        const id = product?.id || product?._id;
-        if (id) navigate(`/product/${id}`);
+        navigate(productUrl(product));
     };
 
     const handleRecentSearchClick = (query) => {

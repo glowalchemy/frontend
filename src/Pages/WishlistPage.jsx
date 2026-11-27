@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
 import EmptyState from '../components/shared/EmptyState';
 import OptimizedImage from '../components/shared/OptimizedImage';
+import { productUrl } from '../utils/productUrl';
 import { toast } from 'react-toastify';
 
 const WishlistPage = () => {
@@ -92,7 +93,7 @@ const WishlistPage = () => {
                                 <div key={productId} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow border border-glowalchemy-sand">
                                     {/* Product Image */}
                                     <div className="relative">
-                                        <Link to={`/product/${productId}`}>
+                                        <Link to={productUrl(product)}>
                                             <OptimizedImage
                                                 src={image}
                                                 variants={product.imageMedia?.variants || null}
@@ -124,7 +125,7 @@ const WishlistPage = () => {
 
                                     {/* Product Info */}
                                     <div className="p-4">
-                                        <Link to={`/product/${productId}`}>
+                                        <Link to={productUrl(product)}>
                                             <h3 className="text-lg font-semibold text-glowalchemy-charcoal mb-2 hover:text-glowalchemy-terracotta line-clamp-2 transition-colors">
                                                 {name}
                                             </h3>

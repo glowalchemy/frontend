@@ -5,6 +5,7 @@ import { FaLeaf } from 'react-icons/fa';
 import { fetchPopularProducts } from '../../api/catalog';
 import OptimizedImage from '../shared/OptimizedImage';
 import { pickHeroProducts } from '../../utils/homeProducts';
+import { productUrl } from '../../utils/productUrl';
 
 const HeroBanner = () => {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,8 @@ const HeroBanner = () => {
   const heroProducts = useMemo(() => pickHeroProducts(products), [products]);
   const [first, second, third] = heroProducts;
 
-  const productLink = (product) => (product?.id ? `/product/${product.id}` : '/ProductListing');
+  const productLink = (product) =>
+    (product?.id || product?.slug ? productUrl({ slug: product.slug, id: product.id }) : '/ProductListing');
 
   return (
     <section className="ga-hero">

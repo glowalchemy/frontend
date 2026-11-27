@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import { fetchPopularProducts } from '../../api/catalog';
 import { pickBestsellers } from '../../utils/homeProducts';
+import { productUrl } from '../../utils/productUrl';
 import SectionHeading from './SectionHeading';
 
 const Bestsellers = () => {
@@ -44,7 +45,7 @@ const Bestsellers = () => {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {cards.map((card, index) => {
-            const to = card.id ? `/product/${card.id}` : '/ProductListing';
+            const to = card.id || card.slug ? productUrl({ slug: card.slug, id: card.id }) : '/ProductListing';
             return (
               <Link
                 key={card.key}

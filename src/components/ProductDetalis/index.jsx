@@ -13,6 +13,7 @@ import { useWishlist } from '../../context/WishlistContext';
 import { normalizeColorKey, normalizeToken } from '../../utils/colorVariants';
 import { fetchSizeGuide } from '../../api/sizeGuides';
 import { trackViewContent, trackAddToCart, trackAddToWishlist } from '../../utils/metaPixelSdk';
+import { productUrl } from '../../utils/productUrl';
 
 const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect, useVariantImages = true }) => {
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || 'M');
@@ -114,7 +115,7 @@ const ProductDetalisComponent = ({ product, selectedColorVariant, onColorSelect,
   const handleShare = async () => {
     if (!productId) return;
 
-    const url = `${window.location.origin}/product/${productId}${location.search || ''}`;
+    const url = `${window.location.origin}${productUrl(product)}${location.search || ''}`;
     const title = String(product?.name || 'Product');
 
     try {

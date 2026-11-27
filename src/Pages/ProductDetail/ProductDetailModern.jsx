@@ -193,6 +193,18 @@ const ProductDetailModern = (props = {}) => {
         }
         meta.setAttribute('content', (product.metaDescription || product.description || '').slice(0, 300));
 
+        // Canonical URL = the saved backend slug (falls back to current path).
+        const slug = String(product.slug ?? '').trim();
+        const canonicalPath = slug ? `/${slug}` : location.pathname;
+        const canonicalUrl = `${window.location.origin}${canonicalPath}`;
+        let canonical = document.head.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.rel = 'canonical';
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', canonicalUrl);
+
         const jsonLd = {
             '@context': 'https://schema.org',
             '@type': 'Product',
@@ -206,7 +218,7 @@ const ProductDetailModern = (props = {}) => {
                 priceCurrency: 'INR',
                 price: Number(product.price ?? 0),
                 availability: stockStatus.state === 'out' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-                url: window.location.href,
+                url: canonicalUrl,
             },
         };
         const script = document.createElement('script');
@@ -219,6 +231,7 @@ const ProductDetailModern = (props = {}) => {
         return () => {
             document.title = 'GlowAlchemy';
             document.getElementById('product-jsonld')?.remove();
+            canonical?.remove();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product]);
