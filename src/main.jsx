@@ -5,6 +5,11 @@ import App from './App';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchBanners } from './api/catalog';
+import { initChunkRecovery } from './utils/chunkRecovery';
+
+// Stale-deployment recovery: must be registered before React renders so the
+// first lazy route chunk is already covered by the vite:preloadError handler.
+initChunkRecovery();
 
 // Kick off the hero-banner request before React mounts: the hero image is the
 // LCP element, and starting URL discovery ~100ms earlier shortens the whole
