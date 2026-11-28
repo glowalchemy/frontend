@@ -17,6 +17,8 @@ import { useWishlist } from '../../context/WishlistContext';
 import { normalizeColorKey, normalizeProductForColorVariants, normalizeToken } from '../../utils/colorVariants';
 import { getStockStatus } from '../../utils/stockStatus';
 import { trackViewContent } from '../../utils/metaPixelSdk';
+import { applySeo } from '../../utils/seo';
+import { SEO_SITE } from '../../config/seo';
 
 const formatPrice = (value) => {
     const num = Number(value);
@@ -180,59 +182,36 @@ const ProductDetailModern = (props = {}) => {
     }, [productId]);
 
     // ---- SEO: per-product title, meta description and JSON-LD ----
+    // Uses the shared head manager so OG/Twitter/canonical tags stay
+    // consistent and are fully replaced when navigating to another route.
     useEffect(() => {
         if (!product) return;
-        const fullTitle = `${product.name} | GlowAlchemy`;
-        document.title = fullTitle;
-
-        let meta = document.querySelector('meta[name="description"]');
-        if (!meta) {
-            meta = document.createElement('meta');
-            meta.name = 'description';
-            document.head.appendChild(meta);
-        }
-        meta.setAttribute('content', (product.metaDescription || product.description || '').slice(0, 300));
-
-        // Canonical URL = the saved backend slug (falls back to current path).
         const slug = String(product.slug ?? '').trim();
         const canonicalPath = slug ? `/${slug}` : location.pathname;
         const canonicalUrl = `${window.location.origin}${canonicalPath}`;
-        let canonical = document.head.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.rel = 'canonical';
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', canonicalUrl);
 
-        const jsonLd = {
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: product.name,
-            image: product.image || (Array.isArray(product.media) && product.media[0]?.url) || '',
-            description: product.metaDescription || product.description,
-            sku: product.sku || undefined,
-            brand: product.brand ? { '@type': 'Brand', name: product.brand } : undefined,
-            offers: {
-                '@type': 'Offer',
-                priceCurrency: 'INR',
-                price: Number(product.price ?? 0),
-                availability: stockStatus.state === 'out' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-                url: canonicalUrl,
+        applySeo({
+            title: `${product.name} | ${SEO_SITE.name}`,
+            description: (product.metaDescription || product.description || '').slice(0, 300),
+            canonicalUrl,
+            image: product.image || (Array.isArray(product.media) && product.media[0]?.url) || SEO_SITE.defaultImage,
+            jsonLd: {
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                name: product.name,
+                image: product.image || (Array.isArray(product.media) && product.media[0]?.url) || '',
+                description: product.metaDescription || product.description,
+                sku: product.sku || undefined,
+                brand: product.brand ? { '@type': 'Brand', name: product.brand } : undefined,
+                offers: {
+                    '@type': 'Offer',
+                    priceCurrency: 'INR',
+                    price: Number(product.price ?? 0),
+                    availability: stockStatus.state === 'out' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+                    url: canonicalUrl,
+                },
             },
-        };
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.id = 'product-jsonld';
-        script.textContent = JSON.stringify(jsonLd);
-        document.getElementById('product-jsonld')?.remove();
-        document.head.appendChild(script);
-
-        return () => {
-            document.title = 'GlowAlchemy';
-            document.getElementById('product-jsonld')?.remove();
-            canonical?.remove();
-        };
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product]);
 

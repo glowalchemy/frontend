@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+# Private/transactional routes are excluded via <meta name="robots" content="noindex">
+# (handled per-route in the app) — robots.txt is intentionally not used to
+# block them so crawlers can still see the noindex directive.
+
+Sitemap: https://glowalchemycare.com/sitemap.xml

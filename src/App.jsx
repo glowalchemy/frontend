@@ -19,6 +19,7 @@ import { initMetaPixel, trackPageView } from './utils/metaPixelSdk';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SeoManager from './components/seo/SeoManager';
 import { RouteErrorBoundary } from './components/shared/ErrorBoundary';
 
 const Home = lazy(() => import('./Pages/Home'));
@@ -522,6 +523,7 @@ function App() {
                                     }}
                                 >
                                     <MetaPixelRouteTracker />
+                                    <SeoManager />
                                     <div className="App flex h-screen overflow-hidden">
                                         {/* Right Content Area */}
                                         <div className="flex-1 flex flex-col overflow-hidden">

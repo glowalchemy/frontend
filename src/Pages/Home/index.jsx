@@ -8,6 +8,8 @@ import PopularProducts from '../../components/product/popularproduct'
 import LatestProducts from '../../components/Latestproduct/latestproduct'
 import FeaturedSlider from '../../components/FeaturedSlider/FeaturedSlider'
 import AdBannerSection from '../../components/aBanner/Banner'
+import HomepageIntro from '../../components/home/HomepageIntro'
+import HomepageManufacturing from '../../components/home/HomepageManufacturing'
 import { useCategories } from '../../context/CategoryContext'
 
 
@@ -170,6 +172,9 @@ const Home = () => {
         <Homeslider />
         <div data-scroll-top-trigger="1" />
       </section>
+
+      {/* SEO Introduction - single H1, manufacturing context, CTAs */}
+      <HomepageIntro />
 
       {/* Products Section */}
       <section className="products-section py-4 sm:py-8 md:py-12">
@@ -371,6 +376,9 @@ const Home = () => {
 
         </div>
       </section>
+
+      {/* Manufacturing SEO content - below the shopping sections */}
+      <HomepageManufacturing />
     </div>
   )
 }
